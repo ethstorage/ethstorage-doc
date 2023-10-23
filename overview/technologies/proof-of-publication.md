@@ -12,11 +12,11 @@ Danksharding is the full realization of the rollup scaling that will bring massi
 
 KZG is a proof scheme that reduces a blob of data to a small cryptographic commitment, and fits a polynomial equation to the data. The blob of data submitted by a rollup has to be verified using KZG commitments that evaluate the polynomial at some secret data points. 
 
-Data Upload with DA
+## Bring Data to EthStorage
 
-How can Ethereum DA solutions, i.e., Proto-Danksharding and Danksharding, be applied to EthStorage? 
+How can Ethereum DA solutions, i.e., EIP-4844 and Danksharding, be applied to EthStorage? 
 
-Proto-Danksharding introduces a unique transaction type called blob-carrying transaction that carries an extra piece of data blobs. The blobs are stored on the consensus layer for a short term, and storage providers of EthStorage can download them to their local nodes (a.k.a., es-node), where they are stored in local files. This is how data stored by EthStorage initially comes from. 
+EIP-4844 introduces a unique transaction type called blob-carrying transaction that carries an extra piece of data blobs. The blobs are stored on the consensus layer for a short term, and storage providers of EthStorage can download them to their local nodes (a.k.a., es-node), where they are stored in local files. This is how data stored by EthStorage initially comes from. 
 
 With Danksharding, the upload speed of Ethereum is expected to increase to approximately 2.66 MBps, which is about 20 times faster than the current upload speed of Ethereum. This means Ethererum DA has the ability to bring 1.5TB per week which is available for EthStorage to save.
 
