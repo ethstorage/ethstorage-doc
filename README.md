@@ -4,6 +4,8 @@
 
 EthStorage is a storage-specific L2 network that reuses Ethereum security to extend Ethereum storage capabilities via data availability technology.
 
+Specifically, EthStorage uses data sharding to achieve decentralized storage on large dynamic datasets with applications for large decentralized keyvalue (KV) store on top of an EVM-compatible blockchain. 
+
 ## Motivation
 
 The major goal of EthStorage is to extend Ethereum storage capabilities by reusing Ethereum security properties.
