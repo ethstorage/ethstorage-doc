@@ -2,30 +2,24 @@
 
 This is a practical tutorial to start an es-node instance to connect to the existing EthStorage network.
 
-## Storage Provider
-
-A storage provider is a participant in the EthStorage network who is responsible for storing data. They store blob data on behalf of the network and receive storage fees as a reward for their service. 
-
-Storage providers can join the L2 network permissionlessly by running an es-node. They need to download the replica of the L2 data into their local node, submit proof of storage to the L1 EthStorage contract, and get the corresponding reward once the proof is accepted by the contract.
-
 ## Minimum hardware requirements
 
-This is the minimum hardware requirements that an es-node can possibly run. Note that 1TB free disk space can only support one data shard to be stored. You may need more disk space to store multiple shards according to your requirements. 
+This is the minimum hardware requirement that an es-node can run. Note that 1.2TB of free disk space can only support one data shard to be stored. You may need more disk space to store multiple shards according to your requirements. 
 
 - CPU with 2+ cores
 - 4GB RAM
-- 1TB free disk space dedicated for data storage
+- 1TB free disk space dedicated to data storage
 - 8 MBit/sec download Internet service
 
 _Note: A Ubuntu 20.04 system is recommended as the following steps have been tested with it._
 
 ## Step 1. Prepare miner and signer account
 
-It is suggested to prepare two Ethereum accounts to run a es-node as storage provider, one of which needs to have some ETH balance to be used as a transaction signer.
+It is suggested to prepare two Ethereum accounts to run an es-node as a storage provider, one of which needs to have some ETH balance to be used as a transaction signer.
 
 Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
 
-_Note: An alternative option to sign transactions instead of passing private key around would be using a remote signer such as `clef`._
+_Note: An alternative option to sign transactions instead of passing a private key around would be using a remote signer such as `clef`._
 
 ## Step 2. Download source code
 ```sh

@@ -1,10 +1,10 @@
 # External Data Retention L2 Network
 
-The solution to scaling Ethereum storage proposed by EthStorage is to build an external Layer 2 data retention network that is fully decentralized and permissionless. This network consists of two main components: a storage contract deployed on Ethereum mainnet, and L2 data nodes that actually store data such as es-node.
+The solution to scaling Ethereum storage proposed by EthStorage is to build an external Layer 2 data retention network that is fully decentralized and permissionless. This network consists of two main components: a storage contract deployed on Ethereum mainnet, and L2 storage nodes that actually store data such as es-node.
 
 ## Storage contract
 
-A storage contract has been deployed on the Ethereum mainnet to accept Proofs of Storage to efficiently verify that the data is stored in the data nodes.
+A storage contract has been deployed on the Ethereum mainnet to accept Proofs of Storage to efficiently verify that the data is stored in the storage nodes.
 
 It is important to note that the storage contract does not store the full values of the keys. Instead, it stores commitments, such as KZG commitments of blobs. 
 
@@ -24,4 +24,4 @@ L2 storage nodes like es-node provide various functionalities, including:
 
 - Submitting proof of storage: L2 storage nodes submit the generated proof of storage to the storage contract to validate their participation in the network. And this is how the storage providers collect their reward once the proof is accepted by the contract.
 
-These functionalities collectively enable decentralized data retrieval, storage, and verification in the L2 data retention network. Storage providers can join the L2 network permissionlessly by running a data node. 
+These functionalities collectively enable decentralized data retrieval, storage, and verification in the L2 data retention network. Storage providers can join the L2 network permissionlessly by running a storage node. 

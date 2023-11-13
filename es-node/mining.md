@@ -1,8 +1,12 @@
 # Mining
 
-In the EthStorage network, storage providers operate nodes to download and store data of their interest and receive rewards distributed by the storage contract. Note that running a data node is completely permissionless - as long as the hardware requirements are met.
+## Storage provider (a.k.a. miner)
 
-To collect rewards, the storage providers must provide proof of replication over time. This process sometimes is referred to as "mining", and the storage provider is called a "miner".
+A storage provider in the EthStorage network is an active participant responsible for securely storing data. They store blob data on behalf of the network and receive storage fees as rewards for their service. 
+
+Within the EthStorage network, storage providers operate storage nodes (a.k.a. es-node) to download and store data of their interest, subsequently receiving rewards distributed by the storage contract. To collect rewards, the storage providers must provide proof of replication over time. This process sometimes is referred to as "mining", and the storage provider is called a "miner".
+
+Becoming a storage provider in the EthStorage network is fully permissionless, provided the hardware requirements are satisfied.
 
 ## Proof of Random Access (PoRA)
 
@@ -31,15 +35,10 @@ There are several considerations for the mask generation algorithm:
 
 ## Generating the proof
 
-With the encoded local data by unique masks, we can now start the mining process.
+With the encoded local data by unique masks, we can now start the mining process. 
 
-For each Ethereum slot, storage providers specified by their miner address are allowed to randomly sample encoded blobs up to a fairly large number of times, with each sampling corresponding to a hash candidate.
+For each Ethereum slot, storage providers specified by their miner address are allowed to randomly sample encoded blobs up to a fairly large number of times, with each sampling corresponding to a hash candidate. 
 
-If a hash candidate satisfies the difficulty condition specified in the storage contract, it represents a valid mining solution, similar to proofs of work algorithms. 
+If a hash candidate satisfies the difficulty condition specified in the storage contract, it represents a valid mining solution, similar to proofs of work algorithms. At this stage, the node will generate two proofs: an inclusion proof that verifies the sample's presence in the randomly selected blob using KZG commitment, and a zero-knowledge proof that confirms the accurate application of the mask to encode the blob.
 
-At this point, the node will generate 2 proofs: an inclusion proof that proves the sample is indeed included in the randomly selected blob using KZG commitment, and a zkp that proves that the correct mask is applied to encode the blob.
-
-The storage provider can then submit the proofs to the storage contract on Layer 1 in a standard Ethereum transaction. If the proofs are verified successfully by the contract, the storage provider collects the storage rental fees for all blobs stored since their last submission.
-
-The difficulty parameter is adjusted for each submission, similar to the Ethereum difficulty adjustment algorithm. However, the expected interval between submissions is much larger (e.g. a few hours) so the gas costs to submit the proof via an L1 transaction can be amortized over time. This process provides storage providers periodic rewards while balancing on-chain costs.
- 
+The storage provider can then submit the proofs to the storage contract on Layer 1 in a standard Ethereum transaction. If the proofs are verified successfully by the contract, the storage provider collects the storage rental fees for all blobs stored since their last submission. Finally, the difficulty parameter is adjusted for each submission, similar to the Ethereum difficulty adjustment algorithm. 

@@ -10,7 +10,7 @@ Specifically, EthStorage uses data sharding to achieve decentralized storage on 
 
 The major goal of EthStorage is to extend Ethereum storage capabilities by reusing Ethereum security properties.
 
-EIP-4844/Danksharding data is only temporarily available, i.e., the data will be discarded in a few weeks. EthStorage will allow users to optionally extend the availability time of DA BLOBs in a fully decentralized way.
+EIP-4844/Danksharding data is only temporarily available, i.e., the data will be discarded in a few weeks. EthStorage will allow users to optionally extend the availability time of DA blobs in a fully decentralized way.
 
 Most existing L2 solutions such as rollups focus on scaling Ethereum computation power, a.k.a., higher transactions per second. Meanwhile, with the popularity of dApps such as NFT/DeFi/etc, the demand for storing a large amount of data reusing Ethereum mainnet security has grown dramatically. For example, one strong storage demand comes from on-chain NFTs, where not only the token of an NFT contract is owned by the users, but also the on-chain images belong to the users. In contrast, storing the images on a 3rd party (e.g., ipfs or centralized servers) introduces additional trust, which can be easily and frequently broken (e.g., a lot of images of old NFT projects using ipfs are now unavailable).
 

@@ -14,10 +14,10 @@ KZG is a proof scheme that reduces a blob of data to a small cryptographic commi
 
 ## Bring Data to EthStorage
 
-How can Ethereum DA solutions, i.e., EIP-4844 and Danksharding, be applied to EthStorage? 
+How can Ethereum DA solutions, such as EIP-4844 and Danksharding, be implemented within EthStorage?
 
-EIP-4844 introduces a unique transaction type called blob-carrying transaction that carries an extra piece of data blobs. The blobs are stored on the consensus layer for a short term, and storage providers of EthStorage can download them to their local nodes (a.k.a., es-node), where they are stored in local files. This is how data stored by EthStorage initially comes from. 
+EIP-4844 introduces a novel transaction type known as blob-carrying transaction, which includes additional data in the form of blobs. These blobs are temporarily stored on the consensus layer and can be downloaded by storage providers of EthStorage to their local nodes (referred to as es-nodes), where they are saved in local files. This process comprises the initial acquisition of data stored by EthStorage.
 
-With Danksharding, the upload speed of Ethereum is expected to increase to approximately 2.66 MBps, which is about 20 times faster than the current upload speed of Ethereum. This means Ethererum DA has the ability to bring 1.5TB per week which is available for EthStorage to save.
+With Danksharding, the increased upload speed of Ethereum to approximately 2.66 MBps, about 20 times faster than its current speed, enables Ethereum DA to potentially provide EthStorage with a substantial and reliable source of data, ensuring sufficient available storage capacity.
 
 The main advantage of Danksharding is that nodes are not required to download and broadcast all the data. Instead, each node can verify that any portion of the data can be downloaded from the network through DAS. This approach aligns well with the dynamic sharding model of EthStorage, where nodes only need to download the data they are interested in, rather than downloading all of them.
