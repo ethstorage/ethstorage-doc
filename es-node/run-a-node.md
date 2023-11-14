@@ -1,6 +1,6 @@
 # Run a Node
 
-This is a practical tutorial to start an es-node instance to connect to the existing EthStorage network.
+This tutorial serves as a general guide to initiate an es-node instance and connect it to the existing EthStorage network. For detailed and updated instructions, it is recommended to access [this link](https://github.com/ethstorage/es-node#es-node).
 
 ## Minimum hardware requirements
 
@@ -8,7 +8,7 @@ This is the minimum hardware requirement that an es-node can run. Note that 1.2T
 
 - CPU with 2+ cores
 - 4GB RAM
-- 1TB free disk space dedicated to data storage
+- 1.2TB free disk space dedicated to data storage
 - 8 MBit/sec download Internet service
 
 _Note: A Ubuntu 20.04 system is recommended as the following steps have been tested with it._
