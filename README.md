@@ -10,31 +10,33 @@ description: >-
 
 EthStorage is a storage-specific L2 network that reuses Ethereum security to extend Ethereum storage capabilities via data availability technology.
 
-Specifically, EthStorage uses data sharding to achieve decentralized storage on large dynamic datasets with applications for large decentralized keyvalue (KV) store on top of an EVM-compatible blockchain.
+Specifically, EthStorage employs data sharding to achieve decentralized storage for large dynamic datasets and to support key-value (KV) storage applications on an EVM-compatible blockchain.
 
-## Motivation
+## The motivation
 
-The major goal of EthStorage is to extend Ethereum storage capabilities by reusing Ethereum security properties.
+The main motivation behind EthStorage is to enhance Ethereum's storage capabilities by leveraging its security properties.
 
-EIP-4844/Danksharding data is only temporarily available, i.e., the data will be discarded in a few weeks. EthStorage will allow users to optionally extend the availability time of DA blobs in a fully decentralized way.
+Firstly, EIP-4844/Danksharding data is only available temporarily, meaning it will be discarded in a few weeks. EthStorage will enable users to extend the availability time of DA blobs in a fully decentralized manner if they choose to do so.
 
-Most existing L2 solutions such as rollups focus on scaling Ethereum computation power, a.k.a., higher transactions per second. Meanwhile, with the popularity of dApps such as NFT/DeFi/etc, the demand for storing a large amount of data reusing Ethereum mainnet security has grown dramatically. For example, one strong storage demand comes from on-chain NFTs, where not only the token of an NFT contract is owned by the users, but also the on-chain images belong to the users. In contrast, storing the images on a 3rd party (e.g., ipfs or centralized servers) introduces additional trust, which can be easily and frequently broken (e.g., a lot of images of old NFT projects using ipfs are now unavailable).
+Additionally, most existing L2 solutions such as rollups primarily focus on scaling Ethereum's computational power, i.e., increasing TPS. However, the demand for securely storing large amounts of data on the Ethereum mainnet has surged, especially due to the popularity of dApps like NFTs and DeFi. For instance, the storage demand is pronounced in on-chain NFTs, where not only the token of an NFT contract is owned by users, but also the on-chain images. Storing these images with a third party introduces additional trust, which can be easily compromised.
 
-Another demand is the front end of dApps, which are mostly hosted by centralized servers (with DNS). This means that the websites can be easily censored (happening for Tornado Cash). Further issues include DNS hijacking, website hacking, or server crash.
+Another demand arises from the front end of dApps, mainly hosted by centralized servers (with DNS). This setup makes the websites susceptible to censorship and other issues such as DNS hijacking, website hacking, or server crashes, as evidenced by incidents like Tornado Cash.
 
-By reusing Ethereum mainnet security, all the aforementioned problems can be immediately solved. However, if everything is stored on-chain, the cost will be extremely high - for example, storing 1GB data using SSTORE will cost 1GB / 32 (per SSTORE) \* 20000 (gas per SSTORE) \* 10e9 (gas price) / 1e18 (Gwei to ETH) \* 1500 (ETH price) = $10M! The cost can be reduced to 1/3x using a contract code, but it is still far more expensive than other storage solutions (S3/FILECOIN/AR/etc).
+## The goals
 
-With L2 and data availability technologies, we believe that we can achieve an Ethereum storage scaling solution with the following goals:
+By leveraging Ethereum mainnet security, we can address the aforementioned problems promptly. However, if all data is stored on-chain, it will lead to significantly high costs.
 
-* Increase the capacity to PB or more assuming that each node has a few TB disks
-* Reduce the storage cost to 1/100x or 1/1000x vs SSTORE
-* Similar KV CRUD semantics as SSTORE (a few limitations will apply, see below)
-* Reuse Ethereum mainnet security on block re-organization, storage cost settlement, and censorship-resistant
+Through the utilization of L2 and data availability technologies, we have the potential to achieve an Ethereum storage scaling solution with specific objectives:
 
-## Application
+* Increase the storage capacity to petabytes or more, considering that each node possesses several terabytes of storage.
+* Reduce the storage expenses to 1/100th or 1/1000th of the cost compared to SSTORE.
+* Incorporate similar KV CRUD semantics as SSTORE, with certain limitations to be considered (see details below).
+* Reuse the Ethereum mainnet's security on block re-organization, storage cost settlement, and censorship-resistant
 
-These are some examples for the applications of EthStorage among others:
+## Applications
 
-* Long-term decentralized storage solution for other Rollups including Optimistic Rollups and ZK Rollups.
-* Fully decentralized frontend with dynamic websites where FILECOIN/AR can only serve static ones.
-* Native storage for NFTs that are fully belong to their owners.
+Here are a few examples of the applications of EthStorage:
+
+* Providing a long-term decentralized storage solution for various Rollups, such as Optimistic Rollups and ZK Rollups.
+* Enabling fully decentralized frontends for dynamic websites, distinguishing from FILECOIN/AR which can only support static ones.
+* Offering native storage for NFTs, allowing them to fully belong to their owners.
