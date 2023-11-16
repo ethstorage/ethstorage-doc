@@ -1,3 +1,7 @@
+---
+description: A introduction to the economic model of EthStorage.
+---
+
 # Storage Fee and Reward
 
 To store data in the proposed decentralized KV store, users must pay storage costs to the nodes hosting shard data in order to ensure sufficient replication. How much upfront fee should we charge per KV store/blob so that the protocol can cover the estimated storage fees for 30-50 physical replicas over time?
@@ -18,7 +22,7 @@ Assuming a 2TB SSD with a 5-year lifespan and maximum power consumption of 7.2 W
 
 ```
 ($200/5 + $0.068 × (7.2/1000) × 24 × 365) / 2000 × 128KB/2TB ≈ 1.5 Gwei
-``` 
+```
 
 Suppose we are supporting 50 physical replicas, with a 50% profit margin for data providers, and a yearly discounted rate of 95% for ETH/TB. In this case, the storage contract will require users to pay an upfront storage fee per blob (only the first time calling put() with a non-existing key):
 
@@ -33,6 +37,7 @@ As a comparison, using SSTORE (storing 32 bytes with 20000 gas) with an assumed 
 ```
 (128KB/32) × 20000 × 10 = 819200000 Gwei = 0.8192 ETH
 ```
+
 This implies that the cost-saving ratio is about 270000 (819200000/3000).
 
 ## Fee distributor

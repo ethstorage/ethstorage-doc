@@ -1,6 +1,10 @@
-# Mining diff
+---
+description: >-
+  The concept of mining difficulty is crucial for understanding the dynamic
+  sampling process in the Proof of Random Access (PoRA).
+---
 
-The concept of mining difficulty is crucial for understanding the dynamic sampling process in the Proof of Random Access (PoRA).
+# Mining diff
 
 In contrast to the PoW mining process, PoRA heavily relies on read IOs performed over the shard data, rather than relying on hash power.
 
