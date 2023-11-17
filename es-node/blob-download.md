@@ -1,8 +1,8 @@
+---
+description: Download new blobs from L1 via EIP-4844 specs, and synchronize expired ones from other es-node peers.
+---
+
 # Blob Download
----
-description: >-
-    Download new blobs from L1 via EIP-4844 specs, and synchronize expired ones from other es-node peers.
----
 
 ## Download blobs
 
