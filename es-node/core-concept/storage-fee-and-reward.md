@@ -1,5 +1,5 @@
 ---
-description: A introduction to the economic model of EthStorage.
+description: An introduction to the economic model of EthStorage.
 ---
 
 # Storage Fee and Reward
