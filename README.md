@@ -1,7 +1,7 @@
 ---
 description: >-
-  A general introduction to EthStorage with its motivation as well as the
-  problems it aims to address.
+  An overview of EthStorage, including the challenges it addresses and the
+  objectives it aims to accomplish.
 ---
 
 # Introduction
