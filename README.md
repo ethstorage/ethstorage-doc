@@ -12,7 +12,7 @@ EthStorage is a storage-specific L2 network that reuses Ethereum security to ext
 
 Specifically, EthStorage employs data sharding to achieve decentralized storage for large dynamic datasets and to support key-value (KV) storage applications on an EVM-compatible blockchain.
 
-## The motivation
+## Motivation
 
 The main motivation behind EthStorage is to enhance Ethereum's storage capabilities by leveraging its security properties.
 
@@ -22,7 +22,7 @@ Additionally, most existing L2 solutions such as rollups primarily focus on scal
 
 Another demand arises from the front end of dApps, mainly hosted by centralized servers (with DNS). This setup makes the websites susceptible to censorship and other issues such as DNS hijacking, website hacking, or server crashes, as evidenced by incidents like Tornado Cash.
 
-## The goals
+## Goals
 
 By leveraging Ethereum mainnet security, we can address the aforementioned problems promptly. However, if all data is stored on-chain, it will lead to significantly high costs.
 
