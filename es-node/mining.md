@@ -14,7 +14,7 @@ Becoming a storage provider in the EthStorage network is fully permissionless, p
 
 ## Proof of Random Access (PoRA)
 
-To achieve decentralized storage for large dynamic datasets, a crucial factor is the construction of an on-chain oracle to estimate the number of replicas for each shard. In other words, we utilize a proof of replication algorithm to encourage nodes to host the data of each shard. Nodes that demonstrate the replication of the data shard over time are then rewarded. The reward for each shard is dispersed to nodes that can prove the replication via the process of PoRA.
+To achieve decentralized storage for large dynamic datasets, a crucial factor is the construction of an on-chain oracle to estimate the number of replicas for each [shard](/es-node/core-concept/shard.md). In other words, we utilize a proof of replication algorithm to encourage nodes to host the data of each shard. Nodes that demonstrate the replication of the data shard over time are then rewarded. The reward for each shard is dispersed to nodes that can prove the replication via the process of PoRA.
 
 The objective of the PoRA is to provide information about the number of read IO operations (in MIN IO SIZE terms, e.g., 4KB for most SSDs) performed over the shard data over time. The PoRA is a mining process that heavily depends on read IO operations performed on shard data. Like proof of work mining, the storage contract keeps a dynamic difficulty parameter for each shard and adjusts it after accepting the submission result of the PoRA. Therefore, we can estimate the number of replicas of the shard by comparing the hash rate (read IO rate) to the read IO rate of the most mining-economical storage devices (e.g., 1TB NVME SSD).
 
@@ -40,6 +40,8 @@ With the encoded local data by unique masks, we can now start the mining process
 
 For each Ethereum slot, storage providers specified by their miner address are allowed to randomly sample encoded blobs up to a fairly large number of times, with each sampling corresponding to a hash candidate.
 
-If a hash candidate satisfies the difficulty condition specified in the storage contract, it represents a valid mining solution, similar to proofs of work algorithms. At this stage, the node will generate two proofs: an inclusion proof that verifies the sample's presence in the randomly selected blob using KZG commitment, and a zero-knowledge proof that confirms the accurate application of the mask to encode the blob.
+If a hash candidate satisfies the [difficulty](/es-node/core-concept/mining-diff.md) condition specified in the storage contract, it represents a valid mining solution, similar to proofs of work algorithms. At this stage, the node will generate two proofs: an inclusion proof that verifies the sample's presence in the randomly selected blob using KZG commitment, and a zero-knowledge proof that confirms the accurate application of the mask to encode the blob.
 
-The storage provider can then submit the proofs to the storage contract on Layer 1 in a standard Ethereum transaction. If the proofs are verified successfully by the contract, the storage provider collects the storage rental fees for all blobs stored since their last submission. Finally, the difficulty parameter is adjusted for each submission, similar to the Ethereum difficulty adjustment algorithm.
+The storage provider can then submit the proofs to the storage contract on Layer 1 in a standard Ethereum transaction. If the proofs are verified successfully by the contract, the storage provider collects the storage rental fees for all blobs stored since their last submission. Refer to [this section](/es-node/core-concept/storage-fee-and-reward.md#fee-distributor) for the details of the distribution of storage fees.
+
+Finally, the difficulty parameter is adjusted for each submission, similar to the Ethereum difficulty adjustment algorithm.

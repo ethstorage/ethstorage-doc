@@ -62,9 +62,9 @@ docker logs -f es
 
 If Docker is not installed or you prefer to run an executable binary directly, here is a detailed tutorial for you to get everything ready.
 
-If you may already have go 1.20+ and node 16+ installed, just ignore the corresponding steps.
+If you may already have go 1.20.* and node 16+ installed, just ignore the corresponding steps.
 
-#### 1. Install go 1.20+ (e.g. v1.20.10)
+#### 1. Install go 1.20.* (e.g. v1.20.10)
 
 Download a stable go release
 

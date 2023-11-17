@@ -46,4 +46,4 @@ Verifying the storage of individual blobs from each user is highly inefficient, 
 
 Specifically, the smart contract consolidates payments from all users beginning from the last proof submission time and evenly allocates them to the storage providers who have proven to store each physical replica of the blobs.
 
-On the es-node side, the process of Proof of Retrievability and Audit (PoRA) involves continuous sampling of the blobs to demonstrate their eligibility for collecting the storage fee. However, the expected interval between submissions is much larger (e.g. a few hours) so the gas costs to submit the proof via an L1 transaction can be amortized over time. This process provides storage providers periodic rewards while balancing on-chain costs.
+On the es-node side, the process of PoRA involves continuous sampling of the blobs to demonstrate their eligibility for collecting the storage fee. However, the expected interval between submissions is much larger (e.g. a few hours) so the gas costs to submit the proof via an L1 transaction can be amortized over time. This process provides storage providers periodic rewards while balancing on-chain costs.

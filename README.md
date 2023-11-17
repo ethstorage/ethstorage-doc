@@ -29,9 +29,9 @@ By leveraging Ethereum mainnet security, we can address the aforementioned probl
 Through the utilization of L2 and data availability technologies, we have the potential to achieve an Ethereum storage scaling solution with specific objectives:
 
 * Increase the storage capacity to petabytes or more, considering that each node possesses several terabytes of storage.
-* Reduce the storage expenses to 1/100th or 1/1000th of the cost compared to SSTORE.
-* Incorporate similar KV CRUD semantics as SSTORE, with certain limitations to be considered (see details below).
-* Reuse the Ethereum mainnet's security on block re-organization, storage cost settlement, and censorship-resistant
+* Reduce the storage expenses to 1/100th or 1/1000th of the cost [compared to SSTORE](/es-node/core-concept/storage-fee-and-reward.md#storage-cost-estimation).
+* Incorporate similar [KV CRUD semantics](/storage-contract/store-data-by-using-blobs.md#the-semantics-of-the-kv-store) as SSTORE, with certain [limitations](/storage-contract/get-data.md#limitations-on-get) to be considered.
+* Reuse the Ethereum mainnet's security on block re-organization, storage cost settlement, and censorship resistance.
 
 ## Applications
 
