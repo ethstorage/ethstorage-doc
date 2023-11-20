@@ -15,4 +15,7 @@ When a KV store is created or updated in the contract, a `PutBlob` event is trig
 The overall process of downloading entails two phases: initially caching the blobs when they become available from a beacon node, and subsequently writing the blobs into the shard file once the corresponding blocks are finalized. When writing the blobs into the shard file, they will be encoded with the data hash, blob index, and the miner's address.
  
  ## Data sync
-Those blobs longer than 4096 epochs (~18 days) may no longer retained by L1 nodes. So a newly started es-node will get the outdated blobs from other p2p nodes.
+
+Ethereum beacon nodes may only retain blobs for 4096 epochs which equates to around 18 days. When a new node joins the network, it will retrieve recent blobs from L1 peers. However, to access older historical data, the node is also able to leverage the L2 peer-to-peer network. This takes the form of a peer-to-peer network between es-nodes based on devp2p. The L2 nodes work to discover and synchronize blob data between each other. Through this synchronization process, L2 nodes are able to share their collective long-term blob stores. By discovering and downloading blobs from multiple L2 peers, the new node is able to rebuild a full local copy of the network's blob data - even blobs that exceed the L1 threshold. 
+
+In this way, the L2 layer facilitates permanent distributed storage and accessibility of all blobs across the lifetime of the network.
