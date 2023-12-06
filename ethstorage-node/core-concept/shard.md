@@ -16,7 +16,7 @@ A shard is sized appropriately so that it can be hosted by a home computer, e.g.
 
 Each node can host one or more shards and can claim rewards for each shard by regularly submitting proof of storage. As the number of KV entries grows, new shards will be dynamically created to accommodate the additional values of KV entries.
 
-Upon node launch, the storage provider can freely select which shards to host, typically based on the shards offering the most anticipated rewards. This often means selecting shards with a lower number of replicas according to the oracle.
+Upon node launch, the storage provider can freely choose which shards to host, typically selecting those that offer the highest anticipated rewards. This often means selecting shards with a lower number of replicas according to the mining diff.
 
 ## New shard
 
