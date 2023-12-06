@@ -10,13 +10,13 @@
 
 ## EthStorage Node
 
-* [Run a Node](ethstorage-node/run-a-node.md)
 * [Core Concept](ethstorage-node/core-concept/README.md)
   * [Shard](ethstorage-node/core-concept/shard.md)
   * [Mining diff](ethstorage-node/core-concept/mining-diff.md)
   * [Storage Fee and Reward](ethstorage-node/core-concept/storage-fee-and-reward.md)
-* [Blob Download](ethstorage-node/blob-download.md)
+* [Downloading Blobs](ethstorage-node/blob-download.md)
 * [Mining](ethstorage-node/mining.md)
+* [Running a Node](ethstorage-node/run-a-node.md)
 
 ## Storage Contract
 
