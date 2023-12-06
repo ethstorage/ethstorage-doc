@@ -4,7 +4,7 @@ description: An introduction to the economic model of EthStorage.
 
 # Storage Fee and Reward
 
-To store data in the proposed decentralized KV store, users must pay storage costs to the nodes hosting shard data in order to ensure sufficient replication. How much upfront fee should we charge per KV store/blob so that the protocol can cover the estimated storage fees for 30-50 physical replicas over time?
+To store data in the proposed decentralized KV store, users must pay storage fee to the nodes hosting shard data in order to ensure sufficient replication. How much upfront fee should we charge per KV store/blob so that the protocol can cover the estimated storage fees for a target number of physical replicas over time?
 
 ## A discounted payment flow model
 
