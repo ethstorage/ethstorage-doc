@@ -18,7 +18,7 @@ KZG is a proof scheme that reduces a blob of data to a small cryptographic commi
 
 ## Bring data to EthStorage
 
-How can Ethereum DA solutions, such as EIP-4844 and Danksharding, be implemented within EthStorage?
+How can Ethereum DA solutions, such as EIP-4844 and Danksharding, be used within EthStorage?
 
 EIP-4844 introduces a novel transaction type known as blob-carrying transaction, which includes additional data in the form of blobs. These blobs are temporarily stored on the consensus layer and can be downloaded by storage providers of EthStorage to their local nodes (referred to as es-nodes), where they are saved in local files. This process comprises the initial acquisition of data stored by EthStorage.
 

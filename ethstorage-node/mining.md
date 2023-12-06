@@ -30,9 +30,17 @@ The mask is computed by taking the blob commitment, KV index, and miner address 
 
 There are several considerations for the mask generation algorithm:
 
-* While it is a computationally expensive function to calculate, it can be performed in under a second, allowing physical replicas to be updated in a timely manner.
-* The function should be selected such that the cost of physical storage (including power costs and storage device lifetime costs) is significantly lower than the on-demand computation costs (i.e. raw data storage costs plus costs of computing the mask on demand and computation device lifetime costs).
-* The function should allow for easy and efficient on-chain verification using zero-knowledge proofs (ZKP), to validate the mask function being correctly executed.
+- While it is a computationally expensive function to calculate, it can be performed in under a second, allowing physical replicas to be updated in a timely manner.
+- The function should be selected such that the cost of physical storage (including power costs and storage device lifetime costs) is significantly lower than the on-demand computation costs (i.e. raw data storage costs plus costs of computing the mask on demand and computation device lifetime costs).
+- The function should allow for easy and efficient on-chain verification using zero-knowledge proofs (ZKP), to validate the mask function being correctly executed.
+
+## Mining diff
+
+Within the storage contract, a dynamic difficulty parameter is maintained for each shard. During each Ethereum beacon chain slot, an es-node will read a couple of data samples from positions computed based on an on-chain random seed, and then calculate a mixed hash of the samples. This mixed hash is then compared to the expected difficulty, computed based on the difficulty parameter of the shard, similar to the process in PoW.
+
+If a hash candidate satisfies the expected difficulty, a valid proof can be submitted and verified by the storage contract. The difficulty parameter for the shard will be adjusted after accepting the result of the PoRA based on the expected submission interval.
+
+An important role of the difficulty is to estimate the IO rate of the shard. The dynamic adjustment of difficulty acts as an on-chain oracle, enabling the estimation of the number of replicas for each shard and facilitating the distribution of storage resources across shards in the network as required.
 
 ## The mining process
 
@@ -40,7 +48,7 @@ With the encoded local data by unique masks, we can now start the mining process
 
 For each Ethereum slot, storage providers specified by their miner address are allowed to randomly sample encoded blobs up to a fairly large number of times, with each sampling corresponding to a hash candidate.
 
-If a hash candidate satisfies the [difficulty](core-concept/mining-diff.md) condition specified in the storage contract, it represents a valid mining solution, similar to proofs of work algorithms. At this stage, the node will generate two proofs: an inclusion proof that verifies the sample's presence in the randomly selected blob using KZG commitment, and a zero-knowledge proof that confirms the accurate application of the mask to encode the blob.
+If a hash candidate satisfies the diff condition specified in the storage contract, it represents a valid mining solution, similar to proofs of work algorithms. At this stage, the node will generate two proofs: an inclusion proof that verifies the sample's presence in the randomly selected blob using KZG commitment, and a zero-knowledge proof that confirms the accurate application of the mask to encode the blob.
 
 The storage provider can then submit the proofs to the storage contract on Layer 1 in a standard Ethereum transaction. If the proofs are verified successfully by the contract, the storage provider collects the storage rental fees for all blobs stored since their last submission. Refer to [this section](core-concept/storage-fee-and-reward.md#fee-distributor) for the details of the distribution of storage fees.
 
