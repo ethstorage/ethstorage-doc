@@ -12,7 +12,6 @@
 
 * [Core Concept](ethstorage-node/core-concept/README.md)
   * [Shard](ethstorage-node/core-concept/shard.md)
-  * [Mining diff](ethstorage-node/core-concept/mining-diff.md)
   * [Storage Fee and Reward](ethstorage-node/core-concept/storage-fee-and-reward.md)
 * [Downloading Blobs](ethstorage-node/blob-download.md)
 * [Mining](ethstorage-node/mining.md)
