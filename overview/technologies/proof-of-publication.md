@@ -26,4 +26,4 @@ With Danksharding, the increased upload speed of Ethereum to approximately 2.66 
 
 The main advantage of Danksharding is that nodes are not required to download and broadcast all the data. Instead, each node can verify that any portion of the data can be downloaded from the network through DAS. This approach aligns well with the dynamic sharding model of EthStorage, where nodes only need to download the data they are interested in, rather than downloading all of them.
 
-Refer to [blob download](/es-node/blob-download.md) for the details about how the blobs are downloaded to an es-node.
+Refer to [blob download](../../ethstorage-node/blob-download.md) for the details about how the blobs are downloaded to an es-node.
