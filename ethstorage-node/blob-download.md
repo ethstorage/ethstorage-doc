@@ -1,6 +1,6 @@
 ---
 description: >-
-  Download new blobs from L1 via EIP-4844 specs, and synchronize expired ones
+  Download new blobs from L1 via Ethereum beacon nodes, and synchronize expired ones
   from other es-node peers.
 ---
 
