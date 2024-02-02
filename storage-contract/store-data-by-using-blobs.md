@@ -14,6 +14,8 @@ On the other hand, the blobs themself are stored as a sizable byte array in stor
 
 The contract indexes all blobs from 0 to n-1, where n is the total number of blobs, to facilitate random sampling for verification purposes. It integrates with the EIP-4844 point-evaluation precompile to verify proofs of continuous random sampling of stored data submitted by storage nodes.
 
+<figure><img src="../.gitbook/assets/kvflow.jpeg" alt=""><figcaption><p>The flow of inserting a new kv</p></figcaption></figure>
+
 ## The semantics of the KV store
 
 The Ethereum DA empowers EthStorage to offer a CRUD (create, read, update, delete) interface, enabling operations on a key-value store (KV-store), where each value is referred to as a blob.

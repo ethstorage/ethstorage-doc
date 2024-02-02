@@ -12,6 +12,8 @@ The growth of decentralized apps like DeFi and NFTs has created excitement about
 
 However, accessing Web3 requires users to connect to blockchain nodes through wallets and node service providers (NSPs), resulting in centralization which grants NSPs monopolistic data access and the power to censor content. Users could run nodes themselves but maintaining servers is difficult, and centralized services iterate faster than decentralized platforms. Ultimately, Web3's benefits are constrained by reliance on intermediaries, showing the challenges in fully decentralizing.
 
+<figure><img src="../../.gitbook/assets/web3url.jpg" alt=""><figcaption><p>Web3 URL defined by EIP-4804</p></figcaption></figure>
+
 ## Our Solution
 
 We expect that as more and more users and developers face the current problems of Web3 (or Web2.5 more precisely?), we need a solution so that we could fully harvest the benefits of blockchain. That is why we believe the future of Web3 should be
@@ -20,10 +22,10 @@ We expect that as more and more users and developers face the current problems o
 
 This means that any components in our Web2 from the user side and server side must be decentralized in Web3.
 
-- We can still rely on TCP/IP protocol, which is already decentralized and used by the blockchain P2P network.
-- We should not rely on the DNS protocol as it could still censor a translation of a domain. Instead, we could use **blockchain-based name services** such as ENS.
-- We should not use the current client/webserver model, where the webserver itself is centralized. Instead, we could use a blockchain network where **the blockchain P2P network itself can serve as a webserver**!
-- We do not want to change current users’ web experience, especially the HTTP protocol. This can be done by designing the blockchain network support HTTP protocol in a decentralized way (decentralized HTTP?)!
+* We can still rely on TCP/IP protocol, which is already decentralized and used by the blockchain P2P network.
+* We should not rely on the DNS protocol as it could still censor a translation of a domain. Instead, we could use **blockchain-based name services** such as ENS.
+* We should not use the current client/webserver model, where the webserver itself is centralized. Instead, we could use a blockchain network where **the blockchain P2P network itself can serve as a webserver**!
+* We do not want to change current users’ web experience, especially the HTTP protocol. This can be done by designing the blockchain network support HTTP protocol in a decentralized way (decentralized HTTP?)!
 
 Achieving all these seem to be extremely challenging. The following steps illustrates one solution, where
 

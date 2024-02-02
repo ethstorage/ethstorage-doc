@@ -30,9 +30,9 @@ The mask is computed by taking the blob commitment, KV index, and miner address 
 
 There are several considerations for the mask generation algorithm:
 
-- While it is a computationally expensive function to calculate, it can be performed in under a second, allowing physical replicas to be updated in a timely manner.
-- The function should be selected such that the cost of physical storage (including power costs and storage device lifetime costs) is significantly lower than the on-demand computation costs (i.e. raw data storage costs plus costs of computing the mask on demand and computation device lifetime costs).
-- The function should allow for easy and efficient on-chain verification using zero-knowledge proofs (ZKP), to validate the mask function being correctly executed.
+* While it is a computationally expensive function to calculate, it can be performed in under a second, allowing physical replicas to be updated in a timely manner.
+* The function should be selected such that the cost of physical storage (including power costs and storage device lifetime costs) is significantly lower than the on-demand computation costs (i.e. raw data storage costs plus costs of computing the mask on demand and computation device lifetime costs).
+* The function should allow for easy and efficient on-chain verification using zero-knowledge proofs (ZKP), to validate the mask function being correctly executed.
 
 ## Mining diff
 
@@ -53,3 +53,5 @@ If a hash candidate satisfies the diff condition specified in the storage contra
 The storage provider can then submit the proofs to the storage contract on Layer 1 in a standard Ethereum transaction. If the proofs are verified successfully by the contract, the storage provider collects the storage rental fees for all blobs stored since their last submission. Refer to [this section](core-concept/storage-fee-and-reward.md#fee-distributor) for the details of the distribution of storage fees.
 
 Finally, the difficulty parameter is adjusted for each submission, similar to the Ethereum difficulty adjustment algorithm.
+
+<figure><img src="../.gitbook/assets/miningflow.jpg" alt=""><figcaption><p>The flow of generating a storage proof</p></figcaption></figure>
