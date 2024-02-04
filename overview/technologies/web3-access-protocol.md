@@ -12,8 +12,6 @@ The growth of decentralized apps like DeFi and NFTs has created excitement about
 
 However, accessing Web3 requires users to connect to blockchain nodes through wallets and node service providers (NSPs), resulting in centralization which grants NSPs monopolistic data access and the power to censor content. Users could run nodes themselves but maintaining servers is difficult, and centralized services iterate faster than decentralized platforms. Ultimately, Web3's benefits are constrained by reliance on intermediaries, showing the challenges in fully decentralizing.
 
-<figure><img src="../../.gitbook/assets/web3url.jpg" alt=""><figcaption><p>Web3 URL defined by EIP-4804</p></figcaption></figure>
-
 ## Our Solution
 
 We expect that as more and more users and developers face the current problems of Web3 (or Web2.5 more precisely?), we need a solution so that we could fully harvest the benefits of blockchain. That is why we believe the future of Web3 should be
@@ -32,6 +30,8 @@ Achieving all these seem to be extremely challenging. The following steps illust
 1. The user installs a verified extension (like downloading geth from github), which serves as a light client to the blockchain P2P network.
 2. When the user types a web3 URL (e.g., web3://xxxxx), the extension will parse the URL and translate it to a blockchain message (e.g., calling a smart contract). Then the extension will deliver the message to the P2P network and query the result. For any result returned from the network, the extension fully verified that the result is trusted.
 3. The trusted result is returned to the web browser. The result will be mostly like an HTML document that may contain more web3 URLs.
+
+<figure><img src="../../.gitbook/assets/web3url.jpg" alt=""><figcaption><p>Web3 URL defined by EIP-4804</p></figcaption></figure>
 
 ## Examples
 
