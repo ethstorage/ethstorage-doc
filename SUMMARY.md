@@ -3,15 +3,15 @@
 ## GUIDES
 
 * [Introduction](README.md)
-* [Node Operators](guides/node-operators/README.md)
+* [Node Operators](guides/node-operators/overview.md)
   * [Overview](guides/node-operators/overview.md)
   * [Tutorials](guides/node-operators/tutorials.md)
   * [Configuration](guides/node-operators/configuration.md)
   * [FAQ](guides/node-operators/faq.md)
-* [L2 Operators](guides/l2-operators/README.md)
+* [L2 Operators](guides/l2-operators/overview.md)
   * [Overview](guides/l2-operators/overview.md)
   * [Tutorials](guides/l2-operators/tutorials.md)
-* [Dapp Developers](guides/dapp-developers/README.md)
+* [Dapp Developers](guides/dapp-developers/overview.md)
   * [Overview](guides/dapp-developers/overview.md)
   * [Tutorials](guides/dapp-developers/tutorials.md)
 
