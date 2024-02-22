@@ -4,7 +4,6 @@
 
 * [Introduction](README.md)
 * [Node Operators](guides/node-operators/overview.md)
-  * [Overview](guides/node-operators/overview.md)
   * [Tutorials](guides/node-operators/tutorials.md)
   * [Configuration](guides/node-operators/configuration.md)
   * [FAQ](guides/node-operators/faq.md)
@@ -15,15 +14,15 @@
   * [Overview](guides/dapp-developers/overview.md)
   * [Tutorials](guides/dapp-developers/tutorials.md)
 
-## BASICS
+## PROTOCOL
 
-* [Proof of Publication](basics/proof-of-publication/README.md)
-  * [Shard](basics/proof-of-publication/shard.md)
-  * [Storage Fee and Reward](basics/proof-of-publication/storage-fee-and-reward.md)
-* [Storage Contract](basics/storage-contract/README.md)
-  * [Store Data by Using Blobs](basics/storage-contract/store-data-by-using-blobs.md)
-  * [Get Data](basics/storage-contract/get-data.md)
-* [Storage Node](basics/storage-node/README.md)
-  * [Downloading Blobs](basics/storage-node/downloading-blobs.md)
-  * [Mining](basics/storage-node/mining.md)
-* [Web3:// Access Protocol](basics/web3-access-protocol.md)
+* [Proof of Publication](protocol/proof-of-publication/README.md)
+  * [Shard](protocol/proof-of-publication/shard.md)
+  * [Storage Fee and Reward](protocol/proof-of-publication/storage-fee-and-reward.md)
+* [Storage Contract](protocol/storage-contract/README.md)
+  * [Store Data by Using Blobs](protocol/storage-contract/store-data-by-using-blobs.md)
+  * [Get Data](protocol/storage-contract/get-data.md)
+* [Storage Node](protocol/storage-node/README.md)
+  * [Downloading Blobs](protocol/storage-node/downloading-blobs.md)
+  * [Mining](protocol/storage-node/mining.md)
+* [Web3:// Access Protocol](protocol/web3-access-protocol.md)

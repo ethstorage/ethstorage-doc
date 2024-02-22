@@ -8,7 +8,6 @@ The specific steps to install and start es-node.
 - storage-contracts-v1: v0.1.0
 - es-node: v0.1.6
 
-
 ## Options for running es-node
 
 You can run es-node from a pre-built Docker image, a pre-built executable, or from the source code.
@@ -27,19 +26,19 @@ Download the pre-built package suitable for your platform:
 
 Linux x86-64 or WSL (Windows Subsystem for Linux):
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.6/es-node.v0.1.6.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/<version>/es-node.<version>.linux-amd64.tar.gz | tar -xz
 ```
 MacOS x86-64:
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.6/es-node.v0.1.6.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/<version>/es-node.<version>.darwin-amd64.tar.gz | tar -xz
 ```
 MacOS ARM64:
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.6/es-node.v0.1.6.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/<version>/es-node.<version>.darwin-arm64.tar.gz | tar -xz
 ```
 Run es-node
 ```
-cd es-node.v0.1.6
+cd es-node.<version>
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh
 ```
 
@@ -55,7 +54,7 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.6
+          ghcr.io/ethstorage/es-node:<version>
 ```
 
 You can check docker logs using the following command:
@@ -70,7 +69,7 @@ Download source code and switch to the latest release branch:
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.1.6
+git checkout <version>
 ```
 Build es-node:
 ```sh
