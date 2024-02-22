@@ -15,15 +15,15 @@
   * [Overview](guides/dapp-developers/overview.md)
   * [Tutorials](guides/dapp-developers/tutorials.md)
 
-## TECHNOLOGIES
+## BASICS
 
-* [Proof of Publication](technologies/proof-of-publication/README.md)
-  * [Shard](technologies/proof-of-publication/shard.md)
-  * [Storage Fee and Reward](technologies/proof-of-publication/storage-fee-and-reward.md)
-* [Storage Contract](technologies/storage-contract/README.md)
-  * [Store Data by Using Blobs](technologies/storage-contract/store-data-by-using-blobs.md)
-  * [Get Data](technologies/storage-contract/get-data.md)
-* [Storage Node](technologies/storage-node/README.md)
-  * [Downloading Blobs](technologies/storage-node/downloading-blobs.md)
-  * [Mining](technologies/storage-node/mining.md)
-* [Web3:// Access Protocol](technologies/web3-access-protocol.md)
+* [Proof of Publication](basics/proof-of-publication/README.md)
+  * [Shard](basics/proof-of-publication/shard.md)
+  * [Storage Fee and Reward](basics/proof-of-publication/storage-fee-and-reward.md)
+* [Storage Contract](basics/storage-contract/README.md)
+  * [Store Data by Using Blobs](basics/storage-contract/store-data-by-using-blobs.md)
+  * [Get Data](basics/storage-contract/get-data.md)
+* [Storage Node](basics/storage-node/README.md)
+  * [Downloading Blobs](basics/storage-node/downloading-blobs.md)
+  * [Mining](basics/storage-node/mining.md)
+* [Web3:// Access Protocol](basics/web3-access-protocol.md)
