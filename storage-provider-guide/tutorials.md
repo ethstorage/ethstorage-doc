@@ -14,15 +14,43 @@ layout:
 
 # Installation
 
-The specific steps to install and start es-node.
+This guide provides practical steps for the node operators to start an es-node instance for connecting to the existing EthStorage testnet.
 
-### Testnet Spec
+## Testnet Spec
 
 * Layer 1: Sepolia testnet
 * storage-contracts-v1: v0.1.0
 * es-node: v0.1.6
 
-### Options for running es-node
+## Prerequisites
+
+### System Environment
+
+* Ubuntu 20.04+ (tested and verified)
+* (Optional) Docker 24.0.5+ (would simplify the process)
+* (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
+
+You can choose [the method of running es-node](tutorials.md#options-to-run-es-node) based on your current environment.
+
+_Note: The steps assume the use of the root user for all command line operations. If using a non-root user, you may need to prepend some commands with "sudo"._
+
+### Preparing miner and signer account
+
+It is recommended to prepare two Ethereum accounts specifically for this test. One of these accounts should contain a balance of test ETH to be used as a transaction signer.
+
+The test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+
+Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
+
+### About `run.sh`
+
+The `run.sh` script is used as an entry point. The main function of the script is to initialize the data file, prepare for mining, and launch es-node with preset parameters.
+
+Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
+
+_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](tutorials.md#configuration) _for a full list._
+
+## Options for running es-node
 
 You can run es-node from a pre-built Docker image, a pre-built executable, or from the source code.
 

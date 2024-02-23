@@ -1,7 +1,15 @@
 ---
-description: >-
-  An overview of EthStorage, including the challenges it addresses and the
-  objectives it aims to accomplish.
+layout:
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
 # Overview
@@ -20,4 +28,8 @@ EIP-4844 introduces data blobs that enhance the throughput and efficiency of L2 
 
 With EthStorage as a long-term DA solution, L2s can derive from their DA layer (Ethereum DA, Celestia, EigenDA, etc. + EthStorage) any time they want.
 
-&#x20;Other applications include enabling fully decentralized frontends for dApps and dynamic websites, as well as offering native storage for NFTs, allowing them to fully belong to their owners.
+Other applications include enabling fully decentralized frontends for dApps and dynamic websites, offering native storage for NFTs, etc.
+
+
+
+<figure><img src=".gitbook/assets/es.jpg" alt=""><figcaption></figcaption></figure>
