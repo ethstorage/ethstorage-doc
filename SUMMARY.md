@@ -3,16 +3,16 @@
 ## GUIDES
 
 * [Introduction](README.md)
-* [Node Operators](guides/node-operators/overview.md)
-  * [Tutorials](guides/node-operators/tutorials.md)
-  * [Configuration](guides/node-operators/configuration.md)
-  * [FAQ](guides/node-operators/faq.md)
-* [L2 Operators](guides/l2-operators/overview.md)
-  * [Overview](guides/l2-operators/overview.md)
-  * [Tutorials](guides/l2-operators/tutorials.md)
-* [Dapp Developers](guides/dapp-developers/overview.md)
-  * [Overview](guides/dapp-developers/overview.md)
-  * [Tutorials](guides/dapp-developers/tutorials.md)
+* [Node Operators](guides/overview/README.md)
+  * [Tutorials](guides/overview/tutorials.md)
+  * [Configuration](guides/overview/configuration.md)
+  * [FAQ](guides/overview/faq.md)
+* [L2 Operators](guides/overview-1/README.md)
+  * [Overview](guides/overview-1/README.md)
+  * [Tutorials](guides/overview-1/tutorials.md)
+* [Dapp Developers](guides/overview-2/README.md)
+  * [Overview](guides/overview-2/README.md)
+  * [Tutorials](guides/overview-2/tutorials.md)
 
 ## PROTOCOL
 
