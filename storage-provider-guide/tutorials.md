@@ -26,7 +26,7 @@ This guide provides practical steps for the node operators to start an es-node i
 
 ### System Environment
 
-* Ubuntu 20.04+ (tested and verified)
+* MacOS Version 14+ or Ubuntu 20.04+ (including WSL)
 * (Optional) Docker 24.0.5+ (would simplify the process)
 * (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
 
@@ -42,14 +42,6 @@ The test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliaf
 
 Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
 
-### About `run.sh`
-
-The `run.sh` script is used as an entry point. The main function of the script is to initialize the data file, prepare for mining, and launch es-node with preset parameters.
-
-Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
-
-_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](tutorials.md#configuration) _for a full list._
-
 ## Options for running es-node
 
 You can run es-node from a pre-built Docker image, a pre-built executable, or from the source code.
@@ -57,6 +49,14 @@ You can run es-node from a pre-built Docker image, a pre-built executable, or fr
 * If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as Node.js and snarkjs.
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
 * If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides Node.js and snarkjs.
+
+### About `run.sh`
+
+The `run.sh` script is used as an entry point. The main function of the script is to initialize the data file, prepare for mining, and launch es-node with preset parameters.
+
+Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
+
+_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](tutorials.md#configuration) _for a full list._
 
 ### From pre-built executables
 
