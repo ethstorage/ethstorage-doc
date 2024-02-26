@@ -1,2 +1,0 @@
-# Storage Fee and Reward
-
