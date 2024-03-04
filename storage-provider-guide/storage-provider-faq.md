@@ -1,4 +1,4 @@
-# FAQ
+# FAQ by Storage Providers
 
 
 ## What should I do when the log frequently shows "i/o deadline reached" during data syncing?
