@@ -1,5 +1,9 @@
 # Configurations
 
+If this is your first time installing an es-node, you'll need to configure it by creating a data file for each shard using the `es-node init` command. After that, you can start the es-node with various options.
+
+During devnet tests, the run.sh file already includes the proper options for your convenience, but you should be prepared to specify configurations as needed.
+
 ## Configuration to create data files
 
 With `es-node init` command, you can init your es-node by creating a data file for each shard.
