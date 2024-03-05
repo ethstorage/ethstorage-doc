@@ -10,3 +10,4 @@
   * [Installation](storage-provider-guide/tutorials.md)
   * [Configuration](storage-provider-guide/configuration.md)
   * [Storage Provider FAQ](storage-provider-guide/storage-provider-faq.md)
+* [Information](information/README.md)
