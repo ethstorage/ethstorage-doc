@@ -27,8 +27,5 @@ Danksharding is the full realization of the rollup scaling that will bring massi
 
 As the entire storage dataset can be potentially huge, it is evenly divided into multiple fixed-size partitions that are consecutively numbered, known as shards. Each shard contains non-overlapping data with independent mining parameters within the storage contract.
 
-A shard is sized appropriately so that it can be hosted by a home computer, e.g., 1TB or 4TB.
+A shard is sized appropriately so that it can be hosted by a home computer, e.g., 512GB or 1TB.
 
-
-
-##

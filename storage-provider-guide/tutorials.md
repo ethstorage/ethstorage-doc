@@ -24,6 +24,8 @@ This guide provides practical steps for the node operators to start an es-node i
 
 ## Before Starting
 
+If you have not already done so, please review [the hardware requirements](/storage-provider-guide/README.md#minimum-hardware-requirements) before proceeding.
+
 ### System Environment
 
 * MacOS Version 14+ or Ubuntu 20.04+ (including WSL)

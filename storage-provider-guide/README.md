@@ -15,7 +15,7 @@ Becoming a storage provider in the EthStorage network is fully permissionless, p
 The minimum hardware requirements for an es-node are as follows:
 
 * CPU: A minimum of 4 cores and 8 threads
-* 4GB of RAM
+* 8GB of RAM
 * Disk:
   * We recommend using an NVMe disk to support the full speed of sampling
   * At least 550 GB of available storage space for the runtime and sync of one data shard

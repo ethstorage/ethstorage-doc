@@ -16,6 +16,8 @@ layout:
 
 The EthStorage network comprises two primary components: a storage contract deployed on the Ethereum L1, and L2 storage nodes such as es-node, responsible for actual data storage.
 
+This is the way how it works:
+
 ## Step 1/5
 
 Users upload their data to an application contract, which then interacts with the EthStorage contract to store the data.
@@ -46,4 +48,3 @@ The EthStorage contract rewards the storage provider who successfully submits th
 
 <figure><img src="https://ethstorage.io/img/work5.165c0bba.svg" alt=""><figcaption><p>step 5/5</p></figcaption></figure>
 
-The EthStorage network comprises two primary components: a storage contract deployed on the Ethereum L1, and L2 storage nodes such as es-node, responsible for actual data storage.
