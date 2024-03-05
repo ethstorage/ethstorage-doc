@@ -20,7 +20,7 @@ This guide provides practical steps for the node operators to start an es-node i
 
 If you have not already done so, please review [the hardware requirements](/storage-provider-guide/README.md#minimum-hardware-requirements) before proceeding.
 
-Check [the testnet spec](/information/README.md#testnet-spec) to find current build version.
+Check [the testnet spec](/information/README.md#testnet-spec) to identify the respective versions of the components involved in this guide.
 
 ### System Environment
 
