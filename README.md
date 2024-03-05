@@ -16,9 +16,7 @@ layout:
 
 ## What is EthStorage
 
-EthStorage is a modular permanent data availability and storage layer on Ethereum.
-
-With its permanent and high availability, as well as innovative petabyte capacity, EthStorage revolutionizes data availability and storage on the Ethereum platform without requiring any protocol upgrade.
+EthStorage is a modular and decentralized storage Layer 2 that offers programmable key-value storage powered by DA. It enables long-term DA solutions for Rollups and opens up new possibilities for fully on-chain applications like games, social networks, AI, etc.
 
 ## Motivation
 
