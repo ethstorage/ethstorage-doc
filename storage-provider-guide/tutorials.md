@@ -12,19 +12,15 @@ layout:
     visible: true
 ---
 
-# Installation
+# Tutorial
 
 This guide provides practical steps for the node operators to start an es-node instance for connecting to the existing EthStorage testnet.
-
-## Testnet Spec
-
-* Layer 1: Sepolia testnet
-* storage-contracts-v1: v0.1.0
-* es-node: v0.1.6
 
 ## Before Starting
 
 If you have not already done so, please review [the hardware requirements](/storage-provider-guide/README.md#minimum-hardware-requirements) before proceeding.
+
+Check [the testnet spec](/information/README.md#testnet-spec) to find current build version.
 
 ### System Environment
 
@@ -54,9 +50,9 @@ _Note: Some of the flags/parameters used in `run.sh` are supposed to change over
 
 ## Options for running es-node
 
-You can run es-node from a pre-built Docker image, a pre-built executable, or from the source code.
+You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
 
-* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as Node.js and snarkjs.
+* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-nodejs) and [snarkjs](tutorials.md#install-snarkjs).
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
 * If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides Node.js and snarkjs.
 

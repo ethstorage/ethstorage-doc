@@ -10,7 +10,7 @@ Additionally, EthStorage offers a programmable dynamic storage interface, wherea
 
 While Celestia, Avail, and EigenDA serve as alternative DA solutions to Ethereum, the main distinction lies in EthStorage's long-term storage capability within the Ethereum ecosystem, unlike the others. For instance, Celestia only retains data for 1-3 months, and EigenDA for just 14 days.
 
-Interestingly, [EthStorage can be integrated with Celestia](https://ethstorage.medium.com/ethstorage-integrate-with-celestia-to-provide-long-term-da-solution-for-ethereum-l2-l3-38487a46effd) to offer a comprehensive DA solution.
+It is worth noting that [EthStorage can be integrated with Celestia](https://ethstorage.medium.com/ethstorage-integrate-with-celestia-to-provide-long-term-da-solution-for-ethereum-l2-l3-38487a46effd) to offer a comprehensive DA solution.
 
 ## Is EthStorage a PoS(Proof of Stake) network?
 
