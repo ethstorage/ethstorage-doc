@@ -14,7 +14,7 @@ layout:
 
 # Tutorial
 
-This guide provides practical steps for the node operators to start an es-node instance for connecting to the existing EthStorage testnet.
+This guide provides practical steps for the storage providers to start an es-node instance for connecting to the existing EthStorage testnet.
 
 ## Before Starting
 
