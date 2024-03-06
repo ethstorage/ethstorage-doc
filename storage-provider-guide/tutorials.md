@@ -28,7 +28,7 @@ Check [the testnet spec](/information/README.md#testnet-spec) to identify the re
 * (Optional) Docker 24.0.5+ (would simplify the process)
 * (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
 
-You can choose [the method of running es-node](tutorials.md#options-to-run-es-node) based on your current environment.
+You can choose [the method of running es-node](/storage-provider-guide/tutorials.md#options-for-running-es-node) based on your current environment.
 
 _Note: The steps assume the use of the root user for all command line operations. If using a non-root user, you may need to prepend some commands with "sudo"._
 
@@ -46,20 +46,20 @@ The `run.sh` script is used as an entry point. The main function of the script i
 
 Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
 
-_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](tutorials.md#configuration) _for a full list._
+_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](/storage-provider-guide/configuration.md) _for a full list._
 
 ## Options for running es-node
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
 
-* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-nodejs) and [snarkjs](tutorials.md#install-snarkjs).
+* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](/storage-provider-guide/tutorials.md#install-nodejs) and [snarkjs](/storage-provider-guide/tutorials.md#install-snarkjs).
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
 * If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides Node.js and snarkjs.
 
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-nodejs), [snarkjs](tutorials.md#install-snarkjs) and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are on Windows.
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-nodejs), [snarkjs](tutorials.md#install-snarkjs), and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are on Windows.
 
 Download the pre-built package suitable for your platform:
 
@@ -213,7 +213,7 @@ After the launch of ES node, it basically goes through two main stages.
 
 The es-node will synchronize data from other peers in the network. You can check from the console the number of peers the node is connected to and, more importantly, the estimated syncing time.
 
-During this phase, the CPUs are expected to be fully occupied for data processing. If not, please refer to [the FAQ](tutorials.md#how-to-tune-the-performance-of-syncing) for performance tuning on this area.
+During this phase, the CPUs are expected to be fully occupied for data processing. If not, please refer to [the FAQ](/storage-provider-guide/storage-provider-faq.md#how-to-tune-the-performance-of-syncing) for performance tuning on this area.
 
 A typical log entry in this phase appears as follows:
 
@@ -237,4 +237,4 @@ INFO [01-19|05:02:26.050] The nonces are exhausted in this slot, waiting for the
 
 When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot. The "samplingTime" value informs you of the duration, in seconds, it took to complete the sampling process.
 
-If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](tutorials.md#what-can-i-do-about-mining-tasks-timed-out).
+If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](/storage-provider-guide/storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).

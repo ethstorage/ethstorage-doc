@@ -46,7 +46,7 @@ INFO [01-19|14:41:49.018] Mining transaction accounting (in ether) reward=0.0101
 
 ```
 
-You can also visit [the EthStorage dashboard](http://grafana.ethstorage.io/d/es-node-mining-state-dev/ethstorage-monitoring-dev?orgId=2&refresh=5m) for real-time mining statistics.
+You can also visit [the EthStorage dashboard](http://grafana.ethstorage.io) for real-time mining statistics.
 
 Finally, pay attention to the balance change of your miner's address which reflects the mining income.
 
@@ -58,7 +58,7 @@ By default, when executed, the run.sh script will generate a data file named `sh
 
 If necessary, you can choose an alternative location for data storage by specifying the full path of the file as the value of the `--storage.files` flag in the run.sh script.
 
-Please refer to [configuration](/README.md#configuration) for more details.
+Please refer to [configuration](/storage-provider-guide/configuration.md) for more details.
 
 ## What can I do about "The zkey file was not downloaded" error?
 
