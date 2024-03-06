@@ -1,7 +1,7 @@
 # Information
 
 
-## Testnet Spec
+## Public Testnet 1 Spec
 
 * Layer 1: Sepolia testnet
 * storage-contracts-v1: v0.1.0
