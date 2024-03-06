@@ -14,11 +14,11 @@ layout:
 
 # How EthStorage Works
 
-The EthStorage network comprises two primary components: 
-1. A storage contract deployed on the Ethereum L1 responsible for on-chain fee distribution and Proof of Storage verification, and 
-2. A L2 storage network composed by es-nodes, responsible for off-chain data storage replicas and prove via continuous DA sampling.
+The EthStorage network consists of two main components: 
+1. A storage contract deployed on the Ethereum L1 responsible for on-chain fee distribution and Proof of Storage verification.
+2. An L2 storage network composed by es-nodes, responsible for off-chain data storage replicas and prove via continuous DA sampling.
 
-This is the way how it works:
+This is a rough overview of how it works:
 
 ## Step 1/5
 

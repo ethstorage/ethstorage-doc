@@ -1,6 +1,6 @@
 # FAQ
 
-## What's the difference between EthStorage and other discentralized storage such as IPFS, Filecoin, and Arweave?
+## What's the difference between EthStorage and other decentralized storage such as IPFS, Filecoin, and Arweave?
 
 The key distinction between EthStorage and other decentralized storage options like IPFS, Filecoin, and Arweave is its seamless integration with Ethereum, enhancing the development experience for builders within the Ethereum ecosystem. 
 

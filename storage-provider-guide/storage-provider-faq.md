@@ -3,10 +3,10 @@
 
 ## What should I do when the log frequently shows "i/o deadline reached" during data syncing?
 
-The timeout issue could be due to network reasons. It may be because the amount of data requested relative to network performance is too large, so even a slight delay in individual requests will be magnified.
+This problem is caused by the synchronization request timeout due to network reasons. It's possible that the amount of data requested is too large relative to network performance. Therefore, all requested data cannot be returned within the specified time.
 
 You can change the size of each request to a smaller value using `--p2p.max.request.size`. 
-The default value is `4194304`. You can try adjusting it to `1048576`.
+The current value in the run.sh is `4194304`. You can try adjusting it to `1048576`.
 
 ## How to tune the performance of syncing? 
 
