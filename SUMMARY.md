@@ -1,23 +1,13 @@
 # Table of contents
 
-## Overview
-
-* [Introduction](README.md)
-* [Technologies](overview/technologies/README.md)
-  * [Proof of Publication](overview/technologies/proof-of-publication.md)
-  * [External Data Retention L2 Network](overview/technologies/external-data-retention-l2-network.md)
-  * [web3:// Access Protocol](overview/technologies/web3-access-protocol.md)
-
-## EthStorage Node
-
-* [Core Concept](ethstorage-node/core-concept/README.md)
-  * [Shard](ethstorage-node/core-concept/shard.md)
-  * [Storage Fee and Reward](ethstorage-node/core-concept/storage-fee-and-reward.md)
-* [Downloading Blobs](ethstorage-node/blob-download.md)
-* [Mining](ethstorage-node/mining.md)
-* [Running a Node](ethstorage-node/run-a-node.md)
-
-## Storage Contract
-
-* [Store Data by Using Blobs](storage-contract/store-data-by-using-blobs.md)
-* [Get Data](storage-contract/get-data.md)
+* [Overview](README.md)
+  * [Key Terms](overview/key-terms.md)
+  * [How EthStorage Works](overview/how-ethstorage-works.md)
+  * [Overview FAQ](overview/overview-faq.md)
+  * [Support](overview/support.md)
+  * [Whitepaper](https://file.w3q.w3q-g.w3link.io/0x67d0481cc9c2e9dad2987e58a365aae977dcb8da/dynamic\_data\_sharding\_0\_1\_6.pdf)
+* [Storage Provider Guide](storage-provider-guide/README.md)
+  * [Tutorial](storage-provider-guide/tutorials.md)
+  * [Configuration](storage-provider-guide/configuration.md)
+  * [Storage Provider FAQ](storage-provider-guide/storage-provider-faq.md)
+* [Information](information/README.md)
