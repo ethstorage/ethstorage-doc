@@ -1,4 +1,4 @@
-# Tutorials
+# Tutorials for Developer Tools
 
 Currently we provide 3 tools for EthStorage dApp builders:
 
