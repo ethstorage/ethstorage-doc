@@ -1,13 +1,9 @@
----
-description: >-
-  ethstorage-sdk provides APIs for files upload, download, and management, which
-  are based on c-kzg and therefore not supported in a browser environment.
----
 
 # Use ethstorage-sdk to upload and download files
 
 ## **Introduction** <a href="#introduction" id="introduction"></a>
 
+`ethstorage-sdk` offers APIs for file upload, download, and management, which are based on `c-kzg` and, as a result, are not supported in a browser environment.
 In this tutorial, we will demonstrate how to upload and download files using the [**ethstorage-sdk**](https://github.com/ethstorage/ethstorage-sdk) tool.
 
 ## Step 1: Install ethstorage-sdk <a href="#step-1-install-ethstorage-sdk" id="step-1-install-ethstorage-sdk"></a>

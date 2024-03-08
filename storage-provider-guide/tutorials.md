@@ -18,9 +18,20 @@ This guide provides practical steps for the storage providers to start an es-nod
 
 ## Before Starting
 
-If you have not already done so, please review [the hardware requirements](/storage-provider-guide/README.md#minimum-hardware-requirements) before proceeding.
+Check the hardware requirements and other information before proceeding.
 
-Check [the testnet spec](/information/README.md#testnet-spec) to confirm the respective versions of the components involved in this guide.
+Also check [the testnet spec](/information/README.md#testnet-spec) to confirm the respective versions of the components involved in this guide.
+
+### Minimum Hardware Requirements
+
+The minimum hardware requirements for an es-node are as follows:
+
+* CPU: A minimum of 4 cores and 8 threads
+* 8GB of RAM
+* Disk:
+  * We recommend using an NVMe disk to support the full speed of sampling
+  * At least 550 GB of available storage space for the runtime and sync of one data shard
+* Internet service: At least 8MB/sec download speed
 
 ### System Environment
 
@@ -36,7 +47,9 @@ _Note: The steps assume the use of the root user for all command line operations
 
 It is recommended to prepare two Ethereum accounts specifically for this test. One of these accounts should contain a balance of test ETH to be used as a transaction signer.
 
-The test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+As Sepolia is used as L1 in the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+
+> :warning: **Warning:** For safety reasons, we strongly recommend that you use a new empty address with only test ETH balance.
 
 Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
 
