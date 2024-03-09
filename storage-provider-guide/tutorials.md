@@ -12,31 +12,36 @@ layout:
     visible: true
 ---
 
-# Tutorial
+# Storage Provider Tutorial
 
 This guide provides practical steps for the storage providers to start an es-node instance for connecting to the existing EthStorage testnet.
 
 ## Before Starting
 
-If you have not already done so, please review [the hardware requirements](/storage-provider-guide/README.md#minimum-hardware-requirements) before proceeding.
+### Minimum Hardware Requirements
 
-Check [the testnet spec](/information/README.md#testnet-spec) to confirm the respective versions of the components involved in this guide.
+* CPU: A minimum of 4 cores and 8 threads
+* 8GB of RAM
+* Disk:
+  * We recommend using an NVMe disk to support the full speed of sampling
+  * At least 550 GB of available storage space for the runtime and sync of one data shard
+* Internet service: At least 8MB/sec download speed
 
 ### System Environment
 
-* MacOS Version 14+ or Ubuntu 20.04+ (including WSL)
+* MacOS Version 14+, Ubuntu 20.04+ or Windows with WSL
 * (Optional) Docker 24.0.5+ (would simplify the process)
 * (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
-
-You can choose [the method of running es-node](/storage-provider-guide/tutorials.md#options-for-running-es-node) based on your current environment.
 
 _Note: The steps assume the use of the root user for all command line operations. If using a non-root user, you may need to prepend some commands with "sudo"._
 
 ### Preparing miner and signer account
 
-It is recommended to prepare two Ethereum accounts specifically for this test. One of these accounts should contain a balance of test ETH to be used as a transaction signer.
+It is recommended to prepare two specific Ethereum accounts for this test. For safety reasons, we strongly suggest creating two new wallets to avoid the loss of any personal assets.
 
-The test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+One account will act as a transaction signer and should contain a balance of test ETH, which can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+
+The other account will serve as the miner address, set to receive rewards once the storage provider successfully submits a storage proof to the EthStorage contract.
 
 Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
 
@@ -59,7 +64,7 @@ You can run es-node from a pre-built executable, a pre-built Docker image, or fr
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-nodejs), [snarkjs](tutorials.md#install-snarkjs), and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are on Windows.
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-nodejs), [snarkjs](tutorials.md#install-snarkjs). You also need to install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are on Windows.
 
 Download the pre-built package suitable for your platform:
 
@@ -146,11 +151,11 @@ If you want to run Docker container in the background and keep all the logs:
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-docker.sh
 ```
 
-### Install dependencies
+## Install dependencies
 
 _Please note that not all steps in this section are required; they depend on your_ [_choice_](tutorials.md#options-for-running-es-node)_._
 
-#### Install Go
+### Install Go
 
 Download a stable Go release, e.g., go1.21.4.
 
@@ -171,7 +176,7 @@ echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile
 source ~/.profile
 ```
 
-#### Install Node.js
+### Install Node.js
 
 Install Node Version Manager
 
@@ -199,15 +204,15 @@ Activate the Node.js version
 nvm use 20
 ```
 
-#### Install snarkjs
+### Install snarkjs
 
 ```sh
 npm install -g snarkjs
 ```
 
-## Two phases after es-node launch
+## Check the status after launching the es-node
 
-After the launch of ES node, it basically goes through two main stages.
+It's important to monitor the node closely until it successfully submits its first storage proof. Typically, the process encompasses three main stages.
 
 ### Data sync phase
 
@@ -238,3 +243,17 @@ INFO [01-19|05:02:26.050] The nonces are exhausted in this slot, waiting for the
 When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot. The "samplingTime" value informs you of the duration, in seconds, it took to complete the sampling process.
 
 If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](/storage-provider-guide/storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
+
+### Proof submission phase
+
+Once the es-node calculates a valid storage proof, it will submit the proof to the EthStorage contract and receive the rewards.
+
+A typical log entry of submitting proof looks like this:
+
+```
+INFO [01-19|05:02:23.210] Calculated a valid hash                  shard=0 thread=3 block=5,437,371 nonce=58101
+INFO [01-19|05:05:23.210] Mining transaction confirmed"            txHash=0x7afa13e5211c403a7024bdf0a6880203d54698355679be9aab1aa0ecef78eecd
+INFO [01-19|05:05:23.210] Mining transaction success! √            miner=0xBB9D13efa21c0a053eCFE622e2AbfAF0D7573f50
+```
+
+Once you see this log, congratulations on completing the entire process as a storage provider. You can also check how many storage proofs you've submitted, your ETH profit, and your ranking on the [dashboard](https://grafana.ethstorage.io).
