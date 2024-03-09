@@ -12,7 +12,7 @@ layout:
     visible: true
 ---
 
-# Storage Provider Tutorial
+# Tutorial
 
 This guide provides practical steps for the storage providers to start an es-node instance for connecting to the existing EthStorage testnet.
 
