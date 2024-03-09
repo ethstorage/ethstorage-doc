@@ -13,7 +13,7 @@
 * [Dapp Developer Guide](dapp-developer-guide/README.md)
   * [Introduction](dapp-developer-guide/introduction.md)
   * [Tutorials](dapp-developer-guide/tutorials/README.md)
+    * [Upload Your File/Folder with ethfs-cli](dapp-developer-guide/tutorials/upload-your-file-folder-with-ethfs-cli.md)
     * [Use ethstorage-sdk to upload and download files](dapp-developer-guide/tutorials/use-ethstorage-sdk-to-upload-and-download-files.md)
     * [Use eth-blob-uploader to upload files](dapp-developer-guide/tutorials/use-eth-blob-uploader-to-upload-files.md)
-    * [Upload Your File/Folder with ethfs-cli](dapp-developer-guide/tutorials/upload-your-file-folder-with-ethfs-cli.md)
 * [Information](information/README.md)
