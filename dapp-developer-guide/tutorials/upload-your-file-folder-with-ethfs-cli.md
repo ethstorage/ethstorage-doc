@@ -85,8 +85,6 @@ Total File Count: 0
 Total File Size: 0 KB
 ```
 
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
-
 ## Step 4: Download Your File!
 
 Now you should be able to download the file you just uploaded.
@@ -104,7 +102,7 @@ ethfs-cli download -a sep:0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -f 1.jpeg
 Now, your file has been saved locally.
 
 
-## Using your own RPC endpoint
+## Optional: Using Your Own RPC Endpoint
 
 You can also specify your own RPC for better performance by `-r` flag in the above steps. 
 

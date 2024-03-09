@@ -1,47 +1,51 @@
 # Use eth-blob-uploader to upload files
 
-## **Introduction**
+## Introduction
 
-In this tutorial, we will demonstrate how to upload files using the [eth-blob-uploader ](https://github.com/ethstorage/eth-blob-uploader)tool. We assume that
+In this tutorial, we will demonstrate how to upload an image using the [eth-blob-uploader](https://github.com/ethstorage/eth-blob-uploader) tool. The image will be uploaded to the blockchain using EIP-4844 blob transaction.
 
-* There is an image file.&#x20;
-
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
-
-## Step 1: Install eth-blob-uploader
-
-You can install eth-blob-uploader by the following command
-
-<pre><code><strong>npm i -g eth-blob-uploader
-</strong></code></pre>
-
-## Step 2: Upload Files
-
-We can upload the image 'img.jpeg' to the 'to' address by providing parameters such as rpc, private key, to, file path, etc.
+## Installation
+ 
+If you have not already done so, you can install `eth-blob-uploader` using the following command:
 
 ```
-// eth-blob-uploader <rpc> <private-key> <file-path> <to-address>
-eth-blob-uploader http://...rpc.io 0x...a7 /Users/test/img.jpeg 0xaa...
+npm i -g eth-blob-uploader
 ```
 
-If it is an interaction with the same contract address, you can pass in data using -d.
+## Basic Operation
+
+Basically, you can upload the file using the following syntax:
 
 ```
-// eth-blob-uploader <rpc> <private-key> <file-path> <contract> -d [data]
-eth-blob-uploader http://...rpc.io 0x...a7 /Users/test/img.jpeg 0xbb... -d 0x...11
+eth-blob-uploader -r <rpc> -p <private-key> -f <file-path> -t <to-address>
 ```
 
-You can specify the number of blobs that come with a transaction, default is 3.
+In the following example, you will upload the file `img.jpeg` to the address `0xaa...` using the private key `0x...a7` via RPC `http://...rpc.io`.
 
 ```
-// eth-blob-uploader <rpc> <private-key> <file-path> <to-address> -c [blob-counts]
-eth-blob-uploader https://...rpc.io 0x...a7 /Users/test/img.jpeg 0xaa... -c 6
+eth-blob-uploader -r http://...rpc.io -p 0x...a7 -f /Users/test/img.jpeg -t 0xaa...
 ```
 
-You can also override the pending transaction by passing in parameters such as nonce and gas.
+## More Options
+
+If the `to-address` is a smart contract, you will need to pass in calldata using `-d`.
 
 ```
-// eth-blob-uploader <rpc> <private-key> <file-path> <to-address> -n [nonce] -g [gas] -b [blob-gas]
-eth-blob-uploader http://...rpc.io 0x...a7 /Users/test/img.jpeg 0xaa... -n 1 -g 1000000000 -b 2000000000
+// eth-blob-uploader -r <rpc> -p <private-key> -f <file-path> -t <to-address> -d [data]
+eth-blob-uploader -r http://...rpc.io -p 0x...a7 -f /Users/test/img.jpeg -t 0xbb... -d 0x...11
+```
+
+You can specify the number of blobs that come with a transaction using `-c`, with default value set to `3`.
+
+```
+// eth-blob-uploader -r <rpc> -p <private-key> -f <file-path>  -t <to-address> -c [blob-counts]
+eth-blob-uploader -r https://...rpc.io -p 0x...a7 -f /Users/test/img.jpeg -t 0xaa... -c 2
+```
+
+You can also override the pending transaction by passing in parameters such as nonce(`-n`) and gas(`-g` for transaction gas and `-b` for blob gas).
+
+```
+// eth-blob-uploader -r <rpc> -p <private-key> -f <file-path> -t <to-address> -n [nonce] -g [gas] -b [blob-gas]
+eth-blob-uploader -r http://...rpc.io -p 0x...a7 -f /Users/test/img.jpeg -t 0xaa... -n 1 -g 1000000000 -b 2000000000
 ```
 
