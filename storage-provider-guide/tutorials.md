@@ -12,7 +12,7 @@ layout:
     visible: true
 ---
 
-# Storage Provider Tutorial
+# Tutorial
 
 This guide provides practical steps for the storage providers to start an es-node instance for connecting to the existing EthStorage testnet.
 
@@ -25,7 +25,7 @@ This guide provides practical steps for the storage providers to start an es-nod
 * Disk:
   * We recommend using an NVMe disk to support the full speed of sampling
   * At least 550 GB of available storage space for the runtime and sync of one data shard
-* Internet service: At least 8MB/sec download speed
+* Internet: At least 8MB/sec download speed
 
 ### System Environment
 
@@ -57,16 +57,15 @@ The `run.sh` script is used as an entry point. The main function of the script i
 
 Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
 
-_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](/storage-provider-guide/configuration.md) _for a full list._
+_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](configuration.md) _for a full list._
 
 ## Options for running es-node
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
 
-* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](/storage-provider-guide/tutorials.md#install-nodejs) and [snarkjs](/storage-provider-guide/tutorials.md#install-snarkjs).
+* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-nodejs) and [snarkjs](tutorials.md#install-snarkjs).
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
 * If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides Node.js and snarkjs.
-
 
 ### From pre-built executables
 
@@ -226,7 +225,7 @@ It's important to monitor the node closely until it successfully submits its fir
 
 The es-node will synchronize data from other peers in the network. You can check from the console the number of peers the node is connected to and, more importantly, the estimated syncing time.
 
-During this phase, the CPUs are expected to be fully occupied for data processing. If not, please refer to [the FAQ](/storage-provider-guide/storage-provider-faq.md#how-to-tune-the-performance-of-syncing) for performance tuning on this area.
+During this phase, the CPUs are expected to be fully occupied for data processing. If not, please refer to [the FAQ](storage-provider-faq.md#how-to-tune-the-performance-of-syncing) for performance tuning on this area.
 
 A typical log entry in this phase appears as follows:
 
@@ -250,7 +249,7 @@ INFO [01-19|05:02:26.050] The nonces are exhausted in this slot, waiting for the
 
 When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot. The "samplingTime" value informs you of the duration, in seconds, it took to complete the sampling process.
 
-If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](/storage-provider-guide/storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
+If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
 
 ### Proof submission phase
 
