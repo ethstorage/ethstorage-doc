@@ -45,6 +45,12 @@ The other account will serve as the miner address, set to receive rewards once t
 
 Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
 
+### Preparing RPC endpoints
+
+During the operation of the ES-Node, frequent Ethereum RPC calls are made, including at the execution layer and the consensus layer(the beacon chain). Therefore, we need you to prepare endpoints for two types of RPC calls. We recommend using BlockPi for the execution layer RPC and QuikNode for the beacon chain RPC.
+
+In the following tutorial, you will need to replace <el_rpc> for you execution layer RPC endpoint, and <cl_rpc> for the beacon RPC endpoint.
+
 ### About `run.sh`
 
 The `run.sh` script is used as an entry point. The main function of the script is to initialize the data file, prepare for mining, and launch es-node with preset parameters.
@@ -71,26 +77,26 @@ Download the pre-built package suitable for your platform:
 Linux x86-64 or WSL (Windows Subsystem for Linux):
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.8/es-node.v0.1.8.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.linux-amd64.tar.gz | tar -xz
 ```
 
 MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.8/es-node.v0.1.8.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.darwin-amd64.tar.gz | tar -xz
 ```
 
 MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.8/es-node.v0.1.8.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.darwin-arm64.tar.gz | tar -xz
 ```
 
 Run es-node
 
 ```
-cd es-node.v0.1.8
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh
+cd es-node.v0.1.9
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
 ### From a Docker image
@@ -106,7 +112,9 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.8
+          ghcr.io/ethstorage/es-node:v0.1.9 \
+          --l1.rpc <el_rpc> \
+          --l1.beacon <cl_rpc>
 ```
 
 You can check docker logs using the following command:
@@ -124,7 +132,7 @@ Download source code and switch to the latest release branch:
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.1.8
+git checkout v0.1.9
 ```
 
 Build es-node:
@@ -136,7 +144,7 @@ make
 Start es-node
 
 ```sh
-chmod +x run.sh && env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh
+chmod +x run.sh && env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
 With source code, you also have the option to build a Docker image by yourself and run an es-node container:
