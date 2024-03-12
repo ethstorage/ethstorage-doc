@@ -45,11 +45,11 @@ The other account will serve as the miner address, set to receive rewards once t
 
 Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
 
-### Preparing RPC endpoints
+### Preparing Ethereum API endpoints
 
-During the operation of the ES-Node, frequent Ethereum RPC calls are made, including at the execution layer and the consensus layer(the beacon chain). Therefore, we need you to prepare endpoints for two types of RPC calls. We recommend using BlockPi for the execution layer RPC and QuikNode for the beacon chain RPC.
+During the operation of the ES-Node, frequent Ethereum API calls are made, including at the execution layer and the consensus layer(the beacon chain). Therefore, we need you to prepare endpoints for two types of calls. We recommend using [BlockPI](#applying-for-a-free-sepolia-rpc-endpoint-from-blockpi) for the execution layer endpoint and [QuickNode](#applying-for-a-free-sepolia-beacon-endpoint) for the beacon endpoint.
 
-In the following tutorial, you will need to replace <el_rpc> for you execution layer RPC endpoint, and <cl_rpc> for the beacon RPC endpoint.
+In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
 ### About `run.sh`
 
@@ -157,6 +157,18 @@ If you want to run Docker container in the background and keep all the logs:
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-docker.sh
 ```
+
+## Applying for Ethereum API endpoints
+
+### Applying for a free Sepolia execution layer endpoint from BlockPI
+
+Go to the [BlockPI](https://blockpi.io/) website, click `Get Started`. After signing in, you will get your `Free Package Gift`. Click `Generate API Key`, and remember to select `Sepolia`, and you will get your API endpoint.
+
+### Applying for a free Sepolia beacon endpoint from QuickNode
+
+Go to the [QuickNode](https://www.quicknode.com/) website, click `Get started for free`. After signing in, you can create an endpoint. Remember to select `Ethereum` and `Sepolia` to continue. In the `Compliance & Safety` category, select `Endpoint Armor`, and select the free plan. After completing the required information, you will receive the endpoint along with an API key.
+
+Please note that the free plan for the execution layer endpoint is not sufficient for running the es-node. However, you can use the endpoint as a beacon endpoint (<cl_rpc>).
 
 ## Install dependencies
 
