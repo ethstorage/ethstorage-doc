@@ -69,3 +69,27 @@ Start downloading ./build/bin/snarkjs/blob_poseidon2.zkey...
 ... ...
 Error: The zkey file was not downloaded. Please try again.
 ```
+
+### How can I change the default configurations?
+
+Just append the flag and value to the end of command that execute `run.sh`.
+
+Take `--p2p.max.request.size` as example, the following command change the default value from `4194304` in `run.sh` into `1048576`:
+
+```sh
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --p2p.max.request.size 1048576
+```
+If you start es-node with docker, please note that the flag and value should be added afer the docker image name:
+
+```sh
+docker run --name es  -d  \
+          -v ./es-data:/es-node/es-data \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
+          -p 9545:9545 \
+          -p 9222:9222 \
+          -p 30305:30305/udp \
+          --entrypoint /es-node/run.sh \
+          ghcr.io/ethstorage/es-node:v0.1.9 \
+          --p2p.max.request.size 1048576
+```
