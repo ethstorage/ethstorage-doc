@@ -47,7 +47,7 @@ Remember to use the signer's private key (with ETH balance) to replace `<private
 
 ### Preparing Ethereum API endpoints
 
-During the operation of the ES-Node, frequent Ethereum API calls are made, including at the execution layer and the consensus layer(the beacon chain). Therefore, we need you to prepare endpoints for two types of calls. We recommend using [BlockPI](#applying-for-a-free-sepolia-rpc-endpoint-from-blockpi) for the execution layer endpoint and [QuickNode](#applying-for-a-free-sepolia-beacon-endpoint) for the beacon endpoint.
+During the operation of the ES-Node, frequent Ethereum API calls are made, including at the execution layer and the consensus layer(the beacon chain). Therefore, we need you to prepare endpoints for two types of calls. We recommend using [BlockPI](#applying-for-a-free-sepolia-execution-layer-endpoint-from-blockpi) for the execution layer endpoint and [QuickNode](#applying-for-a-free-sepolia-beacon-endpoint-from-quicknode) for the beacon endpoint.
 
 In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
