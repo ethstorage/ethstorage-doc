@@ -92,5 +92,6 @@ The full list of options that you can use to configure an es-node are as follows
 |`--storage.files`|File paths where the data are stored||✓|
 |`--storage.l1contract`|Storage contract address on l1||✓|
 |`--storage.miner`|Miner's address to encode data and receive mining rewards||✓|
-
 --------------------------------------------------------------------------------
+
+Check [here](/storage-provider-guide/storage-provider-faq.md#how-can-i-change-the-default-configurations) for the detailed operation to change the default configurations.

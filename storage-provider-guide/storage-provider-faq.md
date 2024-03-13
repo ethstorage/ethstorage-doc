@@ -6,7 +6,7 @@
 This problem is caused by the synchronization request timeout due to network reasons. It's possible that the amount of data requested is too large relative to network performance. Therefore, all requested data cannot be returned within the specified time.
 
 You can change the size of each request to a smaller value using `--p2p.max.request.size`. 
-The current value in the run.sh is `4194304`. You can try adjusting it to `1048576`.
+The current value in the `run.sh` is `4194304`. You can try adjusting it to `1048576`. Check [here](#how-can-i-change-the-default-configurations) for the detailed operation.
 
 ### How to tune the performance of syncing? 
 
@@ -14,6 +14,8 @@ To enhance syncing performance or limit the usage of CPU power, you can adjust t
 
 - The `--p2p.sync.concurrency` flag determines the number of threads that simultaneously retrieve shard data, with a default setting of 16.
 - The `--p2p.fill-empty.concurrency` flag specifies the number of threads used to concurrently fill encoded empty blobs, with a default setting of the CPU number minus 2.
+
+Check [here](#how-can-i-change-the-default-configurations) for the detailed operation.
 
 ### Why is the CPU fully utilized when syncing data? Does this imply that running an es-node requires high-end hardware? Additionally, is there a way to configure it to use less CPU power?
 
@@ -32,7 +34,7 @@ When you see "The nonces are exhausted in this slot...", it indicates that your 
 When you see the message "Mining tasks timed out", it indicates that the sampling task couldn't be completed within a slot. 
 
 You can check the IOPS of the disk to determine if the rate of data read has reached the IO capacity. 
-If not, using the flag `--miner.threads-per-shard` can specify the number of threads to perform sampling for each shard, thereby helping in accomplishing additional sampling.
+If not, using the flag `--miner.threads-per-shard` can specify the number of threads to perform sampling for each shard, thereby helping in accomplishing additional sampling. Check [here](#how-can-i-change-the-default-configurations) for the detailed operation.
 
 ### How do I know whether I've got a mining reward?
 
@@ -54,9 +56,9 @@ Finally, pay attention to the balance change of your miner's address which refle
 
 Yes, you can. 
 
-By default, when executed, the run.sh script will generate a data file named `shard-0.dat` to store shard 0 in the data directory specified by `--datadir`, located in the same folder as the run.sh script.
+By default, when executed, the `run.sh` script will generate a data file named `shard-0.dat` to store shard 0 in the data directory specified by `--datadir`, located in the same folder as the `run.sh` script.
 
-If necessary, you can choose an alternative location for data storage by specifying the full path of the file as the value of the `--storage.files` flag in the run.sh script.
+If necessary, you can choose an alternative location for data storage by specifying the full path of the file as the value of the `--storage.files` flag in the `run.sh` script.
 
 Please refer to [configuration](/storage-provider-guide/configuration.md) for more details.
 
@@ -68,4 +70,28 @@ zk prover mode is 2
 Start downloading ./build/bin/snarkjs/blob_poseidon2.zkey...
 ... ...
 Error: The zkey file was not downloaded. Please try again.
+```
+
+### How can I change the default configurations?
+
+Just append the flag and value to the end of command that execute `run.sh`.
+
+Take `--p2p.max.request.size` as example, the following command set its value to `1048576`:
+
+```sh
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --p2p.max.request.size 1048576
+```
+If you start es-node with docker, please note that the flag and value should be added afer the docker image name:
+
+```sh
+docker run --name es  -d  \
+          -v ./es-data:/es-node/es-data \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
+          -p 9545:9545 \
+          -p 9222:9222 \
+          -p 30305:30305/udp \
+          --entrypoint /es-node/run.sh \
+          ghcr.io/ethstorage/es-node:v0.1.9 \
+          --p2p.max.request.size 1048576
 ```
