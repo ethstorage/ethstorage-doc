@@ -1,4 +1,4 @@
-# Use eth-blob-uploader to upload files
+# Use eth-blob-uploader to Upload Files via Blobs
 
 ## Introduction
 

@@ -10,8 +10,8 @@ Currently we provide 3 tools for EthStorage dApp builders:
 
 Follow the tutorials for each tool to become familiar with their functionalities and operations.
 
-1. [Upload your file or folder with ethfs-cli](/dapp-developer/tutorials/upload-your-file-folder-with-ethfs-cli.md)
+1. [Upload your file or folder with ethfs-cli](/dapp-developer-guide/tutorials/upload-your-file-folder-with-ethfs-cli.md)
 
-2. [Use ethstorage-sdk to upload and download files](/dapp-developer/tutorials/use-ethstorage-sdk-to-upload-and-download-files.md)
+2. [Use ethstorage-sdk to upload and download files](/dapp-developer-guide/tutorials/use-ethstorage-sdk-to-upload-and-download-files.md)
 
-3. [Use eth-blob-uploader to upload files](/dapp-developer/tutorials/use-eth-blob-uploader-to-upload-files.md)
+3. [Use eth-blob-uploader to upload files via blobs](/dapp-developer-guide/tutorials/use-eth-blob-uploader-to-upload-files-via-blobs.md)

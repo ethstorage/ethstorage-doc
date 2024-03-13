@@ -1,6 +1,6 @@
-# Ethfs-cli
+# Upload Your File/Folder with ethfs-cli
 
-## **Introduction**
+## Introduction
 
 In this tutorial, we will demonstrate how to upload files or folders to an EVM compatiable chain using the [ethfs-cli](https://github.com/ethstorage/ethfs-cli/) tool. Find the list of the currently supported chains [here](https://github.com/ethstorage/ethfs-cli/?tab=readme-ov-file#supported-networks).
 
