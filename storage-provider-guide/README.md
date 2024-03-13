@@ -9,5 +9,3 @@ Within the EthStorage network, storage providers operate storage nodes (a.k.a. e
 The storage providers must provide proof of replication over time to collect rewards. This process is sometimes called "mining", and the storage provider is called a "miner".
 
 Becoming a storage provider in the EthStorage network is fully permissionless, provided the hardware requirements are satisfied.
-
-

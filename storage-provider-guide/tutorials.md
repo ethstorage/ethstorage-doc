@@ -18,40 +18,42 @@ This guide provides practical steps for the storage providers to start an es-nod
 
 ## Before Starting
 
-Check the hardware requirements and other information before proceeding.
-
-Also check [the testnet spec](/information/README.md#testnet-spec) to confirm the respective versions of the components involved in this guide.
-
 ### Minimum Hardware Requirements
-
-The minimum hardware requirements for an es-node are as follows:
 
 * CPU: A minimum of 4 cores and 8 threads
 * 8GB of RAM
 * Disk:
   * We recommend using an NVMe disk to support the full speed of sampling
   * At least 550 GB of available storage space for the runtime and sync of one data shard
-* Internet service: At least 8MB/sec download speed
+* Internet: At least 8MB/sec download speed
 
 ### System Environment
 
-* MacOS Version 14+ or Ubuntu 20.04+ (including WSL)
+* MacOS Version 14+, Ubuntu 20.04+ or Windows with WSL
 * (Optional) Docker 24.0.5+ (would simplify the process)
 * (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
-
-You can choose [the method of running es-node](/storage-provider-guide/tutorials.md#options-for-running-es-node) based on your current environment.
 
 _Note: The steps assume the use of the root user for all command line operations. If using a non-root user, you may need to prepend some commands with "sudo"._
 
 ### Preparing miner and signer account
 
-It is recommended to prepare two Ethereum accounts specifically for this test. One of these accounts should contain a balance of test ETH to be used as a transaction signer.
+It is recommended to prepare two specific Ethereum accounts for this test. For safety reasons, we strongly suggest creating two new wallets to avoid the loss of any personal assets.
 
 As Sepolia is used as L1 in the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
 
+One account will act as a transaction signer and should contain a balance of test ETH, which can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+
 > :warning: **Warning:** For safety reasons, we strongly recommend that you use a new empty address with only test ETH balance.
 
+The other account will serve as the miner address, set to receive rewards once the storage provider successfully submits a storage proof to the EthStorage contract.
+
 Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
+
+### Preparing Ethereum API endpoints
+
+During the operation of the ES-Node, frequent Ethereum API calls are made, including at the execution layer and the consensus layer (the beacon chain). Therefore, we need you to prepare endpoints for two types of calls. We recommend using [BlockPI](#applying-for-a-free-sepolia-execution-layer-endpoint-from-blockpi) for the execution layer endpoint and [QuickNode](#applying-for-a-free-sepolia-beacon-endpoint-from-quicknode) for the beacon endpoint.
+
+In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
 ### About `run.sh`
 
@@ -59,46 +61,45 @@ The `run.sh` script is used as an entry point. The main function of the script i
 
 Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
 
-_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](/storage-provider-guide/configuration.md) _for a full list._
+_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](configuration.md) _for a full list._
 
 ## Options for running es-node
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
 
-* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](/storage-provider-guide/tutorials.md#install-nodejs) and [snarkjs](/storage-provider-guide/tutorials.md#install-snarkjs).
+* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-nodejs) and [snarkjs](tutorials.md#install-snarkjs).
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
 * If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides Node.js and snarkjs.
 
-
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-nodejs), [snarkjs](tutorials.md#install-snarkjs), and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are on Windows.
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-nodejs), [snarkjs](tutorials.md#install-snarkjs). You also need to install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are on Windows.
 
 Download the pre-built package suitable for your platform:
 
 Linux x86-64 or WSL (Windows Subsystem for Linux):
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.8/es-node.v0.1.8.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.linux-amd64.tar.gz | tar -xz
 ```
 
 MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.8/es-node.v0.1.8.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.darwin-amd64.tar.gz | tar -xz
 ```
 
 MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.8/es-node.v0.1.8.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.darwin-arm64.tar.gz | tar -xz
 ```
 
 Run es-node
 
 ```
-cd es-node.v0.1.8
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh
+cd es-node.v0.1.9
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
 ### From a Docker image
@@ -114,7 +115,9 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.8
+          ghcr.io/ethstorage/es-node:v0.1.9 \
+          --l1.rpc <el_rpc> \
+          --l1.beacon <cl_rpc>
 ```
 
 You can check docker logs using the following command:
@@ -132,7 +135,7 @@ Download source code and switch to the latest release branch:
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.1.8
+git checkout v0.1.9
 ```
 
 Build es-node:
@@ -144,7 +147,7 @@ make
 Start es-node
 
 ```sh
-chmod +x run.sh && env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh
+chmod +x run.sh && env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
 With source code, you also have the option to build a Docker image by yourself and run an es-node container:
@@ -159,11 +162,23 @@ If you want to run Docker container in the background and keep all the logs:
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-docker.sh
 ```
 
-### Install dependencies
+## Applying for Ethereum API endpoints
+
+### Applying for a free Sepolia execution layer endpoint from BlockPI
+
+Go to the [BlockPI](https://blockpi.io/) website, click `Get Started`. After signing in, you will get your `Free Package Gift`. Click `Generate API Key`, and remember to select `Sepolia`, and you will get your API endpoint.
+
+### Applying for a free Sepolia beacon endpoint from QuickNode
+
+Go to the [QuickNode](https://www.quicknode.com/) website, click `Get started for free`. After signing in, you can create an endpoint. Remember to select `Ethereum` and `Sepolia` to continue. In the `Compliance & Safety` category, select `Endpoint Armor`, and select the free plan. After completing the required information, you will receive the endpoint along with an API key.
+
+Please note that the free plan for the execution layer endpoint is not sufficient for running the es-node. However, you can use the endpoint as a beacon endpoint (<cl_rpc>).
+
+## Install dependencies
 
 _Please note that not all steps in this section are required; they depend on your_ [_choice_](tutorials.md#options-for-running-es-node)_._
 
-#### Install Go
+### Install Go
 
 Download a stable Go release, e.g., go1.21.4.
 
@@ -184,7 +199,7 @@ echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile
 source ~/.profile
 ```
 
-#### Install Node.js
+### Install Node.js
 
 Install Node Version Manager
 
@@ -212,21 +227,21 @@ Activate the Node.js version
 nvm use 20
 ```
 
-#### Install snarkjs
+### Install snarkjs
 
 ```sh
 npm install -g snarkjs
 ```
 
-## Two phases after es-node launch
+## Check the status after launching the es-node
 
-After the launch of ES node, it basically goes through two main stages.
+It's important to monitor the node closely until it successfully submits its first storage proof. Typically, the process encompasses three main stages.
 
 ### Data sync phase
 
 The es-node will synchronize data from other peers in the network. You can check from the console the number of peers the node is connected to and, more importantly, the estimated syncing time.
 
-During this phase, the CPUs are expected to be fully occupied for data processing. If not, please refer to [the FAQ](/storage-provider-guide/storage-provider-faq.md#how-to-tune-the-performance-of-syncing) for performance tuning on this area.
+During this phase, the CPUs are expected to be fully occupied for data processing. If not, please refer to [the FAQ](storage-provider-faq.md#how-to-tune-the-performance-of-syncing) for performance tuning on this area.
 
 A typical log entry in this phase appears as follows:
 
@@ -250,4 +265,18 @@ INFO [01-19|05:02:26.050] The nonces are exhausted in this slot, waiting for the
 
 When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot. The "samplingTime" value informs you of the duration, in seconds, it took to complete the sampling process.
 
-If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](/storage-provider-guide/storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
+If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
+
+### Proof submission phase
+
+Once the es-node calculates a valid storage proof, it will submit the proof to the EthStorage contract and receive the rewards.
+
+A typical log entry of submitting proof looks like this:
+
+```
+INFO [01-19|05:02:23.210] Calculated a valid hash                  shard=0 thread=3 block=5,437,371 nonce=58101
+INFO [01-19|05:05:23.210] Mining transaction confirmed"            txHash=0x7afa13e5211c403a7024bdf0a6880203d54698355679be9aab1aa0ecef78eecd
+INFO [01-19|05:05:23.210] Mining transaction success! √            miner=0xBB9D13efa21c0a053eCFE622e2AbfAF0D7573f50
+```
+
+Once you see this log, congratulations on completing the entire process as a storage provider. You can also check how many storage proofs you've submitted, your ETH profit, and your ranking on the [dashboard](https://grafana.ethstorage.io).
