@@ -39,7 +39,11 @@ _Note: The steps assume the use of the root user for all command line operations
 
 It is recommended to prepare two specific Ethereum accounts for this test. For safety reasons, we strongly suggest creating two new wallets to avoid the loss of any personal assets.
 
+As Sepolia is used as L1 in the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+
 One account will act as a transaction signer and should contain a balance of test ETH, which can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+
+> :warning: **Warning:** For safety reasons, we strongly recommend that you use a new empty address with only test ETH balance.
 
 The other account will serve as the miner address, set to receive rewards once the storage provider successfully submits a storage proof to the EthStorage contract.
 
@@ -47,7 +51,9 @@ Remember to use the signer's private key (with ETH balance) to replace `<private
 
 ### Preparing Ethereum API endpoints
 
-During the operation of the ES-Node, frequent Ethereum API calls are made, including at the execution layer and the consensus layer (the beacon chain). Therefore, we need you to prepare endpoints for two types of calls. We recommend using [BlockPI](https://docs.ethstorage.io/storage-provider-guide/tutorials#applying-for-a-free-sepolia-execution-layer-endpoint-from-blockpi) for the execution layer endpoint and [QuickNode](https://docs.ethstorage.io/storage-provider-guide/tutorials#applying-for-a-free-sepolia-beacon-endpoint-from-quicknode) for the beacon endpoint.
+During the operation of the ES-Node, frequent Ethereum API calls are made, including at the execution layer and the consensus layer (the beacon chain). Therefore, we need you to prepare endpoints for two types of calls. We recommend using `BlockPI` for the execution layer endpoint and `QuickNode` for the beacon endpoint.
+
+For details on the application process for endpoints, please refer to [this section](#applying-for-ethereum-api-endpoints).
 
 In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
