@@ -101,6 +101,8 @@ or,
 
 [web3://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd:3333/img/1.jpeg](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3333.w3link.io/img/1.jpeg)
 
+To gain further insights into `web3://` protocol, you can visit [web3url.io](https://web3url.io).
+
 ## Optional: Using Your Own RPC Endpoint
 
 You can also specify your own RPC for better performance by `-r` flag in the above steps. 
