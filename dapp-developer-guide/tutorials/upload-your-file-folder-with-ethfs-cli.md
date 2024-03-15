@@ -86,11 +86,22 @@ ethfs-cli download -a <address> -c <chain-id> -f <file>
 Run the command to download the file.
 
 ```
-ethfs-cli download -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -f 1.jpeg
+ethfs-cli download -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -f img/1.jpeg
 ```
 
 Now, your file has been saved locally.
 
+## Step 5: Access Your File via `web3://` 
+
+Of course, you can also easily access the file you just uploaded using the web3:// protocol. For example,
+
+[web3://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd:3333/hello.txt](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3333.w3link.io/hello.txt)
+
+or,
+
+[web3://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd:3333/img/1.jpeg](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3333.w3link.io/img/1.jpeg)
+
+To gain further insights into `web3://` protocol, you can visit [web3url.io](https://web3url.io).
 
 ## Optional: Using Your Own RPC Endpoint
 
