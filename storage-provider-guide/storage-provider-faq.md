@@ -92,6 +92,6 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.9 \
+          ghcr.io/ethstorage/es-node:v0.1.10 \
           --p2p.max.request.size 1048576
 ```

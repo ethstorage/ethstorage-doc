@@ -82,25 +82,25 @@ Download the pre-built package suitable for your platform:
 Linux x86-64 or WSL (Windows Subsystem for Linux):
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.10/es-node.v0.1.10.linux-amd64.tar.gz | tar -xz
 ```
 
 MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.10/es-node.v0.1.10.darwin-amd64.tar.gz | tar -xz
 ```
 
 MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.9/es-node.v0.1.9.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.10/es-node.v0.1.10.darwin-arm64.tar.gz | tar -xz
 ```
 
 Run es-node
 
 ```
-cd es-node.v0.1.9
+cd es-node.v0.1.10
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
@@ -117,7 +117,7 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.9 \
+          ghcr.io/ethstorage/es-node:v0.1.10 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -137,7 +137,7 @@ Download source code and switch to the latest release branch:
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.1.9
+git checkout v0.1.10
 ```
 
 Build es-node:
