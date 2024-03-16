@@ -75,7 +75,7 @@ You can run es-node from a pre-built executable, a pre-built Docker image, or fr
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-nodejs), [snarkjs](tutorials.md#install-snarkjs). You also need to install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are on Windows.
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs). You also need to install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are on Windows.
 
 Download the pre-built package suitable for your platform:
 

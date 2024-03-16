@@ -64,7 +64,7 @@ Please refer to [configuration](/storage-provider-guide/configuration.md) for mo
 
 ### What can I do about "The zkey file was not downloaded" error?
 
-When you see the following message when running **run.sh**. you can manually download the [**blob_poseidon.zkey**](https://drive.google.com/file/d/1ZLfhYeCXMnbk6wUiBADRAn1mZ8MI_zg-/view) / [**blob_poseidon2.zkey**](https://drive.google.com/file/d/1olfJvXPJ25Rbcjj9udFlIVr08cUCgE4l/view) to `./build/bin/snarkjs/` folder and run it again. 
+When you see the following message when running **run.sh**. you can manually download the [**blob_poseidon.zkey**](https://drive.google.com/file/d/1ZLfhYeCXMnbk6wUiBADRAn1mZ8MI_zg-/view) / [**blob_poseidon2.zkey**](https://drive.google.com/file/d/1G7LmOx7hNE5GHc-M6yOjVB3ZZ4J6xUYO/view) to `./build/bin/snarkjs/` folder and run it again. 
 ```
 zk prover mode is 2
 Start downloading ./build/bin/snarkjs/blob_poseidon2.zkey...
