@@ -69,7 +69,7 @@ _Note: Some of the flags/parameters used in `run.sh` are supposed to change over
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
 
-* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-nodejs) and [snarkjs](tutorials.md#install-snarkjs).
+* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs).
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
 * If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides Node.js and snarkjs.
 
@@ -130,7 +130,7 @@ docker logs -f es
 
 ### From source code
 
-You will need to [install Go](tutorials.md#install-go) to build es-node from source code, and install [Node.js](tutorials.md#install-nodejs) and [snarkjs](tutorials.md#install-snarkjs) to run es-node.
+You will need to [install Go](tutorials.md#install-go) to build es-node from source code, and install [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs) to run es-node.
 
 Download source code and switch to the latest release branch:
 
