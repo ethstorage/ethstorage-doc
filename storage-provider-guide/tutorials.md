@@ -33,19 +33,19 @@ This guide provides practical steps for the storage providers to start an es-nod
 * (Optional) Docker 24.0.5+ (would simplify the process)
 * (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
 
-_Note: The steps assume the use of the root user for all command line operations. If using a non-root user, you may need to prepend some commands with "sudo"._
+> ℹ️ **_Note:_** The steps assume the use of the root user for all command line operations. If using a non-root user, you may need to prepend some commands with "sudo".
 
 ### Preparing miner and signer account
 
-It is recommended to prepare two specific Ethereum accounts for this test. For safety reasons, we strongly suggest creating two new wallets to avoid the loss of any personal assets.
+We recommend preparing two specific Ethereum accounts for this test.
 
-As Sepolia is used as L1 in the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+- The miner account will be set to receive rewards once the storage provider successfully submits a storage proof to the EthStorage contract. Each storage provider must use a unique miner account.
 
-One account will act as a transaction signer and should contain a balance of test ETH, which can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+- The signer account will act as a transaction signer and should contain a balance of test ETH.  A signer account can be used by multiple storage providers.
 
-> :warning: **Warning:** For safety reasons, we strongly recommend that you use a new empty address with only test ETH balance.
+> ℹ️ **_Note:_** As Sepolia is used as L1 for the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/). 
 
-The other account will serve as the miner address, set to receive rewards once the storage provider successfully submits a storage proof to the EthStorage contract.
+> :warning: **_Warning:_** For safety reasons, we strongly suggest creating new wallets for the accounts to avoid the loss of any personal assets.
 
 Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
 
@@ -63,7 +63,7 @@ The `run.sh` script is used as an entry point. The main function of the script i
 
 Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
 
-_Note: Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to_ [_configuration_](configuration.md) _for a full list._
+> ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
 
 ## Options for running es-node
 
@@ -178,7 +178,7 @@ Please note that the free plan for the execution layer endpoint is not sufficien
 
 ## Install dependencies
 
-_Please note that not all steps in this section are required; they depend on your_ [_choice_](tutorials.md#options-for-running-es-node)_._
+> ℹ️ **_Note:_** Not all steps in this section are required; they depend on your [_choice_](tutorials.md#options-for-running-es-node).
 
 ### Install Go
 
