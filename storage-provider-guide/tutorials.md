@@ -170,11 +170,15 @@ env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run
 
 Go to the [BlockPI](https://blockpi.io/) website, click `Get Started`. After signing in, you will get your `Free Package Gift`. Click `Generate API Key`, and remember to select `Sepolia`, and you will get your API endpoint.
 
+Finally, access the detailed page of your API endpoint and activate the `Archive Mode` under the `Advanced Features` section.
+
+> ℹ️ **_Note:_** The free plan of BlockPI provides sufficient usage as execution layer RPC for es-node, but it cannot be used as a beacon endpoint.
+
 ### Applying for a free Sepolia beacon endpoint from QuickNode
 
 Go to the [QuickNode](https://www.quicknode.com/) website, click `Get started for free`. After signing in, you can create an endpoint. Remember to select `Ethereum` and `Sepolia` to continue. In the `Compliance & Safety` category, select `Endpoint Armor`, and select the free plan. After completing the required information, you will receive the endpoint along with an API key.
 
-Please note that the free plan for the execution layer endpoint is not sufficient for running the es-node. However, you can use the endpoint as a beacon endpoint (<cl_rpc>).
+> ℹ️ **_Note:_**  The free plan of QuickNode is adequate for use as a beacon endpoint (<cl_rpc>) for running es-node, but is NOT sufficient as execution layer endpoint.
 
 ## Install dependencies
 
