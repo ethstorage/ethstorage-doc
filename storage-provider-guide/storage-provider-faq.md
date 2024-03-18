@@ -95,3 +95,13 @@ docker run --name es  -d  \
           ghcr.io/ethstorage/es-node:v0.1.10 \
           --p2p.max.request.size 1048576
 ```
+
+### Why does the "missing trie node" error occur?
+
+
+```
+Save blobs error err="missing trie node c4b8803bb72e5841894b5348db64a818f2e6481e51bb35bb49f8eb41c7ba57a8 (path ) state Bxc4be883bb72e5841094b5340db64a818f2e6481e51bb35bb49f8eb41c7ba57a8 is not available"
+```
+If you encounter the `missing trie node` error as described, it is likely that your es-node attempted to access the L1 state older than 256 blocks without success. This may be due to your execution layer endpoint not being an archive node.
+
+If you are using a `BlockPI` endpoint, please navigate to the dashboard, access the detailed page of your API endpoint, and enable the `Archive Mode` within the `Advanced Features` section.
