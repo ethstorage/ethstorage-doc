@@ -3,7 +3,11 @@
 
 ### What should I do when the log frequently shows "i/o deadline reached" during data syncing?
 
-This problem is caused by the synchronization request timeout due to network reasons. It's possible that the amount of data requested is too large relative to network performance. Therefore, all requested data cannot be returned within the specified time.
+This problem is often caused by a poor internet connection between your node and some peers, a common issue given that peers are located worldwide. Thus, it's likely you'll experience connection problems with some of them. The key detail to determine is the estimated syncing time shown in the log.
+```
+INFO [01-19|14:41:48.715] "Storage sync in progress" progress=14.46% peercount=21 tasksRemain=1@32 blobssynced=289,248@35.31GiB blobsTosync=1,711,107 timeused=2h42m13s etaTimeLeft=15h59m37s
+```
+If it's less than 24 hours, it should be acceptable. Additionally, it's possible that the data request size is too large compared to network performance, preventing all requested data from being returned in time.
 
 You can change the size of each request to a smaller value using `--p2p.max.request.size`. 
 The current value in the `run.sh` is `4194304`. You can try adjusting it to `1048576`. Check [here](#how-can-i-change-the-default-configurations) for the detailed operation.
