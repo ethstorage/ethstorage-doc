@@ -40,6 +40,8 @@ When you see the message "Mining tasks timed out", it indicates that the samplin
 You can check the IOPS of the disk to determine if the rate of data read has reached the IO capacity. 
 If not, using the flag `--miner.threads-per-shard` can specify the number of threads to perform sampling for each shard, thereby helping in accomplishing additional sampling. Check [here](#how-can-i-change-the-default-configurations) for the detailed operation.
 
+If the previously mentioned method doesn't work, it's important to check if your NVMe disk supports PCIe 3.0 or 4.0 standards. Some PCIe 3.0 disks may not deliver sufficient random IOPS for the task. To ensure timely completion of the sampling process, upgrading to a PCIe 4.0 disk might be necessary.
+
 ### How do I know whether I've got a mining reward?
 
 You can observe the logs to see if there are such messages indicating a successful storage proof submission:
