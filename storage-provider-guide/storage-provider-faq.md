@@ -121,26 +121,18 @@ If you are using a Windows system, make sure to use WSL to run the docker comman
 
 First of all, make sure you are running `docker run` command on WSL 2 (Ubuntu distro by default) instead of Windows cmd. 
 
-Secondly, when start es-node with Docker image, we use the volumes option (-v) for storing data files outside containers to achive persistent storage. However the following attempt to mount an absolute path to the container would failed with "operation not supported" error.
+Secondly, when start es-node with Docker image, we use the volumes option (-v) for storing data files outside containers to achive persistent storage. However the following attempt to mount an absolute path (e.g., `D:\es-data`) to the container would failed with "operation not supported" error.
 
 ```sh
-# does not work
+# does not work!
 docker run --name es  -d  \
           -v /mnt/d/es-data:/es-node/es-data \
           ...
 ```
 
-The following approach will relocate the Ubuntu distro to the target volume (e.g. `D:`) so that the following configuration can work properly:
+The following approach will relocate the Ubuntu distro to the target volume (e.g. `D:`) so that `-v ./es-data:/es-node/es-data` can work properly.
 
-
-```sh
-docker run --name es  -d  \
-          -v ./es-data:/es-node/es-data \
-          ...
-```
-
-
-Execute the following command in `PowerShell`:
+By default the WSL system files are mapped to a specific directory on the `C` drive. To relocate the system to another volume (e.g., `D:`), execute the following command in `PowerShell`:
 
 ```sh
 #  create new location in the target volume
