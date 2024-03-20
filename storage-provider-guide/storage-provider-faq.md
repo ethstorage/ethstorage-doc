@@ -111,3 +111,48 @@ Save blobs error err="missing trie node c4b8803bb72e5841894b5348db64a818f2e6481e
 If you encounter the `missing trie node` error as described, it is likely that your es-node attempted to access the L1 state older than 256 blocks without success. This may be due to your execution layer endpoint not being an archive node.
 
 If you are using a `BlockPI` endpoint, please navigate to the dashboard, access the detailed page of your API endpoint, and enable the `Archive Mode` within the `Advanced Features` section.
+
+
+### Why should I use WSL to run Docker instead of Windows cmd? 
+
+If you are using a Windows system, make sure to use WSL to run the docker command instead of running it directly from the command prompt (cmd). The reason for this is that in Windows cmd, it seems that the volume option (-v) for a relative path is not taking effect, which causes the data to be stored inside the Docker container. This can lead to data loss when the container needs to be upgraded. If an absolute path is provided, an "operation not supported" error occurs when creating the data file, which is caused by the program cannot allocate space for the file accross operating system.
+
+### When running es-node in Docker on Windows, I want to store data files on a disk other than `C:`. How can I achieve this?
+
+First of all, make sure you are running `docker run` command on WSL 2 (Ubuntu distro by default) instead of Windows cmd. 
+
+Secondly, when start es-node with Docker image, we use the volumes option (-v) for storing data files outside containers to achive persistent storage. However the following attempt to mount an absolute path to the container would failed with "operation not supported" error.
+
+```sh
+# does not work
+docker run --name es  -d  \
+          -v /mnt/d/es-data:/es-node/es-data \
+          ...
+```
+
+The following approach will relocate the Ubuntu distro to the target volume (e.g. `D:`) so that the following configuration can work properly:
+
+
+```sh
+docker run --name es  -d  \
+          -v ./es-data:/es-node/es-data \
+          ...
+```
+
+
+Execute the following command in `PowerShell`:
+
+```sh
+#  create new location in the target volume
+> mkdir D:\wsl-ubuntu 
+> wsl --shutdown
+# verify Ubuntu is stopped
+> wsl -l -v 
+> wsl --export Ubuntu ubuntu.tar  
+> wsl --unregister Ubuntu
+> wsl --import Ubuntu D:\wsl-ubuntu\ .\ubuntu.tar --version 2
+```
+and reboot the computer at the end.
+
+
+Now you can open a WSL window (Ubuntu on Windows) and start Docker container with the command [here](/storage-provider-guide/tutorials.md#from-a-docker-image).
