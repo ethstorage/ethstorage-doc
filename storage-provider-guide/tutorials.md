@@ -29,7 +29,7 @@ This guide provides practical steps for the storage providers to start an es-nod
 
 ### System Environment
 
-* MacOS Version 14+, Ubuntu 20.04+ or Windows with WSL
+* MacOS Version 14+, Ubuntu 20.04+, or Windows with WSL (Windows Subsystem for Linux) version 2
 * (Optional) Docker 24.0.5+ (would simplify the process)
 * (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
 
@@ -79,7 +79,7 @@ Before running es-node from the pre-built executables, ensure that you have inst
 
 Download the pre-built package suitable for your platform:
 
-Linux x86-64 or WSL (Windows Subsystem for Linux):
+Linux x86-64 or WSL:
 
 ```sh
 curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.10/es-node.v0.1.10.linux-amd64.tar.gz | tar -xz
@@ -106,7 +106,7 @@ env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run
 
 ### From a Docker image
 
-Run an es-node container in one step:
+Run an es-node container with a single command like following. (If you are using Windows, execute the command in WSL):
 
 ```sh
 docker run --name es  -d  \
@@ -122,11 +122,23 @@ docker run --name es  -d  \
           --l1.beacon <cl_rpc>
 ```
 
-You can check docker logs using the following command:
+After launch, you can check docker logs using the following command:
 
 ```sh
 docker logs -f es 
 ```
+#### Mount data location using Docker volume option
+
+Docker volumes (-v) are a mechanism for storing data outside containers.
+In the above `docker run` command , you have the flexibility to modify the data file location on your host machine, ensuring that the disk space requirements are fulfilled. For example:
+
+```sh
+docker run --name es  -d  \
+          -v /host/path/with/large/space:/es-node/es-data \
+          ...
+```
+> ℹ️ **_Note:_** The absolute host path does not function well on Windows, for more details please refer [here](/storage-provider-guide/storage-provider-faq.md#when-running-es-node-in-docker-on-windows-i-want-to-store-data-files-on-a-disk-other-than-c-how-can-i-achieve-this)
+
 
 ### From source code
 
