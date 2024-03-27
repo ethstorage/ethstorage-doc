@@ -77,6 +77,15 @@ Start downloading ./build/bin/snarkjs/blob_poseidon2.zkey...
 ... ...
 Error: The zkey file was not downloaded. Please try again.
 ```
+If the error accurs while using Docker, you can mount the file from the host to the container using the `-v` parameter in `docker run`, just adjust the path accordingly:
+
+```sh
+docker run --name es  -d  \
+    ...
+    -v /host/path/to/blob_poseidon2.zkey:/es-node/build/bin/snarkjs/blob_poseidon2.zkey \
+    ...
+
+```
 
 ### How can I change the default configurations?
 
