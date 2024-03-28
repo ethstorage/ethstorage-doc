@@ -168,40 +168,38 @@ Firstly, you can [review the changes between releases](https://github.com/ethsto
 
 #### From pre-built executables
 
-"Ctrl C" to stop the es-node process. 
+1. "Ctrl C" to stop the es-node process. 
 
-Download new version (e.g., `es-node.v0.1.12`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
+2. Download new version (e.g., `es-node.v0.1.12`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
 
-Your data folder needs to be moved from the directory of old build (e.g., `es-node.v0.1.11`) to the new one:
+3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.1.11`) to the new one:
 
 ```sh
 # replace '0.1.12' to your target version
 cd es-node.v0.1.12
 
-# move data-dir
 # replace '0.1.11' to the version you have
 mv ../es-node.v0.1.11/es-data .
-
-# start with the same cmd as last used
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+mv ../es-node.v0.1.11/esnode_* .
 ```
+4. Launch es-node using the same command as the one previously used.
 
 #### From a Docker image
 
-As the data folder is located on the host where you execute the `docker run` command, you can safely stop and remove the old version of the container:
+1. As the data folder is located on the host where you execute the `docker run` command, you can safely stop and remove the old version of the container:
 
 ```sh
 docker stop es
 docker remove es
 ```
 
-Then start a new container based on the new version of the es-node Docker image with the same command [here](/storage-provider-guide/tutorials.md#from-a-docker-image). Just make sure the `<version>` in `ghcr.io/ethstorage/es-node:<version>` is correct.
+2. Then start a new container based on the new version of the es-node Docker image with the same command [here](/storage-provider-guide/tutorials.md#from-a-docker-image). Just make sure the `<version>` in `ghcr.io/ethstorage/es-node:<version>` is correct.
 
 #### From source code
 
-"Ctrl C" to stop the es-node process. 
+1. "Ctrl C" to stop the es-node process. 
 
-The only extra step is to select the correct branch of the source code for building (e.g., you want to move to `v0.1.12`):
+2. Switch to the correct branch of the source code (e.g., you want to move to `v0.1.12`):
 
 ```sh
 cd es-node
@@ -211,8 +209,11 @@ git fetch
 
 # replace '0.1.12' to your target version
 git checkout v0.1.12
+```
+3. build and launch es-node
 
-# build and launch es-node
-make 
+```sh
+make
+
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
