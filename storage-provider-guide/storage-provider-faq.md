@@ -4,7 +4,7 @@
 
 This is the most common issue storage providers encounter after finishing the data sync phase and entering the sampling phase.
 
-Firstly, it's crucial to understand the importance of resolving this issue. The node attempts to perform 1,000,000 disk samplings every 12 seconds. For each sampling, it calculates a number based on the sample data to determine if it constitutes a valid proof (similar to Proof of Work, PoW). Thus, if the node cannot complete the 1,000,000 samplings in 12 seconds, you will encounter this warning log. As you can deduce, fewer samplings mean a lower chance of calculating a valid storage proof.
+Firstly, it's crucial to understand the importance of resolving this issue. The node attempts to perform 1,048,576 disk samplings every 12 seconds. For each sampling, it calculates a number based on the sample data to determine if it constitutes a valid proof (similar to Proof of Work, PoW). Thus, if the node cannot complete the 1,000,000 samplings in 12 seconds, you will encounter this warning log. As you can deduce, fewer samplings mean a lower chance of calculating a valid storage proof.
 
 The underlying cause of this issue is the disk's inability to provide the necessary high read speed, which is why we recommend a NVMe SSD operating on PCIe 4.0. You should verify whether your disk meets this specification. Additionally, you can use 'fio' to test the reading speed:
 ```
