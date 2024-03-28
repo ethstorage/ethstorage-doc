@@ -1,5 +1,18 @@
 # FAQ by Storage Providers
 
+### What can I do about "Mining tasks timed out"? 
+
+This is the most common issue storage providers encounter after finishing the data sync phase and entering the sampling phase.
+
+Firstly, it's crucial to understand the importance of resolving this issue. The node attempts to perform 1,048,576 disk samplings every 12 seconds. For each sampling, it calculates a number based on the sample data to determine if it constitutes a valid proof (similar to Proof of Work, PoW). Thus, if the node cannot complete the 1,000,000 samplings in 12 seconds, you will encounter this warning log. As you can deduce, fewer samplings mean a lower chance of calculating a valid storage proof.
+
+The underlying cause of this issue is the disk's inability to provide the necessary high read speed, which is why we recommend a NVMe SSD operating on PCIe 4.0. You should verify whether your disk meets this specification. Additionally, you can use 'fio' to test the reading speed:
+```
+fio --name=random-read --ioengine=libaio --direct=1 --rw=randread --bs=4k --size=128g --numjobs=1 --iodepth=1024
+```
+If the results indicate that the read IOPS are higher than 160k, then it should suffice.
+
+If your disk meets the requirements but you still receive this warning, consider using the `--miner.threads-per-shard` flag. This allows specifying the number of threads for sampling each shard, potentially increasing the number of samplings achieved. For detailed instructions, check [here](#how-can-i-change-the-default-configurations) for the detailed operation.
 
 ### What should I do when the log frequently shows "i/o deadline reached" during data syncing?
 
@@ -32,15 +45,6 @@ If there is a need to conserve CPU power anyway, you can tune down the values of
 ### What does it means when the log shows "The nonces are exhausted in this slot"
 
 When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot, and you do not need to do anything about it. 
-
-### What can I do about "Mining tasks timed out"? 
-
-When you see the message "Mining tasks timed out", it indicates that the sampling task couldn't be completed within a slot. 
-
-You can check the IOPS of the disk to determine if the rate of data read has reached the IO capacity. 
-If not, using the flag `--miner.threads-per-shard` can specify the number of threads to perform sampling for each shard, thereby helping in accomplishing additional sampling. Check [here](#how-can-i-change-the-default-configurations) for the detailed operation.
-
-If the previously mentioned method doesn't work, it's important to check if your NVMe disk supports PCIe 3.0 or 4.0 standards. Some PCIe 3.0 disks may not deliver sufficient random IOPS for the task. To ensure timely completion of the sampling process, upgrading to a PCIe 4.0 disk might be necessary.
 
 ### How do I know whether I've got a mining reward?
 
