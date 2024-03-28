@@ -157,3 +157,58 @@ and reboot the computer at the end.
 
 
 Now you can open a WSL window (Ubuntu on Windows) and start Docker container with the command [here](/storage-provider-guide/tutorials.md#from-a-docker-image).
+
+### I am already running es-node. How can I update it to a newer version?
+
+Firstly, you can [review the changes between releases](https://github.com/ethstorage/es-node/releases) to decide whether to upgrade or not. Then, depending on how you are currently running the es-node instance, different steps may need to be taken.
+
+#### From pre-built executables
+
+"Ctrl C" to stop the es-node process. 
+
+Download new version (e.g., `es-node.v0.1.12`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
+
+Your data folder needs to be moved from the directory of old build (e.g., `es-node.v0.1.11`) to the new one:
+
+```sh
+# replace '0.1.12' to your target version
+cd es-node.v0.1.12
+
+# move data-dir
+# replace '0.1.11' to the version you have
+mv ../es-node.v0.1.11/es-data .
+
+# start with the same cmd as last used
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+```
+
+#### From a Docker image
+
+As the data folder is located on the host where you execute the `docker run` command, you can safely stop and remove the old version of the container:
+
+```sh
+docker stop es
+docker remove es
+```
+
+Then start a new container based on the new version of the es-node Docker image with the same command [here](/storage-provider-guide/tutorials.md#from-a-docker-image). Just make sure the `<version>` in `ghcr.io/ethstorage/es-node:<version>` is correct.
+
+#### From source code
+
+"Ctrl C" to stop the es-node process. 
+
+The only extra step is to select the correct branch of the source code for building (e.g., you want to move to `v0.1.12`):
+
+```sh
+cd es-node
+
+# fetch new branches
+git fetch
+
+# replace '0.1.12' to your target version
+git checkout v0.1.12
+
+# build and launch es-node
+make 
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+```
