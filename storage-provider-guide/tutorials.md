@@ -65,6 +65,14 @@ Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which me
 
 > ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
 
+ ### About the option of zk prover implementation
+
+The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. 
+
+Its default value is `1` which represents snarkjs. You have the option to override the flag and set it to `2` in order to utilize go-rapidsnark, which enhances the performance of zk proof generation on certain platforms, such as Ubuntu.
+
+If you want to build an es-node with go-rapidsnark on Ubuntu, be sure to [verify the corresponding dependencies](#install-rapidsnark-dependencies).
+
 ## Options for running es-node
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
@@ -120,9 +128,11 @@ docker run --name es  -d  \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
           ghcr.io/ethstorage/es-node:v0.1.13 \
+          --miner.zk-prover-impl 2 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
+> ℹ️ **_Note:_**  The flag ` --miner.zk-prover-impl 2` is used to generate zk proofs using go-rapidsnark instead of snarkjs for better performance.
 
 After launch, you can check docker logs using the following command:
 
@@ -251,6 +261,22 @@ nvm use 20
 
 ```sh
 npm install -g snarkjs
+```
+
+### Install RapidSNARK dependencies
+
+Check if `build-essential` and `libomp-dev packages` are installed on your Ubuntu system:
+
+```
+dpkg -l | grep build-essential
+dpkg -l | grep libomp-dev
+```
+Install the build-essential and libomp-dev packages if no information printed:
+
+```
+apt update
+apt install build-essential
+apt install libomp-dev
 ```
 
 ## Check the status after launching the es-node

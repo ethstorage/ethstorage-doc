@@ -51,6 +51,7 @@ The full list of options that you can use to configure an es-node are as follows
 |`--miner.threads-per-shard`|Number of threads per shard|`runtime.NumCPU() x 2`||
 |`--miner.zk-working-dir`|Path to the snarkjs folder|`build/bin`||
 |`--miner.zk-prover-mode`|ZK prover mode, 1: one proof per sample, 2: one proof for multiple samples|`2`||
+|`--miner.zk-prover-impl`|ZK prover implementation, 1: snarkjs, 2: go-rapidsnark|`1`||
 |`--miner.zkey`|zkey file name which should be put in the snarkjs folder|`blob_poseidon2.zkey`||
 |`--network`|Predefined L1 network selection. Available networks: devnet|||
 |`--p2p.advertise.ip`|The IP address to advertise in Discv5, put into the ENR of the node. This may also be a hostname / domain name to resolve to an IP.|||
