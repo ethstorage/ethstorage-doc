@@ -1,17 +1,3 @@
----
-layout:
-  title:
-    visible: false
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: false
----
-
 # EthStorage and Rollups
 
 As a long-term DA solution based on Ethereum, EthStorage allows rollups to upload L2 transaction data to the storage network through a batch inbox contract, so that the data can be stored permanently in a decentralized manner.
@@ -38,13 +24,13 @@ As a component of es-node, the archiver API is a service that provides blob data
 
 If the indices parameter is specified, only the blob sidecars with the specified indices will be returned. 
 
-For example, the following url Retrieves the 3rd blob sidecar in the block of slot 4756895.
+For example, the following url retrieves the 3rd blob sidecar in the block of slot 4756895.
 
 ```sh
 http://65.108.236.27:9645/eth/v1/beacon/blob_sidecars/4756895?indices=3
 ```
 
-The difference in returned data between es-node archiver API and beacon API is that for each blob es-node archiver only returns blob content, index, kzg commitment, and kzg proof. Other elements are omitted according to how Optimism uses the service.
+The difference in returned data between es-node archiver API and beacon API is that for each blob es-node archiver only returns blob content, index, kzg commitment, and kzg proof. Other elements are omitted according to how the OP Stack uses the service.
 
 ```json
 {
