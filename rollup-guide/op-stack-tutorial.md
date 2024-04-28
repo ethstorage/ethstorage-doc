@@ -10,15 +10,15 @@ To enable EthStorage to store transaction batches as blobs, a smart contract mus
 
 <figure><img src="../.gitbook/assets/rollup-contract.jpg" alt=""><figcaption><p>The BatchInbox Contract serves as the Application Contract in the rollup integration scenario</p></figcaption></figure>
 
-An early version of the OP Stack’s `BatchInbox` smart contract with EIP-4844 integration can be found [here](https://github.com/ethstorage/es-op-batchinbox/blob/main/src/BatchInbox.sol). The smart contract employs the blobhash of the blob as the key to put the blob in the EthStorage storage contract's key-value store, and covers the upfront storage payment using its ETH balance.
+An early version of the `BatchInbox` smart contract with EIP-4844 integration can be found [here](https://github.com/ethstorage/es-op-batchinbox/blob/main/src/BatchInbox.sol). The smart contract employs the blobhash of the blob as the key to put the blob in the EthStorage's key-value store, and covers the upfront storage payment using its ETH balance.
 
 The EthStorage storage contract address on the Sepolia testnet can be found [here](../information/#public-testnet-1-deployment).
 
 ## L2 Batch Submitter
 
-Some essential changes need to be made for the batch submitter when the `BatchInbox` is a smart contract.
+Some essential changes need to be made for the OP Stack's batch submitter when the `BatchInbox` is a smart contract.
 
-Firstly, it will check if the `BatchInbox` address is a smart contract or an EOA. It is important to estimate gas usage before submitting the transaction to the smart contract, instead of using intrinsic gas as before. Furthermore, when interacting with a smart contract, the verification of transaction status and error handling becomes crucial to ensure data integrity.
+Firstly, it will check if the `BatchInbox` address is a smart contract or an EOA. It is important to estimate gas usage before submitting the transaction to the smart contract, , rather than relying on intrinsic gas as in the EOA case. Furthermore, when interacting with a smart contract, it is crucial to implement the verification of transaction status and error handling to ensure data integrity.
 
 For detailed implementation, refer to [this pull request](https://github.com/ethstorage/optimism/pull/22).
 
@@ -36,4 +36,4 @@ The following example specifies a living EthStorage archiver API on the Sepolia 
 
 Like the Beacon API, the blobs can be queried via the `/eth/v1/beacon/blob_sidecars/` endpoint, using the `indices` filter to skip irrelevant blobs. The process operates by combining the archiver and the Beacon location into a resource pool for retrieving blobs. If the op-node fails to obtain blobs from the Beacon node, it will use the archiver endpoint as a fallback.
 
-One detail worth noting is how the Beacon API's response to expired blobs affects the retrieval process. At least some of the Beacon clients (e.g., [Prysm](https://github.com/prysmaticlabs/prysm/blob/feb16ae4aaa41d9bcd066b54b779dcd38fc928d2/beacon-chain/rpc/lookup/blocker.go#L225)) return 200 status code and an empty list while [the OP Stack code](https://github.com/ethereum-optimism/optimism/blob/develop/op-service/sources/l1\_beacon\_client.go#L212) is expecting an error. In this case, [this fix](https://github.com/ethereum-optimism/optimism/pull/10269) is essential for the retrieval of historical blobs to function properly.
+One detail worth noting is how the Beacon API's response to expired blobs affects the retrieval process. At least some of the Beacon clients (e.g., [Prysm](https://github.com/prysmaticlabs/prysm/blob/feb16ae4aaa41d9bcd066b54b779dcd38fc928d2/beacon-chain/rpc/lookup/blocker.go#L225)) return 200 status code and an empty list while [the OP Stack code](https://github.com/ethereum-optimism/optimism/blob/develop/op-service/sources/l1\_beacon\_client.go#L212) is expecting an error. [Addressing this issue](https://github.com/ethereum-optimism/optimism/pull/10269) is crucial for the proper functioning of the retrieval of historical blobs.
