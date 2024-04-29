@@ -18,7 +18,7 @@ The EthStorage storage contract address on the Sepolia testnet can be found [her
 
 Some essential changes need to be made for the OP Stack's batch submitter when the `BatchInbox` is a smart contract.
 
-Firstly, it will check if the `BatchInbox` address is a smart contract or an EOA. It is important to estimate gas usage before submitting the transaction to the smart contract, , rather than relying on intrinsic gas as in the EOA case. Furthermore, when interacting with a smart contract, it is crucial to implement the verification of transaction status and error handling to ensure data integrity.
+Firstly, it will check if the `BatchInbox` address is a smart contract or an EOA. It is important to estimate gas usage before submitting the transaction to the smart contract, rather than relying on intrinsic gas as in the EOA case. Furthermore, when interacting with a smart contract, it is crucial to implement the verification of transaction status and error handling to ensure data integrity.
 
 For detailed implementation, refer to [this pull request](https://github.com/ethstorage/optimism/pull/22).
 
