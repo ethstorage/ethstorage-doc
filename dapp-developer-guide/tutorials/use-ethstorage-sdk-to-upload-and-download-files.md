@@ -40,7 +40,7 @@ const create = async () => {
 }
 ```
 
-If you already have a flat contract, you can set it directly.
+If you already have a `FlatDirectory` contract, you can set it directly.
 
 ```js
 const {EthStorage} = require("ethstorage-sdk");
