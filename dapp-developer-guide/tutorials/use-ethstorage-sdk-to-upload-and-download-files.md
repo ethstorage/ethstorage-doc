@@ -24,7 +24,7 @@ In this section, you will create a `FlatDirectory` contract for managing files.
 ```js
 const {EthStorage} = require("ethstorage-sdk");
 
-const create = async () => {
+const deploy = async () => {
     const ETH_STORAGE_ADDRESS = "0x804C520d3c084C805E37A35E90057Ac32831F96f";
     const rpc = "https://rpc.sepolia.org";
     const privateKey = "0x...";
@@ -32,16 +32,22 @@ const create = async () => {
     const ethStorage = new EthStorage(rpc, privateKey);
     await ethStorage.deploy(ETH_STORAGE_ADDRESS);
     // FlatDirectory address: 0x37df32c7a3c30d352453dadacc838461d8629016
-
-    or
-
-    // If you are on the Sepola network, you can do the following:
-    await ethStorage.deploySepolia();
 }
 ```
 
-If you already have a `FlatDirectory` contract, you can set it directly.
+If you are on the 'Sepolia' network, you can do the following:
+```js
+const deploySepolia = async () => {
+    const rpc = "https://rpc.sepolia.org";
+    const privateKey = "0x...";
 
+    const ethStorage = new EthStorage(rpc, privateKey);
+    await ethStorage.deploySepolia();
+    // FlatDirectory address: 0x37df32c7a3c30d352453dadacc838461d8629016
+}
+```
+
+If you already have a `FlatDirectory` contract, you can set it.
 ```js
 const {EthStorage} = require("ethstorage-sdk");
 
@@ -55,46 +61,69 @@ const create = async () => {
 ```
 
 
-### 2.2: Upload Files To Flat Directory
+### 2.2: Upload Files To FlatDirectory
 
 In this section, you will upload some files into the `FlatDirectory` that you just created.
 
+Get EthStorage
 ```js
 const {EthStorage} = require("ethstorage-sdk");
 
-const upload = async (filePath) => {
-    // You can set the path of a file or folder. If using a browser, you can specify the file object selected by the 'input'.
-    await ethStorage.upload(pathOrFile);
-    // hash: 0x753...45836
-
-    or
-
-    // If you want to upload data, use 'uploadData'.
-    const data = fs.readFileSync(filePath);
-    await ethStorage.uploadData(fileName, data);
+const getEthStorage = () => {
+    const rpc = "https://rpc.sepolia.org";
+    const privateKey = "0x...";
+    const flatDirectory = "0x37df32c7a3c30d352453dadacc838461d8629016";
+    const ethStorage = new EthStorage(rpc, privateKey, flatDirectory);
+    return ethStorage;
 }
 ```
 
+You can set the file or folder path, and if it is a browser environment, you can also set the file object.
+```js
+const upload = async () => {
+    const pathOrFile = "/users/dist/test.txt";
+    const ethStorage = getEthStorage();
+    await ethStorage.upload(pathOrFile);
+    // hash: 0x753...45836
+}
+```
+
+If you want to upload data, use 'uploadData'
+```js
+const upload = async () => {
+    const fileName = "test.txt";
+    const filePath = "/usr/dist/test.txt";
+    const data = fs.readFileSync(filePath);
+
+    const ethStorage = getEthStorage();
+    await ethStorage.uploadData(fileName, data);
+}
+```
 
 ### 2.3: Download Files From Flat Directory
 
 In this section, you will download files from the ethstorage network.
 
 ```js
-const {EthStorage} = require("ethstorage-sdk");
-
 const download = async (fileName) => {
+    const ethStorage = getEthStorage();
     // Note: This should be ethstorage rpc, not eth rpc
     const ethStorageRpc = "https://ethstorage.rpc.io";
-    let data = await ethStorage.download(fileName, ethStorageRpc);
-
-    or
-
-    const { Download } = require("ethstorage-sdk")
-    const flatDirectory = "0x37df32c7a3c30d352453dadacc838461d8629016";
-    data = await Download(ethstorageRpc, flatDirectory, fileName);
-
+    const data = await ethStorage.download(fileName, ethStorageRpc);
     // You can save the data as a file
 }
 ```
 
+or
+```js
+const { Download } = require("ethstorage-sdk")
+
+const download = async (fileName) => {
+    // Note: This should be ethstorage rpc, not eth rpc
+    const ethStorageRpc = "https://ethstorage.rpc.io";
+    const flatDirectory = "0x37df32c7a3c30d352453dadacc838461d8629016";
+
+    const data = await Download(ethstorageRpc, flatDirectory, fileName);
+    // You can save the data as a file
+}
+```
