@@ -42,11 +42,6 @@ However, this high-intensity processing occurs primarily when large volumes of d
 
 If there is a need to conserve CPU power anyway, you can tune down the values of syncing performance related flags, namely `--p2p.sync.concurrency` and `--p2p.fill-empty.concurrency`. See [here](#how-to-tune-the-performance-of-syncing) for detailed information.
 
-### What does it means when the log shows "The nonces are exhausted in this slot"
-
-When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot, and you do not need to do anything about it. 
-Starting from version `v0.1.13`, this log has been replaced with "Sampling done with all nonces".
-
 ### How do I know whether I've got a mining reward?
 
 You can observe the latest log that summarizes the mining status every minute, where succeeded indicates a successful mining submission.
