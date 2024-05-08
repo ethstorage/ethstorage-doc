@@ -45,11 +45,17 @@ If there is a need to conserve CPU power anyway, you can tune down the values of
 ### What does it means when the log shows "The nonces are exhausted in this slot"
 
 When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot, and you do not need to do anything about it. 
+Starting from version `v0.1.13`, this log has been replaced with "Sampling done with all nonces".
 
 ### How do I know whether I've got a mining reward?
 
-You can observe the logs to see if there are such messages indicating a successful storage proof submission:
+You can observe the latest log that summarizes the mining status every minute, where succeeded indicates a successful mining submission.
 
+```
+"Mining stats since 2024-04-29 06:09:37" shard=0 succeeded=1 failed=0 dropped=0
+```
+
+The real-time logs that record the detailed information like reward and profit are like the following:
 ```
 INFO [01-19|14:41:48.715] Mining transaction confirmed             txHash=62df87..7dbfbc
 INFO [01-19|14:41:49.017] "Mining transaction success!      √"     miner=0x534632D6d7aD1fe5f832951c97FDe73E4eFD9a77
@@ -111,7 +117,7 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.14 \
+          ghcr.io/ethstorage/es-node:v0.1.15 \
           --p2p.max.request.size 1048576
 ```
 
@@ -170,17 +176,17 @@ Firstly, you can [review the changes between releases](https://github.com/ethsto
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Download new version (e.g., `es-node.v0.1.14`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
+2. Download new version (e.g., `es-node.v0.1.15`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
 
-3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.1.13`) to the new one:
+3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.1.14`) to the new one:
 
 ```sh
-# replace v0.1.14 to your target version
-cd es-node.v0.1.14
+# replace v0.1.15 to your target version
+cd es-node.v0.1.15
 
-# replace v0.1.13 to the version you have
-mv ../es-node.v0.1.13/es-data .
-mv ../es-node.v0.1.13/esnode_* .
+# replace v0.1.14 to the version you have
+mv ../es-node.v0.1.14/es-data .
+mv ../es-node.v0.1.14/esnode_* .
 ```
 4. Launch es-node using the same command as the one previously used.
 
@@ -199,7 +205,7 @@ docker remove es
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Switch to the correct branch of the source code (e.g., you want to move to `v0.1.14`):
+2. Switch to the correct branch of the source code (e.g., you want to move to `v0.1.15`):
 
 ```sh
 cd es-node
@@ -207,8 +213,8 @@ cd es-node
 # fetch new branches
 git fetch
 
-# replace 'v0.1.14' to your target version
-git checkout v0.1.14
+# replace 'v0.1.15' to your target version
+git checkout v0.1.15
 ```
 3. build and launch es-node
 
