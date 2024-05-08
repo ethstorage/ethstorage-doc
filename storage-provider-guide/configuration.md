@@ -89,6 +89,7 @@ The full list of options that you can use to configure an es-node are as follows
 |`--signer.hdpath`|HDPath is the derivation path used to obtain the private key for mining transactions|||
 |`--signer.mnemonic`|The HD seed used to derive the wallet's private keys for mining. Must be used in conjunction with HDPath.|||
 |`--signer.private-key`|The private key to sign a mining transaction|||
+|`--state.upload.url`|API that update es-node state to, the node will upload state to API for statistic if it has been set correctly.|||
 |`--storage.files`|File paths where the data are stored||✓|
 |`--storage.l1contract`|Storage contract address on l1||✓|
 |`--storage.miner`|Miner's address to encode data and receive mining rewards||✓|
