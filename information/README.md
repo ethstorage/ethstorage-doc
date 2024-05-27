@@ -21,5 +21,5 @@
 
 [ethstorage-sdk](https://github.com/ethstorage/ethstorage-sdk)  -  offers programming APIs for file uploading, downloading, and management.
 
-[ethstorage-sdk-ts](https://www.npmjs.com/package/ethstorage-sdk-ts) - the typescript version of `ethstorage-sdk`.
+[ethstorage-sdk-ts](https://www.npmjs.com/package/ethstorage-sdk-ts) - the typescript version of `ethstorage-sdk` maintained by the community.
 
