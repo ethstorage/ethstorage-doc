@@ -92,25 +92,25 @@ Download the pre-built package suitable for your platform:
 Linux x86-64 or WSL:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.14/es-node.v0.1.14.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.linux-amd64.tar.gz | tar -xz
 ```
 
 MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.14/es-node.v0.1.14.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.darwin-amd64.tar.gz | tar -xz
 ```
 
 MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.14/es-node.v0.1.14.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.darwin-arm64.tar.gz | tar -xz
 ```
 
 Run es-node
 
 ```
-cd es-node.v0.1.14
+cd es-node.v0.1.15
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
@@ -127,7 +127,7 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.14 \
+          ghcr.io/ethstorage/es-node:v0.1.15 \
           --miner.zk-prover-impl 2 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
@@ -165,7 +165,7 @@ Now download source code and switch to the latest release branch:
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.1.14
+git checkout v0.1.15
 ```
 
 Build es-node:
@@ -331,11 +331,11 @@ A typical log entry of sampling during a slot looks like this:
 ```
 INFO [01-19|05:02:23.210] Mining info retrieved                    shard=0 LastMineTime=1,705,634,628 Difficulty=4,718,592,000 proofsSubmitted=6
 INFO [01-19|05:02:23.210] Mining tasks assigned                    shard=0 threads=64 block=10,397,712 nonces=1,048,576
-INFO [01-19|05:02:26.050] The nonces are exhausted in this slot, waiting for the next block samplingTime=2.8s shard=0 block=10,397,712
+INFO [01-19|05:02:26.050] Sampling done with all nonces            samplingTime=2.8s shard=0 block=10,397,712
 
 ```
 
-When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot. The "samplingTime" value informs you of the duration, in seconds, it took to complete the sampling process.
+When you see "Sampling done with all nonces", it indicates that your node has successfully completed all the sampling tasks within a slot. The "samplingTime" value informs you of the duration, in seconds, it took to complete the sampling process.
 
 If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
 
