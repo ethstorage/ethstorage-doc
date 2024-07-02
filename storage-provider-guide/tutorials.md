@@ -65,6 +65,14 @@ Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which me
 
 > ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
 
+ ### About the option of zk prover implementation
+
+The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. 
+
+Its default value is `1` which represents snarkjs. You have the option to override the flag and set it to `2` in order to utilize go-rapidsnark, which enhances the performance of zk proof generation on certain platforms, such as Ubuntu.
+
+If you have to run an es-node pre-built with value `2` on Ubuntu 20.04, you will need to [install extra packages](#install-libc6_235).
+
 ## Options for running es-node
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
@@ -75,7 +83,7 @@ You can run es-node from a pre-built executable, a pre-built Docker image, or fr
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs). 
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs), unless `--miner.zk-prover-impl` flag is set to `2`. 
 
 > ℹ️ **_Note:_** Ensure that you run the executables on [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) if you are using Windows, and both Node.js and snarkjs are installed on WSL instead of Windows.
 
@@ -120,9 +128,11 @@ docker run --name es  -d  \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
           ghcr.io/ethstorage/es-node:v0.1.15 \
+          --miner.zk-prover-impl 2 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
+> ℹ️ **_Note:_**  The flag ` --miner.zk-prover-impl 2` is used to generate zk proofs using go-rapidsnark instead of snarkjs for better performance.
 
 After launch, you can check docker logs using the following command:
 
@@ -144,9 +154,13 @@ docker run --name es  -d  \
 
 ### From source code
 
-You will need to [install Go](tutorials.md#install-go) to build es-node from source code, and install [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs) to run es-node.
+You will need to [install Go](tutorials.md#install-go) to build es-node from source code.
 
-Download source code and switch to the latest release branch:
+If you intend to build es-node on Ubuntu, be sure to [verify some dependencies](#install-rapidsnark-dependencies).
+
+Just like running a pre-built, if you plan to utilize the default zkSNARK implementation, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs).
+
+Now download source code and switch to the latest release branch:
 
 ```sh
 git clone https://github.com/ethstorage/es-node.git
@@ -214,7 +228,7 @@ tar -C /usr/local -xf go1.21.4.linux-amd64.tar.gz
 
 Update `$PATH`
 
-```
+```sh
 echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile
 source ~/.profile
 ```
@@ -251,6 +265,44 @@ nvm use 20
 
 ```sh
 npm install -g snarkjs
+```
+
+### Install RapidSNARK dependencies
+
+Check if `build-essential` and `libomp-dev packages` are installed on your Ubuntu system:
+
+```sh
+dpkg -l | grep build-essential
+dpkg -l | grep libomp-dev
+```
+Install the build-essential and libomp-dev packages if no information printed:
+
+```sh
+apt update
+apt install build-essential
+apt install libomp-dev
+```
+
+### Install libc6_2.35
+
+This installation is intended for scenarios where you encounter errors like this while running the pre-built es-node on Ubuntu 20.04:
+
+```sh
+/lib/x86_64-linux-gnu/libc.so.6: version 'glibc_2.32' not found
+/lib/x86_64-linux-gnu/libc.so.6: version 'glibc_2.34' not found
+```
+
+To prevent the error, add the following line to your /etc/apt/sources.list:
+
+```sh
+deb http://security.ubuntu.com/ubuntu jammy-security main 
+```
+
+Next, install libc6_2.35 by running the following commands:
+
+```sh
+apt update
+apt install -y libc6
 ```
 
 ## Check the status after launching the es-node
