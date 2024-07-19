@@ -59,7 +59,7 @@ In the following tutorial, you will need to replace <el_rpc> for you execution l
 
 ### About `run.sh` and `init.sh`
 
-The `run.sh`h script serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in run.sh, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
+The `run.sh` script serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in `run.sh`, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
 
 However, before the es-node can be successfully launched, you must execute `init.sh` first. The primary function of this script is to verify the system environment, download and install dependencies, and initialize the data files in preparation for mining.
 
@@ -71,9 +71,7 @@ For specific usage and examples of the two scripts, refer to the steps outlined 
 
 The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. 
 
-Its default value is `1` which represents generating zk proofs using snarkjs. You have the option to override the flag and set it to `2` to utilize go-rapidsnark, resulting in enhanced performance for zk proof generation and eliminating the need to install Node.js and snarkjs.
-
-Within the detailed steps outlined in [Options for running es-node](#options-for-running-es-node), the option `--miner.zk-prover-impl 2` is utilized.
+Its default value is `1`, indicating the generation of zk proofs using snarkjs. You have the option to override the flag and set it to `2` to utilize go-rapidsnark, resulting in enhanced performance for zk proof generation and eliminating the need to install Node.js and snarkjs. Therefore, within the detailed steps outlined in [Options for running es-node](#options-for-running-es-node), the option `--miner.zk-prover-impl 2` is utilized.
 
 Since `--miner.zk-prover-impl` interacts closely with the environment, it is crucial to use the same configuration when running both `init.sh` and `run.sh`.
 
