@@ -130,6 +130,7 @@ First init an es-node environment with the following command (If you are using W
 ```sh
 docker run --rm \
           -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init.sh \
           ghcr.io/ethstorage/es-node:v0.1.15 \
@@ -140,8 +141,9 @@ docker run --rm \
 Then start an es-node container:
 
 ```sh
-docker exec es  -d  \
+docker run --name es -d \
           -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
           -p 9545:9545 \
