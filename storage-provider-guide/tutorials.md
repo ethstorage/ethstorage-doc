@@ -128,14 +128,13 @@ env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run
 First init an es-node environment with the following command (If you are using Windows, execute the command in WSL):
 
 ```sh
-docker run --name es  -d  \
+docker run --rm \
           -v ./es-data:/es-node/es-data \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init.sh \
           ghcr.io/ethstorage/es-node:v0.1.15 \
           --miner.zk-prover-impl 2 \
-          --l1.rpc <el_rpc> \
-          --l1.beacon <cl_rpc>
+          --l1.rpc <el_rpc>
 ```
 
 Then start an es-node container:
