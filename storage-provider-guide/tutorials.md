@@ -69,19 +69,19 @@ For specific usage and examples of the two scripts, refer to the steps outlined 
 
  ### About the option of zk prover implementation
 
-The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. 
+The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. Its default value is `1`, indicating the generation of zk proofs using snarkjs. The option `2` means to utilize go-rapidsnark, resulting in enhanced performance for zk proof generation and eliminating the need to install Node.js and snarkjs. 
 
-Its default value is `1`, indicating the generation of zk proofs using snarkjs. You have the option to override the flag and set it to `2` to utilize go-rapidsnark, resulting in enhanced performance for zk proof generation and eliminating the need to install Node.js and snarkjs. Therefore, within the detailed steps outlined in [Options for running es-node](#options-for-running-es-node), the option `--miner.zk-prover-impl 2` is utilized.
+Within the detailed steps outlined in [Options for running es-node](#options-for-running-es-node), the option `--miner.zk-prover-impl 2` is utilized.
 
 Since `--miner.zk-prover-impl` interacts closely with the environment, it is crucial to use the same configuration when running both `init.sh` and `run.sh`.
 
-If you have to run an es-node pre-built with value `2` on Ubuntu 20.04, you will need to [install extra packages](#install-libc6_235).
+> ℹ️ **_Note:_** If you have to run an es-node pre-built with `--miner.zk-prover-impl 2` on Ubuntu 20.04, you will need to [install extra packages](#install-libc6_235).
 
 ## Options for running es-node
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
 
-* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs).
+* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you may need to install [Node.js](tutorials.md#install-node.js) if using default zk prover implementation.
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
 * If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides other dependencies.
 
