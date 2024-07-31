@@ -87,7 +87,7 @@ You can run es-node from a pre-built executable, a pre-built Docker image, or fr
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs), unless `--miner.zk-prover-impl` flag is set to `2`. 
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) if `--miner.zk-prover-impl` flag is set to `1`. 
 
 > ℹ️ **_Note:_** Ensure that you run the executables on [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) if you are using Windows, and both Node.js and snarkjs are installed on WSL instead of Windows.
 
@@ -114,7 +114,7 @@ curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.
 In folder `es-node.v0.1.15`, init es-node by running:
 
 ```
-env ES_NODE_STORAGE_MINER=<miner> ./init.sh --miner.zk-prover-impl 2 --l1.rpc <el_rpc>
+env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
 
 Run es-node
@@ -134,7 +134,6 @@ docker run --rm \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init.sh \
           ghcr.io/ethstorage/es-node:v0.1.15 \
-          --miner.zk-prover-impl 2 \
           --l1.rpc <el_rpc>
 ```
 
@@ -151,7 +150,6 @@ docker run --name es -d \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
           ghcr.io/ethstorage/es-node:v0.1.15 \
-          --miner.zk-prover-impl 2 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -199,7 +197,7 @@ make
 Init es-node
 
 ```
-env ES_NODE_STORAGE_MINER=<miner> ./init.sh --miner.zk-prover-impl 2 --l1.rpc <el_rpc>
+env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
 
 Start es-node
@@ -211,6 +209,10 @@ env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run
 With source code, you also have the option to build a Docker image by yourself and run an es-node container:
 
 ```sh
+# init
+env ES_NODE_STORAGE_MINER=<miner> docker-compose run --rm --entrypoint "/es-node/init.sh" node
+
+# start
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> docker-compose up 
 ```
 
