@@ -194,7 +194,22 @@ docker stop es
 docker remove es
 ```
 
-2. Then start a new container based on the new version of the es-node Docker image with the same command [here](/storage-provider-guide/tutorials.md#from-a-docker-image). Just make sure the `<version>` in `ghcr.io/ethstorage/es-node:<version>` is correct.
+2. Then start a new container based on the new version of the es-node Docker image with the following command, just make sure the `<version>` in `ghcr.io/ethstorage/es-node:<version>` is correct:
+
+```sh
+docker run --name es -d \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
+          -p 9545:9545 \
+          -p 9222:9222 \
+          -p 30305:30305/udp \
+          --entrypoint /es-node/run.sh \
+          ghcr.io/ethstorage/es-node:v0.1.15 \
+          --l1.rpc <el_rpc> \
+          --l1.beacon <cl_rpc>
+```
 
 #### From source code
 
