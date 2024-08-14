@@ -17,7 +17,7 @@ npm i ethstorage-sdk
 
 ## Step 2: Manage Files
 
-### 2.1 Create Flat Directory
+### 2.1 Create FlatDirectory
 
 In this section, you will create a `FlatDirectory` contract for managing files.
 
@@ -32,7 +32,7 @@ const flatDirectory = await FlatDirectory.create({
     privateKey: privateKey,
 });
 const contracAddress = await flatDirectory.deploy();
-console.log(`FlatDirectory address is ${contracAddress}.`);
+console.log(`FlatDirectory address: ${contracAddress}.`);
 // FlatDirectory address: 0x37df32c7a3c30d352453dadacc838461d8629016
 ```
 
@@ -107,12 +107,12 @@ const request = {
 await flatDirectory.upload(request);
 ```
 
-### 2.3: Download Files From Flat Directory
+### 2.3: Download Files From FlatDirectory
 
 In this section, you will download files from the ethstorage network.
 
 ```bash
-// Note: This should be ethstorage rpc, not eth rpc
+// Note: To download files, you need to specify the `ethStorageRpc`.
 const ethStorageRpc = "https://[ethstorage.rpc].io";
 const flatDirectory = await FlatDirectory.create({
     rpc: rpc,
@@ -133,18 +133,4 @@ await flatDirectory.download(key, {
         ...
     }
 });
-```
-
-or
-```js
-const { Download } = require("ethstorage-sdk")
-
-const download = async (fileName) => {
-    // Note: This should be ethstorage rpc, not eth rpc
-    const ethStorageRpc = "https://ethstorage.rpc.io";
-    const flatDirectory = "0x37df32c7a3c30d352453dadacc838461d8629016";
-
-    const data = await Download(ethstorageRpc, flatDirectory, fileName);
-    // You can save the data as a file
-}
 ```
