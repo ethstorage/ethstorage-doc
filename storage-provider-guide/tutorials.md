@@ -57,70 +57,88 @@ For details on the application process for endpoints, please refer to [this sect
 
 In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
-### About `run.sh`
+### About `run.sh` and `init.sh`
 
-The `run.sh` script is used as an entry point. The main function of the script is to initialize the data file, prepare for mining, and launch es-node with preset parameters.
+The `run.sh` script serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in `run.sh`, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
 
-Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
+However, before the es-node can be successfully launched, you must execute `init.sh` first. The primary function of this script is to verify the system environment, download and install dependencies, and initialize the data files in preparation for mining.
+
+For specific usage and examples of the two scripts, refer to the steps outlined in [Options for running es-node](#options-for-running-es-node).
 
 > ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
 
  ### About the option of zk prover implementation
 
-The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. 
+The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. Its default value is `1`, indicating the generation of zk proofs using snarkjs. The option `2` means to utilize go-rapidsnark. Since `--miner.zk-prover-impl` interacts closely with the environment, it is crucial to use the same configuration when running both `init.sh` and `run.sh`.
 
-Its default value is `1` which represents snarkjs. You have the option to override the flag and set it to `2` in order to utilize go-rapidsnark, which enhances the performance of zk proof generation on certain platforms, such as Ubuntu.
-
-If you have to run an es-node pre-built with value `2` on Ubuntu 20.04, you will need to [install extra packages](#install-libc6_235).
+> ℹ️ **_Note:_** If you have to run an es-node pre-built with `--miner.zk-prover-impl 2` on Ubuntu 20.04, you will need to [install extra packages](#install-libc6_235).
 
 ## Options for running es-node
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
 
-* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs).
+* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you may need to install [Node.js](tutorials.md#install-node.js) if using default zk prover implementation.
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
-* If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides Node.js and snarkjs.
+* If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides other dependencies.
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs), unless `--miner.zk-prover-impl` flag is set to `2`. 
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs), unless `--miner.zk-prover-impl` flag is set to `2`.
 
 > ℹ️ **_Note:_** Ensure that you run the executables on [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) if you are using Windows, and both Node.js and snarkjs are installed on WSL instead of Windows.
 
 Download the pre-built package suitable for your platform:
 
-Linux x86-64 or WSL:
+- Linux x86-64 or WSL:
 
 ```sh
 curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.linux-amd64.tar.gz | tar -xz
 ```
 
-MacOS x86-64:
+- MacOS x86-64:
 
 ```sh
 curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.darwin-amd64.tar.gz | tar -xz
 ```
 
-MacOS ARM64:
+- MacOS ARM64:
 
 ```sh
 curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.darwin-arm64.tar.gz | tar -xz
 ```
 
+In folder `es-node.v0.1.15`, init es-node by running:
+
+```
+env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
+```
+
 Run es-node
 
 ```
-cd es-node.v0.1.15
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
 ### From a Docker image
 
-Run an es-node container with a single command like following. (If you are using Windows, execute the command in WSL):
+First init an es-node environment with the following command (If you are using Windows, execute the command in WSL):
 
 ```sh
-docker run --name es  -d  \
+docker run --rm \
           -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          --entrypoint /es-node/init.sh \
+          ghcr.io/ethstorage/es-node:v0.1.15 \
+          --l1.rpc <el_rpc>
+```
+
+Then start an es-node container:
+
+```sh
+docker run --name es -d \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
           -p 9545:9545 \
@@ -128,11 +146,9 @@ docker run --name es  -d  \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
           ghcr.io/ethstorage/es-node:v0.1.15 \
-          --miner.zk-prover-impl 2 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
-> ℹ️ **_Note:_**  The flag ` --miner.zk-prover-impl 2` is used to generate zk proofs using go-rapidsnark instead of snarkjs for better performance.
 
 After launch, you can check docker logs using the following command:
 
@@ -174,15 +190,25 @@ Build es-node:
 make
 ```
 
+Init es-node
+
+```
+env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
+```
+
 Start es-node
 
 ```sh
-chmod +x run.sh && env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
 With source code, you also have the option to build a Docker image by yourself and run an es-node container:
 
 ```sh
+# init
+env ES_NODE_STORAGE_MINER=<miner> docker-compose run --rm --entrypoint "/es-node/init.sh" node
+
+# start
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> docker-compose up 
 ```
 
