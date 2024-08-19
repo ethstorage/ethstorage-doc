@@ -52,20 +52,6 @@ const flatDirectory = await FlatDirectory.create({
 
 In this section, you will upload some files into the `FlatDirectory` that you just created.
 
-```bash
-const callback = {
-    onProgress: function (progress, count, isChange) {
-       ...
-    },
-    onFail: function (err) {
-        ...
-    },
-    onFinish: function (totalUploadChunks, totalUploadSize, totalStorageCost) {
-        ...
-    }
-};
-```
-
 You can use `Buffer` to upload files.
 ```js
 const request = {
@@ -105,6 +91,20 @@ const request = {
     callback: callback
 }
 await flatDirectory.upload(request);
+```
+
+```bash
+const callback = {
+    onProgress: function (progress, count, isChange) {
+       ...
+    },
+    onFail: function (err) {
+        ...
+    },
+    onFinish: function (totalUploadChunks, totalUploadSize, totalStorageCost) {
+        ...
+    }
+};
 ```
 
 ### 2.3: Download Files From FlatDirectory
