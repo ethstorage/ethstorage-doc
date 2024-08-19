@@ -57,69 +57,95 @@ For details on the application process for endpoints, please refer to [this sect
 
 In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
-### About `run.sh`
+### About `run.sh` and `init.sh`
 
-The `run.sh` script is used as an entry point. The main function of the script is to initialize the data file, prepare for mining, and launch es-node with preset parameters.
+The `run.sh` script serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in `run.sh`, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
 
-Mining is enabled by default by the `--miner.enabled` flag in `run.sh`, which means you become a storage provider when you start an es-node with default settings.
+However, before the es-node can be successfully launched, you must execute `init.sh` first. The primary function of this script is to verify the system environment, download and install dependencies, and initialize the data files in preparation for mining.
+
+For specific usage and examples of the two scripts, refer to the steps outlined in [Options for running es-node](#options-for-running-es-node).
 
 > ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
+
+ ### About the option of zk prover implementation
+
+The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. Its default value is `1`, indicating the generation of zk proofs using snarkjs. The option `2` means to utilize go-rapidsnark. Since `--miner.zk-prover-impl` interacts closely with the environment, it is crucial to use the same configuration when running both `init.sh` and `run.sh`.
+
+> ℹ️ **_Note:_** If you have to run an es-node pre-built with `--miner.zk-prover-impl 2` on Ubuntu 20.04, you will need to [install extra packages](#install-libc6_235).
 
 ## Options for running es-node
 
 You can run es-node from a pre-built executable, a pre-built Docker image, or from the source code.
 
-* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you will need to manually install some dependencies such as [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs).
+* If you choose [the pre-built es-node executable](tutorials.md#from-pre-built-executables), you may need to install [Node.js](tutorials.md#install-node.js) if using default zk prover implementation.
 * If you have Docker version 24.0.5 or above installed, the quickest way to get started is by [using a pre-built Docker image](tutorials.md#from-a-docker-image).
-* If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides Node.js and snarkjs.
+* If you prefer to build [from the source code](tutorials.md#from-source-code), you will also need to install Go besides other dependencies.
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs). 
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs), unless `--miner.zk-prover-impl` flag is set to `2`.
 
 > ℹ️ **_Note:_** Ensure that you run the executables on [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) if you are using Windows, and both Node.js and snarkjs are installed on WSL instead of Windows.
 
 Download the pre-built package suitable for your platform:
 
-Linux x86-64 or WSL:
+- Linux x86-64 or WSL:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.14/es-node.v0.1.14.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.linux-amd64.tar.gz | tar -xz
 ```
 
-MacOS x86-64:
+- MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.14/es-node.v0.1.14.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.darwin-amd64.tar.gz | tar -xz
 ```
 
-MacOS ARM64:
+- MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.14/es-node.v0.1.14.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.darwin-arm64.tar.gz | tar -xz
+```
+
+In folder `es-node.v0.1.15`, init es-node by running:
+
+```
+env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
 
 Run es-node
 
 ```
-cd es-node.v0.1.14
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
 ### From a Docker image
 
-Run an es-node container with a single command like following. (If you are using Windows, execute the command in WSL):
+First init an es-node environment with the following command (If you are using Windows, execute the command in WSL):
 
 ```sh
-docker run --name es  -d  \
+docker run --rm \
           -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          --entrypoint /es-node/init.sh \
+          ghcr.io/ethstorage/es-node:v0.1.15 \
+          --l1.rpc <el_rpc>
+```
+
+Then start an es-node container:
+
+```sh
+docker run --name es -d \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
           -p 9545:9545 \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.14 \
+          ghcr.io/ethstorage/es-node:v0.1.15 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -144,14 +170,18 @@ docker run --name es  -d  \
 
 ### From source code
 
-You will need to [install Go](tutorials.md#install-go) to build es-node from source code, and install [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs) to run es-node.
+You will need to [install Go](tutorials.md#install-go) to build es-node from source code.
 
-Download source code and switch to the latest release branch:
+If you intend to build es-node on Ubuntu, be sure to [verify some dependencies](#install-rapidsnark-dependencies).
+
+Just like running a pre-built, if you plan to utilize the default zkSNARK implementation, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs).
+
+Now download source code and switch to the latest release branch:
 
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.1.14
+git checkout v0.1.15
 ```
 
 Build es-node:
@@ -160,15 +190,25 @@ Build es-node:
 make
 ```
 
+Init es-node
+
+```
+env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
+```
+
 Start es-node
 
 ```sh
-chmod +x run.sh && env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
 With source code, you also have the option to build a Docker image by yourself and run an es-node container:
 
 ```sh
+# init
+env ES_NODE_STORAGE_MINER=<miner> docker-compose run --rm --entrypoint "/es-node/init.sh" node
+
+# start
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> docker-compose up 
 ```
 
@@ -214,7 +254,7 @@ tar -C /usr/local -xf go1.21.4.linux-amd64.tar.gz
 
 Update `$PATH`
 
-```
+```sh
 echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile
 source ~/.profile
 ```
@@ -253,6 +293,44 @@ nvm use 20
 npm install -g snarkjs
 ```
 
+### Install RapidSNARK dependencies
+
+Check if `build-essential` and `libomp-dev packages` are installed on your Ubuntu system:
+
+```sh
+dpkg -l | grep build-essential
+dpkg -l | grep libomp-dev
+```
+Install the build-essential and libomp-dev packages if no information printed:
+
+```sh
+apt update
+apt install build-essential
+apt install libomp-dev
+```
+
+### Install libc6_2.35
+
+This installation is intended for scenarios where you encounter errors like this while running the pre-built es-node on Ubuntu 20.04:
+
+```sh
+/lib/x86_64-linux-gnu/libc.so.6: version 'glibc_2.32' not found
+/lib/x86_64-linux-gnu/libc.so.6: version 'glibc_2.34' not found
+```
+
+To prevent the error, add the following line to your /etc/apt/sources.list:
+
+```sh
+deb http://security.ubuntu.com/ubuntu jammy-security main 
+```
+
+Next, install libc6_2.35 by running the following commands:
+
+```sh
+apt update
+apt install -y libc6
+```
+
 ## Check the status after launching the es-node
 
 It's important to monitor the node closely until it successfully submits its first storage proof. Typically, the process encompasses three main stages.
@@ -279,11 +357,11 @@ A typical log entry of sampling during a slot looks like this:
 ```
 INFO [01-19|05:02:23.210] Mining info retrieved                    shard=0 LastMineTime=1,705,634,628 Difficulty=4,718,592,000 proofsSubmitted=6
 INFO [01-19|05:02:23.210] Mining tasks assigned                    shard=0 threads=64 block=10,397,712 nonces=1,048,576
-INFO [01-19|05:02:26.050] The nonces are exhausted in this slot, waiting for the next block samplingTime=2.8s shard=0 block=10,397,712
+INFO [01-19|05:02:26.050] Sampling done with all nonces            samplingTime=2.8s shard=0 block=10,397,712
 
 ```
 
-When you see "The nonces are exhausted in this slot...", it indicates that your node has successfully completed all the sampling tasks within a slot. The "samplingTime" value informs you of the duration, in seconds, it took to complete the sampling process.
+When you see "Sampling done with all nonces", it indicates that your node has successfully completed all the sampling tasks within a slot. The "samplingTime" value informs you of the duration, in seconds, it took to complete the sampling process.
 
 If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
 

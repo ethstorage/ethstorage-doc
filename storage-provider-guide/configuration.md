@@ -49,9 +49,9 @@ The full list of options that you can use to configure an es-node are as follows
 |`--miner.min-profit`|Minimum profit for mining transactions|`0`||
 |`--miner.priority-gas-price`|Priority gas price for mining transactions|||
 |`--miner.threads-per-shard`|Number of threads per shard|`runtime.NumCPU() x 2`||
-|`--miner.zk-working-dir`|Path to the snarkjs folder|`build/bin`||
 |`--miner.zk-prover-mode`|ZK prover mode, 1: one proof per sample, 2: one proof for multiple samples|`2`||
-|`--miner.zkey`|zkey file name which should be put in the snarkjs folder|`blob_poseidon2.zkey`||
+|`--miner.zk-prover-impl`|ZK prover implementation, 1: snarkjs, 2: go-rapidsnark|`1`||
+|`--miner.zkey`|zkey file name with path|`./build/bin/snark_lib/zkey/blob_poseidon2.zkey`||
 |`--network`|Predefined L1 network selection. Available networks: devnet|||
 |`--p2p.advertise.ip`|The IP address to advertise in Discv5, put into the ENR of the node. This may also be a hostname / domain name to resolve to an IP.|||
 |`--p2p.advertise.tcp`|The TCP port to advertise in Discv5, put into the ENR of the node. Set to p2p.listen.tcp value if 0.|`0`||
@@ -89,6 +89,7 @@ The full list of options that you can use to configure an es-node are as follows
 |`--signer.hdpath`|HDPath is the derivation path used to obtain the private key for mining transactions|||
 |`--signer.mnemonic`|The HD seed used to derive the wallet's private keys for mining. Must be used in conjunction with HDPath.|||
 |`--signer.private-key`|The private key to sign a mining transaction|||
+|`--state.upload.url`|API that update es-node state to, the node will upload state to API for statistic if it has been set correctly.|||
 |`--storage.files`|File paths where the data are stored||✓|
 |`--storage.l1contract`|Storage contract address on l1||✓|
 |`--storage.miner`|Miner's address to encode data and receive mining rewards||✓|
