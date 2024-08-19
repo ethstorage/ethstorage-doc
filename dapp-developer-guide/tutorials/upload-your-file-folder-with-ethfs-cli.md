@@ -41,7 +41,7 @@ You will get a `FlatDirectory` address after the transaction is confirmed:
 $ ethfs-cli create -p 0x112233... -c 11155111
 chainId = 11155111
 providerUrl = https://rpc.sepolia.org
-FlatDirectory Address: 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd
+FlatDirectory: Address is 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd
 ```
 
 ## Step 3: Upload Files
@@ -61,18 +61,16 @@ providerUrl = https://rpc.sepolia.org
 chainId = 11155111
 address: 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd
 
-Start upload File.......
 
-img/1.jpeg, chunkId: 0
-hello.txt, chunkId: 0
-Transaction Id: 0x809411aeb708023a33dadf17791d994dc3b4b2db1a6bbd36792bbedb68646978
-File img/1.jpeg chunkId: 0 uploaded!
-Transaction Id: 0x7cea7ea7e4898e03bee4fbc031799689dbe215bd6dd36733721150a099680be7
-File hello.txt chunkId: 0 uploaded!
+FlatDirectory: The transaction hash for chunk 0 is 0x809411aeb708023a33dadf17791d994dc3b4b2db1a6bbd36792bbedb68646978 img/1.jpeg
+FlatDirectory: Chunks 0 have been uploaded hello.txt
+FlatDirectory: The transaction hash for chunk 0 is 0x7cea7ea7e4898e03bee4fbc031799689dbe215bd6dd36733721150a099680be7 hello.txt
+FlatDirectory: Chunks 0 have been uploaded img/1.jpeg
 
-Total Cost: 0.001492087764775451 ETH
 Total File Count: 2
-Total File Size: 52.6513671875 KB
+Total Upload Chunk Count: 2
+Total Upload Data size: 52.6513671875 KB
+Total Storage Cost: 0.001492087764775451 ETH
 ```
 
 ## Step 4: Download Your File!
