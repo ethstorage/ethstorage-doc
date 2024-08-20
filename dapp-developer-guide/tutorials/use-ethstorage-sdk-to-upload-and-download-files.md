@@ -134,3 +134,44 @@ await flatDirectory.download(key, {
     }
 });
 ```
+
+
+
+## Step 3: Manage Blobs
+
+### 3.1 Create EthStorage
+
+In this section, you can create an `EthStorage` instance to interact directly with EthStorage for managing blobs.
+
+```js
+const { EthStorage } = require("ethstorage-sdk");
+
+const rpc = "https://rpc.sepolia.org";
+const ethStorageRpc = "https://[ethstorage.rpc].io";
+const privateKey = "0x...";
+
+const ethStorage = await EthStorage.create({
+    rpc: rpc,
+    ethStorageRpc: ethStorageRpc,
+    privateKey: privateKey,
+});
+```
+
+### 3.2 Write Blob
+
+Write blob data to the EthStorage network.
+
+```js
+const key = "test.txt";
+const data = Buffer.from("test data");
+await ethStorage.write(key, data);
+```
+
+### 3.3 Read Blob
+
+Read the written data from the EthStorage network.
+
+```js
+const key = "test.txt";
+const data = await ethStorage.read(key);
+```
