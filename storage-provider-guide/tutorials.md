@@ -99,7 +99,7 @@ You can run es-node from a pre-built executable, a pre-built Docker image, or fr
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs), unless `--miner.zk-prover-impl` flag is set to `2`.
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs), unless [`--miner.zk-prover-impl`](#about-the-option-of-zk-prover-implementation) flag is set to `2`.
 
 > ℹ️ **_Note:_** Ensure that you run the executables on [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) if you are using Windows, and both Node.js and snarkjs are installed on WSL instead of Windows.
 
