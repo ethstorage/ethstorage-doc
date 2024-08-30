@@ -79,7 +79,7 @@ env ES_NODE_STORAGE_MINER=0x123...ab ./init.sh --shard_index 1 --shard_index 2
 Please take note of the following:
 - The shard files will be generated in the `./es-data` directory with the naming convention `shard-$(shard_index).dat` by default settings in `init.sh`.
 - A shard will be omitted if its corresponding data file already exists.
-- `shard-0.dat` will be tried to create even if `--shard_index 0` is not specified.
+- `shard-0.dat` will be tried to create if no `--shard_index` is specified.
 
 After initialization in this way, the `run.sh` script will attempt to operate on data files located in `./es-data/shard-*.dat`. If you have relocated these data files or added additional files in another location, you can specify them using the `--storage.files` options repeatedly following `./run.sh`.
 
