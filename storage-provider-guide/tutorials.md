@@ -67,7 +67,23 @@ For specific usage and examples of the two scripts, refer to the steps outlined 
 
 > ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
 
- ### About the option of zk prover implementation
+### Mining multiple shards
+
+By default, only the first shard (shard 0) is mined using the default options in the scripts, but you have the choice to initialize and run your es-node in order to mine multiple selected shards by using additional options.
+
+The flag `--shard_index` can be utilized multiple times with `init.sh` to generate data files for multiple shards on the es-node. For example,
+
+```
+env ES_NODE_STORAGE_MINER=0x123...ab ./init.sh --shard_index 1 --shard_index 2
+```
+Please take note of the following:
+- The shard files will be generated in the `./es-data` directory with the naming convention `shard-$(shard_index).dat` by default settings in `init.sh`.
+- A shard will be omitted if its corresponding data file already exists.
+- `shard-0.dat` will be tried to create if no `--shard_index` is specified.
+
+After initialization in this way, the `run.sh` script will attempt to operate on data files located in `./es-data/shard-*.dat`. If you have relocated these data files or added additional files in another location, you can specify them using the `--storage.files` options repeatedly following `./run.sh`.
+
+### About the option of zk prover implementation
 
 The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. Its default value is `1`, indicating the generation of zk proofs using snarkjs. The option `2` means to utilize go-rapidsnark. Since `--miner.zk-prover-impl` interacts closely with the environment, it is crucial to use the same configuration when running both `init.sh` and `run.sh`.
 
