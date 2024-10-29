@@ -51,12 +51,12 @@ In this section, you will upload the files/folder into the `FlatDirectory` that 
 ```
 ethfs-cli upload -f <directory|file> -a <address> -c <chain-id> -p <private-key> -t <upload-type>
 ```
-Notice that you have the option to specify the file upload type: `1` for calldata, `2` for EIP-4844 blob.  The default type is `2` which requires network support for EIP-4844.
+Notice that you have the option to specify the file upload type: `calldata`, `blob`.  The default type is `blob` which requires network support for EIP-4844.
 
 For example:
 
 ```
-$ ethfs-cli upload -f dist -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -p 0x112233... -t 2
+$ ethfs-cli upload -f dist -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -p 0x112233... -t blob
 providerUrl = https://rpc.sepolia.org
 chainId = 11155111
 address: 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd
