@@ -31,7 +31,7 @@ This guide provides practical steps for the storage providers to start an es-nod
 
 * MacOS Version 14+, Ubuntu 20.04+, or Windows with WSL (Windows Subsystem for Linux) version 2
 * (Optional) Docker 24.0.5+ (would simplify the process)
-* (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
+* (Optional) Go 1.21+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
 
 > ℹ️ **_Note:_** The steps assume the use of the root user for all command line operations. If using a non-root user, you may need to prepend some commands with "sudo".
 
