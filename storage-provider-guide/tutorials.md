@@ -31,7 +31,7 @@ This guide provides practical steps for the storage providers to start an es-nod
 
 * MacOS Version 14+, Ubuntu 20.04+, or Windows with WSL (Windows Subsystem for Linux) version 2
 * (Optional) Docker 24.0.5+ (would simplify the process)
-* (Optional) Go 1.20+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
+* (Optional) Go 1.21+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
 
 > ℹ️ **_Note:_** The steps assume the use of the root user for all command line operations. If using a non-root user, you may need to prepend some commands with "sudo".
 
@@ -92,22 +92,22 @@ Download the pre-built package suitable for your platform:
 - Linux x86-64 or WSL:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.16/es-node.v0.1.16.linux-amd64.tar.gz | tar -xz
 ```
 
 - MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.16/es-node.v0.1.16.darwin-amd64.tar.gz | tar -xz
 ```
 
 - MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.15/es-node.v0.1.15.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.16/es-node.v0.1.16.darwin-arm64.tar.gz | tar -xz
 ```
 
-In folder `es-node.v0.1.15`, init es-node by running:
+In folder `es-node.v0.1.16`, init es-node by running:
 
 ```
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
@@ -129,7 +129,7 @@ docker run --rm \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init.sh \
-          ghcr.io/ethstorage/es-node:v0.1.15 \
+          ghcr.io/ethstorage/es-node:v0.1.16 \
           --l1.rpc <el_rpc>
 ```
 
@@ -145,7 +145,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.15 \
+          ghcr.io/ethstorage/es-node:v0.1.16 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -181,7 +181,7 @@ Now download source code and switch to the latest release branch:
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.1.15
+git checkout v0.1.16
 ```
 
 Build es-node:
