@@ -22,7 +22,7 @@ INFO [01-19|14:41:48.715] "Storage sync in progress" progress=14.46% peercount=2
 ```
 If it's less than 24 hours, it should be acceptable. Additionally, it's possible that the data request size is too large compared to network performance, preventing all requested data from being returned in time.
 
-You can change the size of each request to a smaller value using `--p2p.max.request.size`. 
+You can change the initial size of request to a smaller value using `--p2p.request.size` for each peer, and the real request size would change according to network condition between a remote peer and local node. 
 The current value in the `run.sh` is `4194304`. You can try adjusting it to `1048576`. Check [here](#how-can-i-change-the-default-configurations) for the detailed operation.
 
 ### How to tune the performance of syncing? 
@@ -96,10 +96,10 @@ docker run --name es  -d  \
 
 Just append the flag and value to the end of command that execute `run.sh`.
 
-Take `--p2p.max.request.size` as example, the following command set its value to `1048576`:
+Take `--p2p.request.size` as example, the following command set its value to `1048576`:
 
 ```sh
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --p2p.max.request.size 1048576
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --p2p.request.size 1048576
 ```
 If you start es-node with docker, please note that the flag and value should be added afer the docker image name:
 
@@ -113,7 +113,7 @@ docker run --name es  -d  \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
           ghcr.io/ethstorage/es-node:v0.1.15 \
-          --p2p.max.request.size 1048576
+          --p2p.request.size 1048576
 ```
 
 ### Why does the "missing trie node" error occur?
