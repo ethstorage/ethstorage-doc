@@ -195,7 +195,7 @@ env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
 The `init` command will download the necessary zkey file, and it will not damage or modify any existing data files.
 
-Another option is to specify the file path of the zkey file using the `--miner.zkey` flag:
+Another option is to specify the file path of the zkey file using the `--miner.zkey` flag so that you don't need to run `init` and download zkey upon each upgrade:
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc> \
