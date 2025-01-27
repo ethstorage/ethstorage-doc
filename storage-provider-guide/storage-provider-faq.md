@@ -187,11 +187,17 @@ mv ../es-node.v0.1.15/esnode_* .
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+
+# SWC
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
 ```
 > ℹ️ **_Note:_** If you encounter an error indicating that the zkey file is not found, you may need to run the following command:
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
+
+# SWC
+env ES_NODE_STORAGE_MINER=<miner> ./init-2.sh
 ```
 The `init` command will download the necessary zkey file, and it will not damage or modify any existing data files.
 
@@ -200,6 +206,9 @@ Another option is to specify the file path of the zkey file using the `--miner.z
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc> \
   --miner.zkey <absolute path to the zkey>
+
+# SWC
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh --miner.zkey <absolute path to the zkey>
 ```
 
 #### From a Docker image
@@ -226,6 +235,18 @@ docker run --name es -d \
           ghcr.io/ethstorage/es-node:v0.1.16 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
+
+# SWC
+docker run --name es -d \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
+          -p 9545:9545 \
+          -p 9222:9222 \
+          -p 30305:30305/udp \
+          --entrypoint /es-node/run-l2.sh \
+          ghcr.io/ethstorage/es-node:v0.1.16
 ```
 
 #### From source code
@@ -249,4 +270,7 @@ git checkout v0.1.16
 make
 
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+
+# SWC
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
 ```
