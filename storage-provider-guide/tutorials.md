@@ -14,7 +14,9 @@ layout:
 
 # Tutorial
 
-This guide provides practical steps for the storage providers to start an es-node instance for connecting to the existing EthStorage testnet.
+This guide provides practical steps for the storage providers to start an es-node instance for connecting to one of the existing EthStorage testnets.
+
+By default, this tutorial assumes the EthStorage contract is deployed on L1 (Sepolia). However, you can also use this tutorial if the storage contract is deployed on L2 (SWC, or [Super World Computer](https://quarkchain.io) — a fully decentralized L2 blockchain network with unmatched scalability and security), which has some slight differences. In this case, please pay attention to the 🅢🅦🅒 sign for SWC specific guidance. For each shell command, separate commands that match the SWC network are also listed.
 
 ## Before Starting
 
@@ -43,7 +45,9 @@ We recommend preparing two specific Ethereum accounts for this test.
 
 - The signer account will act as a transaction signer and should contain a balance of test ETH.  A signer account can be used by multiple storage providers.
 
-> ℹ️ **_Note:_** As Sepolia is used as L1 for the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/). 
+> ℹ️ **_Note:_** As Sepolia is used as L1 for the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
+
+>🅢🅦🅒 Please refer to [this link](https://docs.quarkchain.io/guides/app-developers/receive-tokens) to get custom gas tokens for SWC.
 
 > :warning: **_Warning:_** For safety reasons, we strongly suggest creating new wallets for the accounts to avoid the loss of any personal assets.
 
@@ -57,6 +61,8 @@ For details on the application process for endpoints, please refer to [this sect
 
 In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
+>🅢🅦🅒 You do not need to apply Ethereum API endpoints to run es-node for a SWC network. 
+
 ### About `run.sh` and `init.sh`
 
 The `run.sh` script serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in `run.sh`, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
@@ -66,6 +72,8 @@ However, before the es-node can be successfully launched, you must execute `init
 For specific usage and examples of the two scripts, refer to the steps outlined in [Options for running es-node](#options-for-running-es-node).
 
 > ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
+
+>🅢🅦🅒 In an SWC environment, you should use `init-l2.sh` and `run-l2.sh` instead of `init.sh` and `run.sh`. This applies to every shell command throughout the rest of this guide.
 
 ### Mining multiple shards
 
@@ -125,14 +133,24 @@ curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.16/es-node.
 
 In folder `es-node.v0.1.16`, init es-node by running:
 
-```
+```sh
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
 
 Run es-node
 
-```
+```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+```
+
+>🅢🅦🅒 Run the following commands to init and start es-node in a SWC network:
+
+```sh
+# init
+env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
+
+# start
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
 ```
 
 ### From a Docker image
@@ -166,6 +184,29 @@ docker run --name es -d \
           --l1.beacon <cl_rpc>
 ```
 
+>🅢🅦🅒 Run the following commands to init and run es-node in a SWC network:
+
+```sh
+# init
+docker run --rm \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          --entrypoint /es-node/init-l2.sh \
+          ghcr.io/ethstorage/es-node:v0.1.16
+
+# start
+docker run --name es -d \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
+          -p 9545:9545 \
+          -p 9222:9222 \
+          -p 30305:30305/udp \
+          --entrypoint /es-node/run-l2.sh \
+          ghcr.io/ethstorage/es-node:v0.1.16
+```
 After launch, you can check docker logs using the following command:
 
 ```sh
@@ -182,7 +223,6 @@ docker run --name es  -d  \
           ...
 ```
 > ℹ️ **_Note:_** The absolute host path does not function well on Windows, for more details please refer [here](/storage-provider-guide/storage-provider-faq.md#when-running-es-node-in-docker-on-windows-i-want-to-store-data-files-on-a-disk-other-than-c-how-can-i-achieve-this)
-
 
 ### From source code
 
@@ -208,7 +248,7 @@ make
 
 Init es-node
 
-```
+```sh
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
 
@@ -217,6 +257,18 @@ Start es-node
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
+
+>🅢🅦🅒 Run the following commands to init and run es-node in a SWC network:
+
+```sh
+# init
+env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
+
+# start
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
+```
+
+#### Working with Docker built from source code
 
 With source code, you also have the option to build a Docker image by yourself and run an es-node container:
 
@@ -233,6 +285,8 @@ If you want to run Docker container in the background and keep all the logs:
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-docker.sh
 ```
+
+>🅢🅦🅒 Currently, es-node of SWC does not support running Docker from source code.
 
 ## Applying for Ethereum API endpoints
 
