@@ -47,7 +47,7 @@ We recommend preparing two specific Ethereum accounts for this test.
 
 > ℹ️ **_Note:_** As Sepolia is used as L1 for the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
 
->🅢🅦🅒 Please refer to [this link](https://github.com/ethstorage/swc-doc/blob/master/guides/app-developers/receive-tokens.md#get-test-qkc-for-beta-testnet-on-l1) to get custom gas tokens for SWC.
+>🅢🅦🅒 Please refer to [this link](https://docs.quarkchain.io/guides/app-developers/receive-tokens) to get custom gas tokens for SWC.
 
 > :warning: **_Warning:_** For safety reasons, we strongly suggest creating new wallets for the accounts to avoid the loss of any personal assets.
 
