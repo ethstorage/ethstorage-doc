@@ -112,7 +112,7 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.16 \
+          ghcr.io/ethstorage/es-node:v0.1.17 \
           --p2p.max.request.size 1048576
 ```
 
@@ -171,17 +171,17 @@ Firstly, you can [review the changes between releases](https://github.com/ethsto
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Download new version (e.g., `es-node.v0.1.16`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
+2. Download new version (e.g., `es-node.v0.1.17`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
 
-3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.1.15`) to the new one:
+3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.1.16`) to the new one:
 
 ```sh
-# replace v0.1.16 to your target version
-cd es-node.v0.1.16
+# replace v0.1.17 to your target version
+cd es-node.v0.1.17
 
-# replace v0.1.15 to the version you have
-mv ../es-node.v0.1.15/es-data .
-mv ../es-node.v0.1.15/esnode_* .
+# replace v0.1.16 to the version you have
+mv ../es-node.v0.1.16/es-data .
+mv ../es-node.v0.1.16/esnode_* .
 ```
 4. Launch es-node using the same command as the one previously used:
 
@@ -235,7 +235,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.16 \
+          ghcr.io/ethstorage/es-node:v0.1.17 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -250,14 +250,14 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.1.16
+          ghcr.io/ethstorage/es-node:v0.1.17
 ```
 
 #### From source code
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Switch to the correct branch of the source code (e.g., you want to move to `v0.1.16`):
+2. Switch to the correct branch of the source code (e.g., you want to move to `v0.1.17`):
 
 ```sh
 cd es-node
@@ -265,8 +265,8 @@ cd es-node
 # fetch new branches
 git fetch
 
-# replace 'v0.1.16' to your target version
-git checkout v0.1.16
+# replace 'v0.1.17' to your target version
+git checkout v0.1.17
 ```
 3. build and launch es-node
 
