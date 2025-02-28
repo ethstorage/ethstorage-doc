@@ -30,7 +30,7 @@ A [FlatDirectory](https://docs.web3url.io/advanced-topics/flatdirectory) contrac
 ```bash
 ethfs-cli create -p <private-key> -c <chain-id>
 ```
-This command creates a `FlatDirectory` on a specified blockchain. You need to provide a private key and the blockchain's ID. 
+This command creates a `FlatDirectory` on a specified blockchain. You need to provide a private key and the chain ID. 
 
 If the part `-c <chain-id>` is omitted, **Ethereum Mainnet** will be specified by default.
 
@@ -72,7 +72,7 @@ ethfs-cli upload \
     -p <private-key> \
     -t <upload-type>
 ```
-You need to provide the contract address (`-a <address>`), blockchain ID (`-c <chain-id>`), private key (`-p <private-key>`), and the type of upload (`-t <upload-type>`).
+You need to provide the contract address (`-a <address>`), chain ID (`-c <chain-id>`), private key (`-p <private-key>`), and the type of upload (`-t <upload-type>`).
 
 Notice that you have 2 options to specify the file upload type: `calldata`, `blob`.  The default type is `blob` which requires network support for EIP-4844.
 
