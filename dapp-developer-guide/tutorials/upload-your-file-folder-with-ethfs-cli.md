@@ -1,8 +1,9 @@
 # Upload Your File/Folder with ethfs-cli
 
 ## Introduction
+In this tutorial, we will demonstrate how to use the [ethfs-cli](https://github.com/ethstorage/ethfs-cli/) tool to upload files or folders to EVM-compatible chains such as [Super World Computer](https://quarkchain.io) beta testnet or Sepolia.
 
-In this tutorial, we will demonstrate how to upload files or folders to an EVM compatiable chain using the [ethfs-cli](https://github.com/ethstorage/ethfs-cli/) tool. Find the list of the currently supported chains [here](https://github.com/ethstorage/ethfs-cli/?tab=readme-ov-file#supported-networks).
+You can find the full list of currently supported chains [here](https://github.com/ethstorage/ethfs-cli/?tab=readme-ov-file#supported-networks). 
 
 For the content to be uploaded, let's assume that
 
@@ -15,48 +16,97 @@ For the content to be uploaded, let's assume that
 
 If you have not already done so, you can install `ethfs-cli` using the following command:
 
-```
+```bash
 npm i -g ethfs-cli
 ```
+If you installed it a long time ago, please run the same command to update to the latest version.
 
 ## Step 2: Create a `FlatDirectory` Contract
 
 A [FlatDirectory](https://docs.web3url.io/advanced-topics/flatdirectory) contract serves as a container that needs to be created before uploading files. 
 
-The following command creates a `FlatDirectory` on the default chain (**Ethereum Mainnet**) using the private key `0x112233...`
+### Command Syntax
 
+```bash
+ethfs-cli create -p <private-key> -c <chain-id>
 ```
-$ ethfs-cli create -p 0x112233...
+This command creates a `FlatDirectory` on a specified blockchain. You need to provide a private key and the chain ID. 
+
+If the part `-c <chain-id>` is omitted, **Ethereum Mainnet** will be specified by default.
+
+### Example: SWC Beta
+
+```bash
+ethfs-cli create -p 0x112233... -c 3335
 ```
 
-If you intend to create it on other chains that support EVM, you need to add the chain ID using the `-c` flag, for example, `11155111` for **Sepolia**.
+You will get a `FlatDirectory` address after the transaction is confirmed on SWC beta testnet:
 
-```
-$ ethfs-cli create -p 0x112233... -c 11155111
+```bash
+FlatDirectory: Address is 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E
 ```
 
-You will get a `FlatDirectory` address after the transaction is confirmed:
+### Example: Sepolia
 
+```bash
+ethfs-cli create -p 0x112233... -c 11155111
 ```
-$ ethfs-cli create -p 0x112233... -c 11155111
-chainId = 11155111
-providerUrl = https://rpc.sepolia.org
+
+You will get a `FlatDirectory` address after the transaction is confirmed on Sepolia:
+
+```bash
 FlatDirectory: Address is 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd
 ```
 
 ## Step 3: Upload Files
 
-In this section, you will upload the files/folder into the `FlatDirectory` that you just created using the following command:
+In this section, you will upload the files/folder into the `FlatDirectory` that you just created.
 
-```
-ethfs-cli upload -f <directory|file> -a <address> -c <chain-id> -p <private-key> -t <upload-type>
-```
-Notice that you have the option to specify the file upload type: `calldata`, `blob`.  The default type is `blob` which requires network support for EIP-4844.
+### Command Syntax
 
-For example:
-
+```bash
+ethfs-cli upload \
+    -f <directory|file> \
+    -a <address> \
+    -c <chain-id> \
+    -p <private-key> \
+    -t <upload-type>
 ```
-$ ethfs-cli upload -f dist -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -p 0x112233... -t blob
+You need to provide the contract address (`-a <address>`), chain ID (`-c <chain-id>`), private key (`-p <private-key>`), and the type of upload (`-t <upload-type>`).
+
+Notice that you have 2 options to specify the file upload type: `calldata`, `blob`.  The default type is `blob` which requires network support for EIP-4844.
+
+If the part `-c <chain-id>` is omitted, **Ethereum Mainnet** will be specified by default.
+
+### Example: SWC Beta
+
+```bash
+ethfs-cli upload -f dist -a 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E -c 3335 -p 0x112233...
+```
+Example log:
+```log
+providerUrl = https://rpc.beta.testnet.l2.quarkchain.io:8545
+chainId = 3335
+address = 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E 
+threadPoolSize = 15 
+
+FlatDirectory: The transaction hash for chunk 0 is 0x2526108470cb100837ac1a724df91c9ba3d1422fb2e45fec458cc3f566d5f210  hello.txt
+FlatDirectory: Chunks 0 have been uploaded  hello.txt
+FlatDirectory: The transaction hash for chunks 0,1,2 is 0xfec795480524f81964e62251e8ac7d0f0dc9ed8422bc96a300254377043d3721  img/1.jpeg
+FlatDirectory: Chunks 0,1,2 have been uploaded  img/1.jpeg
+
+Total File Count: 2
+Total Upload Chunk Count: 4
+Total Upload Data Size: 324.1015625 KB
+Total Storage Cost: 2.259012840557991428 ETH
+```
+### Example: Sepolia
+
+```bash
+ethfs-cli upload -f dist -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -p 0x112233... -t blob
+```
+Example log:
+```log
 providerUrl = https://rpc.sepolia.org
 chainId = 11155111
 address: 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd
@@ -77,13 +127,19 @@ Total Storage Cost: 0.001492087764775451 ETH
 
 Now you should be able to download the file you just uploaded.
 
-```
+### Command Syntax
+
+```bash
 ethfs-cli download -a <address> -c <chain-id> -f <file>
 ```
+### Example: SWC Beta
 
-Run the command to download the file.
-
+```bash
+ethfs-cli download -a 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E -c 3335 -f img/1.jpeg
 ```
+### Example: Sepolia
+
+```bash
 ethfs-cli download -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -f img/1.jpeg
 ```
 
@@ -91,13 +147,25 @@ Now, your file has been saved locally.
 
 ## Step 5: Access Your File via `web3://` 
 
-Of course, you can also easily access the file you just uploaded using the web3:// protocol. For example,
+Of course, you can also easily access the file you just uploaded using the web3:// protocol. 
 
+### Example: SWC Beta
+
+text:
+[web3://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E:3337/hello.txt](https://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E.3337.w3link.io/hello.txt)
+
+image:
+[web3://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E:3337/img/1.jpeg](https://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E.3337.w3link.io/img/1.jpeg)
+
+### Example: Sepolia
+
+text:
 [web3://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd:3333/hello.txt](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3333.w3link.io/hello.txt)
 
-or,
-
+image:
 [web3://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd:3333/img/1.jpeg](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3333.w3link.io/img/1.jpeg)
+
+**Note**: In the above URLs, you may need to specify a different chain ID than the one used in the `ethfs-cli` commands. This distinct chain ID is necessary for identifying the EthStorage network responsible for storing the files.
 
 To gain further insights into `web3://` protocol, you can visit [web3url.io](https://web3url.io).
 
@@ -107,12 +175,12 @@ You can also specify your own RPC for better performance by `-r` flag in the abo
 
 For example when create `FlatDirectory` contract:
 
-```
-$ ethfs-cli create -p 0x112233... -c 11155111 -r http://...rpc.io
+```bash
+ethfs-cli create -p 0x112233... -c 11155111 -r http://...rpc.io
 ```
 
 When uploading files:
 
-```
+```bash
 ethfs-cli upload -f /Users/.../dist -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -p 0x112233... -r https://...rpc.io
 ```

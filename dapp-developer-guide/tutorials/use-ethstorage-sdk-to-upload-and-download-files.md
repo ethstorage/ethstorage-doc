@@ -7,6 +7,9 @@ In this tutorial, we will demonstrate how to upload and download files using the
 
 The `ethstorage-sdk` provides APIs for file upload, download, and management.
 
+In the following code examples, [Super World Computer](https://quarkchain.io) beta testnet is used by default. 
+You can easily switch to other chains by specify a different RPC endpoint, such as "https://rpc.sepolia.org" for Sepolia.
+
 ## Step 1: Install ethstorage-sdk
 
 You can install `ethstorage-sdk` by the following command:
@@ -24,7 +27,9 @@ In this section, you will create a `FlatDirectory` contract for managing files.
 ```js
 const { FlatDirectory } = require("ethstorage-sdk");
 
-const rpc = "https://rpc.sepolia.org";
+const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
+// For Sepolia:
+// const rpc = "https://rpc.sepolia.org";
 const privateKey = "0x...";
 
 const flatDirectory = await FlatDirectory.create({
@@ -113,7 +118,9 @@ In this section, you will download files from the ethstorage network.
 
 ```bash
 // Note: To download files, you need to specify the `ethStorageRpc`.
-const ethStorageRpc = "https://[ethstorage.rpc].io";
+// For Sepolia:
+// const ethStorageRpc = "http://65.108.236.27:9540";
+const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
 const flatDirectory = await FlatDirectory.create({
     rpc: rpc,
     ethStorageRpc: ethStorageRpc,
@@ -146,8 +153,14 @@ In this section, you can create an `EthStorage` instance to interact directly wi
 ```js
 const { EthStorage } = require("ethstorage-sdk");
 
-const rpc = "https://rpc.sepolia.org";
-const ethStorageRpc = "https://[ethstorage.rpc].io";
+// For Sepolia:
+// const rpc = "https://rpc.sepolia.org";
+const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
+
+// For Sepolia:
+// const ethStorageRpc = "http://65.108.236.27:9540";
+const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
+
 const privateKey = "0x...";
 
 const ethStorage = await EthStorage.create({
