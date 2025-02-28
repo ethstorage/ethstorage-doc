@@ -165,8 +165,6 @@ text:
 image:
 [web3://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd:3333/img/1.jpeg](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3333.w3link.io/img/1.jpeg)
 
-Here's an improved version of the sentence:
-
 **Note**: In the above URLs, you may need to specify a different chain ID than the one used in the `ethfs-cli` commands. This distinct chain ID is necessary for identifying the EthStorage network responsible for storing the files.
 
 To gain further insights into `web3://` protocol, you can visit [web3url.io](https://web3url.io).
