@@ -10,8 +10,6 @@ For the content to be uploaded, let's assume that
 * there is a folder to be uploaded; (e.g., `dist`)
 * there are two files in the folder. (e.g., `hello.txt` and `img/1.jpeg`)
 
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
-
 ## Step 1: Install `ethfs-cli`
 
 If you have not already done so, you can install `ethfs-cli` using the following command:
