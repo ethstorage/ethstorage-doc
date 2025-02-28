@@ -43,7 +43,7 @@ ethfs-cli create -p 0x112233... -c 3335
 You will get a `FlatDirectory` address after the transaction is confirmed on SWC beta testnet:
 
 ```bash
-FlatDirectory: Address is 0xfeff8b45d73261A3986aC20Cd9AB43744a6a8dBf
+FlatDirectory: Address is 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E
 ```
 
 ### Example: Sepolia
@@ -81,13 +81,13 @@ If the part `-c <chain-id>` is omitted, **Ethereum Mainnet** will be specified b
 ### Example: SWC Beta
 
 ```bash
-ethfs-cli upload -f dist -a 0xfeff8b45d73261A3986aC20Cd9AB43744a6a8dBf -c 3335 -p 0x112233...
+ethfs-cli upload -f dist -a 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E -c 3335 -p 0x112233...
 ```
 Example log:
 ```log
 providerUrl = https://rpc.beta.testnet.l2.quarkchain.io:8545
 chainId = 3335
-address = 0xfeff8b45d73261A3986aC20Cd9AB43744a6a8dBf 
+address = 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E 
 threadPoolSize = 15 
 
 FlatDirectory: The transaction hash for chunk 0 is 0x2526108470cb100837ac1a724df91c9ba3d1422fb2e45fec458cc3f566d5f210  hello.txt
@@ -135,7 +135,7 @@ ethfs-cli download -a <address> -c <chain-id> -f <file>
 ### Example: SWC Beta
 
 ```bash
-ethfs-cli download -a 0xfeff8b45d73261A3986aC20Cd9AB43744a6a8dBf -c 3335 -f img/1.jpeg
+ethfs-cli download -a 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E -c 3335 -f img/1.jpeg
 ```
 ### Example: Sepolia
 
@@ -152,10 +152,10 @@ Of course, you can also easily access the file you just uploaded using the web3:
 ### Example: SWC Beta
 
 text:
-[web3://0xfeff8b45d73261a3986ac20cd9ab43744a6a8dbf:3337/hello.txt](https://0xfeff8b45d73261a3986ac20cd9ab43744a6a8dbf.3337.w3link.io/hello.txt)
+[web3://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E:3337/hello.txt](https://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E.3337.w3link.io/hello.txt)
 
 image:
-[web3://0xfeff8b45d73261a3986ac20cd9ab43744a6a8dbf:3337/img/1.jpeg](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3337.w3link.io/img/1.jpeg)
+[web3://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E:3337/img/1.jpeg](https://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E.3337.w3link.io/img/1.jpeg)
 
 ### Example: Sepolia
 
