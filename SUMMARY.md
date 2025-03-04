@@ -5,7 +5,7 @@
   * [How EthStorage Works](overview/how-ethstorage-works.md)
   * [Overview FAQ](overview/overview-faq.md)
   * [Support](overview/support.md)
-  * [Whitepaper](https://file.w3q.w3q-g.w3link.io/0x67d0481cc9c2e9dad2987e58a365aae977dcb8da/dynamic\_data\_sharding\_0\_1\_6.pdf)
+  * [Whitepaper](https://0x93110da46fedab471a1762d8ac1d5f080b033e6a.3337.w3link.io/0x09d005525602d8164c2f6648eadfb2c19a67b541/dynamic_data_sharding.pdf)
 * [Storage Provider Guide](storage-provider-guide/README.md)
   * [Storage Provider Tutorial](storage-provider-guide/tutorials.md)
   * [Configuration](storage-provider-guide/configuration.md)
