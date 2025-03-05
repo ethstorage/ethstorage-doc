@@ -24,7 +24,7 @@ Here are the options that you can use with `init` command:
 
 ## Configuration to run es-node
 
-The full list of options that you can use to configure an es-node are as follows:
+The full list of options that you can use to configure an es-node is as follows:
 
 |Name|Description|Default|Required|
 |---|---|---|---|
@@ -64,7 +64,7 @@ The full list of options that you can use to configure an es-node are as follows
 |`--p2p.listen.tcp`|TCP port to bind LibP2P to. Any available system port if set to 0.|`9222`||
 |`--p2p.listen.udp`|UDP port to bind Discv5 to. Same as TCP port if left 0.|`0`||
 |`--p2p.nat`|Enable NAT traversal with PMP/UPNP devices to learn external IP.|||
-|`--p2p.request.size`|p2p request size is the initial number of bytes to request from a remote peer. It is value should not larger than 8 * 1024 * 1024. The request size will be changed according to network condition between the remote peer and the localnode.|1048576||
+|`--p2p.request.size`|p2p request size is the initial number of bytes to request from a remote peer. Its value should not be larger than 8 * 1024 * 1024. The request size will be changed according to network condition between the remote peer and the localnode.|1048576||
 |`--p2p.sync.concurrency`|sync concurrency is the number of chunks to split a shard into to allow concurrent retrievals.|16||
 |`--p2p.fill-empty.concurrency`|fill empty concurrency is the number of threads to concurrently fill encoded empty blobs.|NumCPU - 2||
 |`--p2p.no-discovery`|Disable Discv5 (node discovery)|||
