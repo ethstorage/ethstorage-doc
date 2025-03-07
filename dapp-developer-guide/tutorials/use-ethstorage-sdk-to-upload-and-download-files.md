@@ -14,9 +14,14 @@ You can easily switch to other chains by specify a different RPC endpoint, such 
 
 You can install `ethstorage-sdk` by the following command:
 
-```sh
-npm i ethstorage-sdk
-```
+- For the **Sepolia network**, install version 2:
+    ```sh
+    npm i ethstorage-sdk@2
+    ```
+- For other networks, install the latest version normally:
+    ```sh
+    npm i ethstorage-sdk
+    ```
 
 ## Step 2: Manage Files
 
