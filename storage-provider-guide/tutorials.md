@@ -116,22 +116,22 @@ Download the pre-built package suitable for your platform:
 - Linux x86-64 or WSL:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.17/es-node.v0.1.17.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.0/es-node.v0.2.0.linux-amd64.tar.gz | tar -xz
 ```
 
 - MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.17/es-node.v0.1.17.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.0/es-node.v0.2.0.darwin-amd64.tar.gz | tar -xz
 ```
 
 - MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.1.17/es-node.v0.1.17.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.0/es-node.v0.2.0.darwin-arm64.tar.gz | tar -xz
 ```
 
-In folder `es-node.v0.1.17`, init es-node by running:
+In folder `es-node.v0.2.0`, init es-node by running:
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
@@ -163,7 +163,7 @@ docker run --rm \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init.sh \
-          ghcr.io/ethstorage/es-node:v0.1.17 \
+          ghcr.io/ethstorage/es-node:v0.2.0 \
           --l1.rpc <el_rpc>
 ```
 
@@ -179,7 +179,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.1.17 \
+          ghcr.io/ethstorage/es-node:v0.2.0 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -193,7 +193,7 @@ docker run --rm \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.1.17
+          ghcr.io/ethstorage/es-node:v0.2.0
 
 # start
 docker run --name es -d \
@@ -205,7 +205,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.1.17
+          ghcr.io/ethstorage/es-node:v0.2.0
 ```
 After launch, you can check docker logs using the following command:
 
@@ -237,7 +237,7 @@ Now download source code and switch to the latest release branch:
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.1.17
+git checkout v0.2.0
 ```
 
 Build es-node:
