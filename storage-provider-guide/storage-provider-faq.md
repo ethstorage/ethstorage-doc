@@ -188,7 +188,11 @@ mv ../es-node.v0.1.17/esnode_* .
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
-> ℹ️ **_Note:_** If you encounter an error indicating that the zkey file is not found, you may need to run the following command:
+> ℹ️ **_Note:_** If you encounter an error indicating that the zkey file is not found like this:
+```log
+Init zk prover failednger/bin/op.error="zkey does not exist" dir=/root/es-node/build/bin/snark_lib/zkey/blob_poseidon2.zkey
+```
+You may need to run the following command:
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
