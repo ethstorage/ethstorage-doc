@@ -18,6 +18,8 @@ This guide provides practical steps for the storage providers to start an es-nod
 
 By default, this tutorial assumes the EthStorage contract is deployed on L1 (Sepolia). However, you can also use this tutorial if the storage contract is deployed on L2 (SWC, or [Super World Computer](https://quarkchain.io) — a fully decentralized L2 blockchain network with unmatched scalability and security), which has some slight differences. In this case, please pay attention to the 🅢🅦🅒 sign for SWC specific guidance. For each shell command, separate commands that match the SWC network are also listed.
 
+If you simply need to upgrade your es-node instance to a newer version, please refer [here](/storage-provider-guide/storage-provider-faq.md#i-am-already-running-es-node-how-can-i-update-it-to-a-newer-version).
+
 ## Before Starting
 
 ### Minimum Hardware Requirements
@@ -62,40 +64,6 @@ For details on the application process for endpoints, please refer to [this sect
 In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
 >🅢🅦🅒 You do not need to apply Ethereum API endpoints to run es-node for a SWC network. 
-
-### About `run.sh` and `init.sh`
-
-The `run.sh` script serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in `run.sh`, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
-
-However, before the es-node can be successfully launched, you must execute `init.sh` first. The primary function of this script is to verify the system environment, download and install dependencies, and initialize the data files in preparation for mining.
-
-For specific usage and examples of the two scripts, refer to the steps outlined in [Options for running es-node](#options-for-running-es-node).
-
-> ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
-
->🅢🅦🅒 In an SWC environment, you should use `init-l2.sh` and `run-l2.sh` instead of `init.sh` and `run.sh`. This applies to every shell command throughout the rest of this guide.
-
-### Mining multiple shards
-
-By default, only the first shard (shard 0) is mined using the default options in the scripts, but you have the choice to initialize and run your es-node in order to mine multiple selected shards by using additional options.
-
-The flag `--shard_index` can be utilized multiple times with `init.sh` to generate data files for multiple shards on the es-node. For example,
-
-```
-env ES_NODE_STORAGE_MINER=0x123...ab ./init.sh --shard_index 1 --shard_index 2
-```
-Please take note of the following:
-- The shard files will be generated in the `./es-data` directory with the naming convention `shard-$(shard_index).dat` by default settings in `init.sh`.
-- A shard will be omitted if its corresponding data file already exists.
-- `shard-0.dat` will be tried to create if no `--shard_index` is specified.
-
-After initialization in this way, the `run.sh` script will attempt to operate on data files located in `./es-data/shard-*.dat`. If you have relocated these data files or added additional files in another location, you can specify them using the `--storage.files` options repeatedly following `./run.sh`.
-
-### About the option of zk prover implementation
-
-The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. Its default value is `1`, indicating the generation of zk proofs using snarkjs. The option `2` means to utilize go-rapidsnark. Since `--miner.zk-prover-impl` interacts closely with the environment, it is crucial to use the same configuration when running both `init.sh` and `run.sh`.
-
-> ℹ️ **_Note:_** If you have to run an es-node pre-built with `--miner.zk-prover-impl 2` on Ubuntu 20.04, you will need to [install extra packages](#install-libc6_235).
 
 ## Options for running es-node
 
@@ -228,9 +196,9 @@ docker run --name es  -d  \
 
 You will need to [install Go](tutorials.md#install-go) to build es-node from source code.
 
-If you intend to build es-node on Ubuntu, be sure to [verify some dependencies](#install-rapidsnark-dependencies).
-
 Just like running a pre-built, if you plan to utilize the default zkSNARK implementation, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs).
+
+If you intend to build es-node on Ubuntu and use `rapidsnark` as zkSNARK implementation, be sure to [verify some dependencies](#install-rapidsnark-dependencies).
 
 Now download source code and switch to the latest release branch:
 
@@ -448,3 +416,40 @@ INFO [01-19|05:05:23.210] Mining transaction success! √            miner=0xBB9
 ```
 
 Once you see this log, congratulations on completing the entire process as a storage provider. You can also check how many storage proofs you've submitted, your ETH profit, and your ranking on the [dashboard](https://grafana.ethstorage.io).
+
+
+## Advanced Features
+
+### About `run.sh` and `init.sh`
+
+The `run.sh` script serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in `run.sh`, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
+
+However, before the es-node can be successfully launched, you must execute `init.sh` first. The primary function of this script is to verify the system environment, download and install dependencies, and initialize the data files in preparation for mining.
+
+For specific usage and examples of the two scripts, refer to the steps outlined in [Options for running es-node](#options-for-running-es-node).
+
+> ℹ️ **_Note:_** Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
+
+>🅢🅦🅒 In an SWC environment, you should use `init-l2.sh` and `run-l2.sh` instead of `init.sh` and `run.sh`. This applies to every shell command throughout the rest of this guide.
+
+### Mining multiple shards
+
+By default, only the first shard (shard 0) is mined using the default options in the scripts, but you have the choice to initialize and run your es-node in order to mine multiple selected shards by using additional options.
+
+The flag `--shard_index` can be utilized multiple times with `init.sh` to generate data files for multiple shards on the es-node. For example,
+
+```
+env ES_NODE_STORAGE_MINER=0x123...ab ./init.sh --shard_index 1 --shard_index 2
+```
+Please take note of the following:
+- The shard files will be generated in the `./es-data` directory with the naming convention `shard-$(shard_index).dat` by default settings in `init.sh`.
+- A shard will be omitted if its corresponding data file already exists.
+- `shard-0.dat` will be tried to create if no `--shard_index` is specified.
+
+After initialization in this way, the `run.sh` script will attempt to operate on data files located in `./es-data/shard-*.dat`. If you have relocated these data files or added additional files in another location, you can specify them using the `--storage.files` options repeatedly following `./run.sh`.
+
+### About the option of zk prover implementation
+
+The `--miner.zk-prover-impl` flag specifies the type of zkSNARK implementation. Its default value is `1`, indicating the generation of zk proofs using snarkjs. The option `2` means to utilize go-rapidsnark. Since `--miner.zk-prover-impl` interacts closely with the environment, it is crucial to use the same configuration when running both `init.sh` and `run.sh`.
+
+> ℹ️ **_Note:_** If you have to run an es-node pre-built with `--miner.zk-prover-impl 2` on Ubuntu 20.04, you will need to [install extra packages](#install-libc6_235).
