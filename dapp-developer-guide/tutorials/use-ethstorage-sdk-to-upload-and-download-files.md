@@ -14,16 +14,8 @@ You can easily switch to other chains by specify a different RPC endpoint, such 
 
 You can install `ethstorage-sdk` by the following command:
 
-### SWC Beta
-
 ```bash
  npm i ethstorage-sdk
-```
-
-### Sepolia
-
-```bash
- npm i ethstorage-sdk@2
 ```
 
 ## Step 2: Manage Files
