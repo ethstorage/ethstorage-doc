@@ -5,7 +5,7 @@
 
 * Layer 1: Sepolia testnet
 * storage-contracts-v1: v0.1.0
-* es-node: v0.1.17
+* es-node: v0.2.0
 
 ## Public Testnet 1 Deployment
 
