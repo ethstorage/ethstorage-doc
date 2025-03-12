@@ -18,7 +18,7 @@ This guide provides practical steps for the storage providers to start an es-nod
 
 By default, this tutorial assumes the EthStorage contract is deployed on L1 (Sepolia). However, you can also use this tutorial if the storage contract is deployed on L2 (SWC, or [Super World Computer](https://quarkchain.io) — a fully decentralized L2 blockchain network with unmatched scalability and security), which has some slight differences. In this case, please pay attention to the 🅢🅦🅒 sign for SWC specific guidance. For each shell command, separate commands that match the SWC network are also listed.
 
-If you simply need to upgrade your es-node instance to a newer version, please refer [here](/storage-provider-guide/storage-provider-faq.md#i-am-already-running-es-node-how-can-i-update-it-to-a-newer-version).
+If you simply need to upgrade your es-node instance to a newer version, please refer [here](/storage-provider-guide/storage-provider-faq.md#i-am-already-running-es-node.-how-can-i-update-it-to-a-newer-version).
 
 ## Before Starting
 
