@@ -16,7 +16,7 @@ layout:
 
 This guide provides practical steps for the storage providers to start an es-node instance for connecting to one of the existing EthStorage testnets.
 
-By default, this tutorial assumes the EthStorage contract is deployed on L1 (Sepolia). However, you can also use this tutorial if the storage contract is deployed on L2 (SWC, or [Super World Computer](https://quarkchain.io) — a fully decentralized L2 blockchain network with unmatched scalability and security), which has some slight differences. In this case, please pay attention to the 🅢🅦🅒 sign for SWC specific guidance. For each shell command, separate commands that match the SWC network are also listed.
+By default, this tutorial assumes the EthStorage contract is deployed on L1 (Sepolia). However, you can also use this tutorial if the storage contract is deployed on an L2 testnet of SWC (or [Super World Computer](https://quarkchain.io) — a fully decentralized L2 blockchain network with unmatched scalability and security), which has some slight differences. In this case, please pay attention to the 🅢🅦🅒 sign for SWC testnet specific guidance. For each shell command, separate commands that match the SWC testnet are also listed.
 
 If you simply need to upgrade your es-node instance to a newer version, please refer [here](/storage-provider-guide/storage-provider-faq.md#i-am-already-running-es-node.-how-can-i-update-it-to-a-newer-version).
 
@@ -63,7 +63,7 @@ For details on the application process for endpoints, please refer to [this sect
 
 In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
->🅢🅦🅒 You do not need to apply Ethereum API endpoints to run es-node for a SWC network. 
+>🅢🅦🅒 You do not need to apply Ethereum API endpoints to run es-node for the SWC testnet. 
 
 ## Options for running es-node
 
@@ -111,7 +111,7 @@ Run es-node
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
->🅢🅦🅒 Run the following commands to init and start es-node in a SWC network:
+>🅢🅦🅒 Run the following commands to init and start es-node in the SWC testnet:
 
 ```sh
 # init
@@ -152,7 +152,7 @@ docker run --name es -d \
           --l1.beacon <cl_rpc>
 ```
 
->🅢🅦🅒 Run the following commands to init and run es-node in a SWC network:
+>🅢🅦🅒 Run the following commands to init and run es-node in the SWC testnet:
 
 ```sh
 # init
@@ -226,7 +226,7 @@ Start es-node
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
->🅢🅦🅒 Run the following commands to init and run es-node in a SWC network:
+>🅢🅦🅒 Run the following commands to init and run es-node in the SWC testnet:
 
 ```sh
 # init
