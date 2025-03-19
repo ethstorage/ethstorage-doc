@@ -199,7 +199,7 @@ env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
 The `init` command will download the necessary zkey file, and it will not damage or modify any existing data files.
 
->🅢🅦🅒 Run the following commands to init and start es-node in a SWC testnet:
+>🅢🅦🅒 Run the following commands to init and start es-node in the SWC testnet:
 ```sh
 # init
 env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh

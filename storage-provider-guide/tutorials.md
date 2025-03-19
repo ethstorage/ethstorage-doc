@@ -63,7 +63,7 @@ For details on the application process for endpoints, please refer to [this sect
 
 In the following tutorial, you will need to replace <el_rpc> for you execution layer endpoint, and <cl_rpc> for the beacon endpoint.
 
->🅢🅦🅒 You do not need to apply Ethereum API endpoints to run es-node for a SWC testnet. 
+>🅢🅦🅒 You do not need to apply Ethereum API endpoints to run es-node for the SWC testnet. 
 
 ## Options for running es-node
 
@@ -111,7 +111,7 @@ Run es-node
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
->🅢🅦🅒 Run the following commands to init and start es-node in a SWC testnet:
+>🅢🅦🅒 Run the following commands to init and start es-node in the SWC testnet:
 
 ```sh
 # init
@@ -152,7 +152,7 @@ docker run --name es -d \
           --l1.beacon <cl_rpc>
 ```
 
->🅢🅦🅒 Run the following commands to init and run es-node in a SWC testnet:
+>🅢🅦🅒 Run the following commands to init and run es-node in the SWC testnet:
 
 ```sh
 # init
@@ -226,7 +226,7 @@ Start es-node
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
->🅢🅦🅒 Run the following commands to init and run es-node in a SWC testnet:
+>🅢🅦🅒 Run the following commands to init and run es-node in the SWC testnet:
 
 ```sh
 # init
