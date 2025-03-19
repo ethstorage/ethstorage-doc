@@ -199,7 +199,7 @@ env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
 The `init` command will download the necessary zkey file, and it will not damage or modify any existing data files.
 
->🅢🅦🅒 Run the following commands to init and start es-node in a SWC network:
+>🅢🅦🅒 Run the following commands to init and start es-node in a SWC testnet:
 ```sh
 # init
 env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
@@ -213,7 +213,7 @@ Another option is to specify the file path of the zkey file using the `--miner.z
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc> \
   --miner.zkey <absolute path to the zkey>
 ```
->🅢🅦🅒 For SWC network, run the following command:
+>🅢🅦🅒 For SWC testnet, run the following command:
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh --miner.zkey <absolute path to the zkey>
 ```
@@ -243,7 +243,7 @@ docker run --name es -d \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
->🅢🅦🅒 For SWC network, run the following command:
+>🅢🅦🅒 For SWC testnet, run the following command:
 ```sh
 docker run --name es -d \
           -v ./es-data:/es-node/es-data \
@@ -279,7 +279,7 @@ make
 
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
->🅢🅦🅒 For SWC network, run the following command:
+>🅢🅦🅒 For SWC testnet, run the following command:
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
