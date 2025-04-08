@@ -16,12 +16,12 @@
 * ES-Geth RPC: http://65.108.236.27:9540
 * Blob Archiver API: http://65.108.236.27:9645
 
-## EthStorage SWC BETA Testnet
+## EthStorage SWC Beta Testnet
 
 ### Spec
 
 * Chain ID: 3337
-* Layer 1: SWC BETA Testnet
+* Layer 1: SWC Beta Testnet
 * storage-contracts-v1: v0.1.0
 * es-node: v0.2.1
 
