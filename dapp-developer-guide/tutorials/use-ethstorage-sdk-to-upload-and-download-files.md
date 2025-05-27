@@ -119,7 +119,7 @@ In this section, you will download files from the ethstorage network.
 ```bash
 // Note: To download files, you need to specify the `ethStorageRpc`.
 // For Sepolia:
-// const ethStorageRpc = "http://65.108.236.27:9540";
+// const ethStorageRpc = "http://65.108.230.142:9545";
 const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
 const flatDirectory = await FlatDirectory.create({
     rpc: rpc,
@@ -158,7 +158,7 @@ const { EthStorage } = require("ethstorage-sdk");
 const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
 
 // For Sepolia:
-// const ethStorageRpc = "http://65.108.236.27:9540";
+// const ethStorageRpc = "http://65.108.230.142:9545";
 const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
 
 const privateKey = "0x...";
