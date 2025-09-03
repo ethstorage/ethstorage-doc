@@ -1,7 +1,7 @@
 # Upload Your File/Folder with ethfs-cli
 
 ## Introduction
-In this tutorial, we will demonstrate how to use the [ethfs-cli](https://github.com/ethstorage/ethfs-cli/) tool to upload files or folders to EVM-compatible chains such as [Super World Computer](https://quarkchain.io) beta testnet or Sepolia.
+In this tutorial, we will demonstrate how to use the [ethfs-cli](https://github.com/ethstorage/ethfs-cli/) tool to upload files or folders to EVM-compatible chains such as Sepolia or [Super World Computer](https://quarkchain.io) beta testnet.
 
 You can find the full list of currently supported chains [here](https://github.com/ethstorage/ethfs-cli/?tab=readme-ov-file#supported-networks). 
 
@@ -32,6 +32,18 @@ This command creates a `FlatDirectory` on a specified blockchain. You need to pr
 
 If the part `-c <chain-id>` is omitted, **Ethereum Mainnet** will be specified by default.
 
+### Example: Sepolia
+
+```bash
+ethfs-cli create -p 0x112233... -c 11155111
+```
+
+You will get a `FlatDirectory` address after the transaction is confirmed on Sepolia:
+
+```bash
+FlatDirectory: Address is 0x8FE13f6697B1A8c34460D0E1375bbD205834D208
+```
+
 ### Example: SWC Beta
 
 ```bash
@@ -42,18 +54,6 @@ You will get a `FlatDirectory` address after the transaction is confirmed on SWC
 
 ```bash
 FlatDirectory: Address is 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E
-```
-
-### Example: Sepolia
-
-```bash
-ethfs-cli create -p 0x112233... -c 11155111
-```
-
-You will get a `FlatDirectory` address after the transaction is confirmed on Sepolia:
-
-```bash
-FlatDirectory: Address is 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd
 ```
 
 ## Step 3: Upload Files
@@ -75,6 +75,29 @@ You need to provide the contract address (`-a <address>`), chain ID (`-c <chain-
 Notice that you have 2 options to specify the file upload type: `calldata`, `blob`.  The default type is `blob` which requires network support for EIP-4844.
 
 If the part `-c <chain-id>` is omitted, **Ethereum Mainnet** will be specified by default.
+
+### Example: Sepolia
+
+```bash
+ethfs-cli upload -f dist -a 0x8FE13f6697B1A8c34460D0E1375bbD205834D208 -c 11155111 -p 0x112233... -t blob
+```
+Example log:
+```log
+providerUrl = https://rpc.sepolia.org
+chainId = 11155111
+address: 0x8FE13f6697B1A8c34460D0E1375bbD205834D208
+
+
+FlatDirectory: The transaction hash for chunk 0 is 0x809411aeb708023a33dadf17791d994dc3b4b2db1a6bbd36792bbedb68646978 img/1.jpeg
+FlatDirectory: Chunks 0 have been uploaded hello.txt
+FlatDirectory: The transaction hash for chunk 0 is 0x7cea7ea7e4898e03bee4fbc031799689dbe215bd6dd36733721150a099680be7 hello.txt
+FlatDirectory: Chunks 0 have been uploaded img/1.jpeg
+
+Total File Count: 2
+Total Upload Chunk Count: 2
+Total Upload Data size: 52.6513671875 KB
+Total Storage Cost: 0.001492087764775451 ETH
+```
 
 ### Example: SWC Beta
 
@@ -98,29 +121,6 @@ Total Upload Chunk Count: 4
 Total Upload Data Size: 324.1015625 KB
 Total Storage Cost: 2.259012840557991428 ETH
 ```
-### Example: Sepolia
-
-```bash
-ethfs-cli upload -f dist -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -p 0x112233... -t blob
-```
-Example log:
-```log
-providerUrl = https://rpc.sepolia.org
-chainId = 11155111
-address: 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd
-
-
-FlatDirectory: The transaction hash for chunk 0 is 0x809411aeb708023a33dadf17791d994dc3b4b2db1a6bbd36792bbedb68646978 img/1.jpeg
-FlatDirectory: Chunks 0 have been uploaded hello.txt
-FlatDirectory: The transaction hash for chunk 0 is 0x7cea7ea7e4898e03bee4fbc031799689dbe215bd6dd36733721150a099680be7 hello.txt
-FlatDirectory: Chunks 0 have been uploaded img/1.jpeg
-
-Total File Count: 2
-Total Upload Chunk Count: 2
-Total Upload Data size: 52.6513671875 KB
-Total Storage Cost: 0.001492087764775451 ETH
-```
-
 ## Step 4: Download Your File!
 
 Now you should be able to download the file you just uploaded.
@@ -130,15 +130,17 @@ Now you should be able to download the file you just uploaded.
 ```bash
 ethfs-cli download -a <address> -c <chain-id> -f <file>
 ```
+
+### Example: Sepolia
+
+```bash
+ethfs-cli download -a 0x8FE13f6697B1A8c34460D0E1375bbD205834D208 -c 11155111 -f img/1.jpeg
+```
+
 ### Example: SWC Beta
 
 ```bash
 ethfs-cli download -a 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E -c 3335 -f img/1.jpeg
-```
-### Example: Sepolia
-
-```bash
-ethfs-cli download -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -f img/1.jpeg
 ```
 
 Now, your file has been saved locally.
@@ -147,6 +149,14 @@ Now, your file has been saved locally.
 
 Of course, you can also easily access the file you just uploaded using the web3:// protocol. 
 
+### Example: Sepolia
+
+text:
+[web3://0x8FE13f6697B1A8c34460D0E1375bbD205834D208:3333/hello.txt](https://0x8FE13f6697B1A8c34460D0E1375bbD205834D208.3333.w3link.io/hello.txt)
+
+image:
+[web3://0x8FE13f6697B1A8c34460D0E1375bbD205834D208:3333/img/1.jpeg](https://0x8FE13f6697B1A8c34460D0E1375bbD205834D208.3333.w3link.io/img/1.jpeg)
+
 ### Example: SWC Beta
 
 text:
@@ -154,14 +164,6 @@ text:
 
 image:
 [web3://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E:3337/img/1.jpeg](https://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E.3337.w3link.io/img/1.jpeg)
-
-### Example: Sepolia
-
-text:
-[web3://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd:3333/hello.txt](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3333.w3link.io/hello.txt)
-
-image:
-[web3://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd:3333/img/1.jpeg](https://0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd.3333.w3link.io/img/1.jpeg)
 
 **Note**: In the above URLs, you may need to specify a different chain ID than the one used in the `ethfs-cli` commands. This distinct chain ID is necessary for identifying the EthStorage network responsible for storing the files.
 
@@ -180,5 +182,5 @@ ethfs-cli create -p 0x112233... -c 11155111 -r http://...rpc.io
 When uploading files:
 
 ```bash
-ethfs-cli upload -f /Users/.../dist -a 0x2f7696D4284358A2E8fDb4DF772dAd60c2c8fbAd -c 11155111 -p 0x112233... -r https://...rpc.io
+ethfs-cli upload -f /Users/.../dist -a 0x8FE13f6697B1A8c34460D0E1375bbD205834D208 -c 11155111 -p 0x112233... -r https://...rpc.io
 ```
