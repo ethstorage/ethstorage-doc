@@ -1,7 +1,7 @@
 # Information
 
 
-## Public Testnet 1 
+## Public Testnet
 
 ### Spec
 
