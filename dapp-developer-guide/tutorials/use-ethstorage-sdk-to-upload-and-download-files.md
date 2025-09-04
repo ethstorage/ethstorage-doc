@@ -115,32 +115,67 @@ const callback = {
 
 In this section, you will download files from the ethstorage network.
 
+Standard SDK supports both uploading and downloading if created with `ethStorageRpc`.
+For read-only scenarios, you can create a download-only SDK instance without `rpc` or `privateKey`.
+
+**Note**: Data may take a few seconds to sync after upload. You can wait a few seconds before downloading to ensure successful retrieval.
+
 ```js
-// Note: To download files, you need to specify the `ethStorageRpc`.
-const ethStorageRpc = "http://65.108.230.142:9545"; // Sepolia
+const ethStorageRpc = "https://rpc.testnet.ethstorage.io:9546"; // Sepolia
 // For Super World Computer beta testnet:
 // const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
-const flatDirectory = await FlatDirectory.create({
-    rpc: rpc,
-    ethStorageRpc: ethStorageRpc,
-    privateKey: privateKey,
-    address: address,
-});
 
 const key = "test.txt";
-await flatDirectory.download(key, {
-    onProgress: function (progress, count, chunk) {
-        ...
-    },
-    onFail: function (error) {
-        ...
-    },
-    onFinish: function () {
-        ...
-    }
+
+const callbackDownload = {
+	onProgress: (progress, count, chunk) => {
+		console.log(`Download progress: ${progress}% (${count} chunks)`);
+	},
+	onFail: (err) => {
+		console.error("Download failed:", err);
+	},
+	onFinish: () => {
+		console.log("Download finished (standard SDK).");
+	}
+};
+
+// --- Option A: Standard SDK with ethStorageRpc ---
+const flatDirectory = await FlatDirectory.create({
+	rpc: rpc,
+	ethStorageRpc: ethStorageRpc,
+	privateKey: privateKey,
+	address: address,
 });
+
+// Optional: only needed if downloading immediately after uploading
+// await new Promise(resolve => setTimeout(resolve, 5000));
+
+await flatDirectory.download(key, callbackDownload);
+
+
+// --- Option B: Download-only SDK (read-only) ---
+const downloadOnlySDK = await FlatDirectory.create({
+	ethStorageRpc: ethStorageRpc,
+	address: address,
+});
+
+await downloadOnlySDK.download(key, callbackDownload);
 ```
 
+### 2.4: Close FlatDirectory SDK
+
+After completing all uploading and downloading operations, you must **call** `close()` on your SDK instances to release
+internal Workers and threads. Failing to do so may prevent Node.js from exiting normally.
+
+```js
+// Close the standard SDK instance (used for uploading and downloading)
+await flatDirectory.close();
+console.log("Standard SDK instance closed.");
+
+// If you created a download-only SDK instance, make sure it is also closed
+await downloadOnlySDK.close();
+console.log("Download-only SDK instance closed.");
+```
 
 
 ## Step 3: Manage Blobs
@@ -156,7 +191,7 @@ const rpc = "https://rpc.sepolia.org";
 // For Super World Computer beta testnet:
 // const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
 
-const ethStorageRpc = "http://65.108.230.142:9545"; // Sepolia
+const ethStorageRpc = "https://rpc.testnet.ethstorage.io:9546"; // Sepolia
 // For Super World Computer beta testnet:
 // const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
 
@@ -185,5 +220,19 @@ Read the written data from the EthStorage network.
 
 ```js
 const key = "test.txt";
+
+// Optional: only needed if downloading immediately after uploading
+// await new Promise(resolve => setTimeout(resolve, 5000));
+
 const data = await ethStorage.read(key);
+```
+
+### 3.4: Close EthStorage SDK
+
+After completing all uploading and downloading operations with `EthStorage`, you must **call** `close()` on your SDK instances
+to release internal Workers and threads. Failing to do so may prevent Node.js from exiting normally.
+
+```js
+await ethStorage.close();
+console.log("SDK instance closed.");
 ```
