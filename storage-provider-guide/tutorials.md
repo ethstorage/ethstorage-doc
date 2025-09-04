@@ -403,7 +403,7 @@ When you see "Sampling done with all nonces", it indicates that your node has su
 
 If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
 
-Once data sync is finished, you will receive an email notification indicating which shard has been started mining, if email notifications have been [enabled](email) on your es-node.
+Once data sync is finished, you will receive an email notification indicating which shard has been started mining, if email notifications have been [enabled](email.md) on your es-node.
 
 ### Proof submission phase
 
@@ -419,7 +419,7 @@ INFO [01-19|05:05:23.210] Mining transaction success! √            miner=0xBB9
 
 Once you see this log, congratulations on completing the entire process as a storage provider. You can also check how many storage proofs you've submitted, your ETH profit, and your ranking on the [dashboard](https://grafana.ethstorage.io).
 
-Once a valid proof has been submitted, you will receive an email notification with the detailed information, if email notifications have been [enabled](email) on your es-node.
+Once a valid proof has been submitted, you will receive an email notification with the detailed information, if email notifications have been [enabled](email.md) on your es-node.
 
 ## Advanced Features
 
