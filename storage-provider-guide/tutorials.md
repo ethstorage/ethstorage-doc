@@ -84,22 +84,22 @@ Download the pre-built package suitable for your platform:
 - Linux x86-64 or WSL:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.2/es-node.v0.2.2.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.3/es-node.v0.2.3.linux-amd64.tar.gz | tar -xz
 ```
 
 - MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.2/es-node.v0.2.2.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.3/es-node.v0.2.3.darwin-amd64.tar.gz | tar -xz
 ```
 
 - MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.2/es-node.v0.2.2.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.3/es-node.v0.2.3.darwin-arm64.tar.gz | tar -xz
 ```
 
-In folder `es-node.v0.2.2`, init es-node by running:
+In folder `es-node.v0.2.3`, init es-node by running:
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
@@ -131,7 +131,7 @@ docker run --rm \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init.sh \
-          ghcr.io/ethstorage/es-node:v0.2.2 \
+          ghcr.io/ethstorage/es-node:v0.2.3 \
           --l1.rpc <el_rpc>
 ```
 
@@ -147,7 +147,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.2.2 \
+          ghcr.io/ethstorage/es-node:v0.2.3 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -161,7 +161,7 @@ docker run --rm \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.2.2
+          ghcr.io/ethstorage/es-node:v0.2.3
 
 # start
 docker run --name es -d \
@@ -173,7 +173,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.2.2
+          ghcr.io/ethstorage/es-node:v0.2.3
 ```
 After launch, you can check docker logs using the following command:
 
@@ -205,7 +205,7 @@ Now download source code and switch to the latest release branch:
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.2.2
+git checkout v0.2.3
 ```
 
 Build es-node:
@@ -403,6 +403,8 @@ When you see "Sampling done with all nonces", it indicates that your node has su
 
 If the es-node doesn't have enough time to complete sampling within a slot, the log will display "Mining tasks timed out". For further actions, please refer to [the FAQ](storage-provider-faq.md#what-can-i-do-about-mining-tasks-timed-out).
 
+Once data sync is finished, you will receive an email notification indicating which shard has been started mining, if email notifications have been [enabled](email) on your es-node.
+
 ### Proof submission phase
 
 Once the es-node calculates a valid storage proof, it will submit the proof to the EthStorage contract and receive the rewards.
@@ -417,6 +419,7 @@ INFO [01-19|05:05:23.210] Mining transaction success! √            miner=0xBB9
 
 Once you see this log, congratulations on completing the entire process as a storage provider. You can also check how many storage proofs you've submitted, your ETH profit, and your ranking on the [dashboard](https://grafana.ethstorage.io).
 
+Once a valid proof has been submitted, you will receive an email notification with the detailed information, if email notifications have been [enabled](email) on your es-node.
 
 ## Advanced Features
 

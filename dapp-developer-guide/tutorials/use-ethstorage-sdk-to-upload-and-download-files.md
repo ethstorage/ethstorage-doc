@@ -1,4 +1,3 @@
-
 # Use ethstorage-sdk to Upload and Download Files
 
 ## Introduction
@@ -7,8 +6,8 @@ In this tutorial, we will demonstrate how to upload and download files using the
 
 The `ethstorage-sdk` provides APIs for file upload, download, and management.
 
-In the following code examples, [Super World Computer](https://quarkchain.io) beta testnet is used by default. 
-You can easily switch to other chains by specify a different RPC endpoint, such as "https://rpc.sepolia.org" for Sepolia.
+In the following code examples, Sepolia is used by default.
+You can switch to other chains by specifying a different RPC endpoint, such as "https://rpc.beta.testnet.l2.quarkchain.io:8545" for the [Super World Computer](https://quarkchain.io) beta testnet.
 
 ## Step 1: Install ethstorage-sdk
 
@@ -27,9 +26,9 @@ In this section, you will create a `FlatDirectory` contract for managing files.
 ```js
 const { FlatDirectory } = require("ethstorage-sdk");
 
-const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
-// For Sepolia:
-// const rpc = "https://rpc.sepolia.org";
+const rpc = "https://rpc.sepolia.org";
+// For Super World Computer beta testnet:
+// const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
 const privateKey = "0x...";
 
 const flatDirectory = await FlatDirectory.create({
@@ -98,7 +97,7 @@ const request = {
 await flatDirectory.upload(request);
 ```
 
-```bash
+```js
 const callback = {
     onProgress: function (progress, count, isChange) {
        ...
@@ -116,11 +115,11 @@ const callback = {
 
 In this section, you will download files from the ethstorage network.
 
-```bash
+```js
 // Note: To download files, you need to specify the `ethStorageRpc`.
-// For Sepolia:
-// const ethStorageRpc = "http://65.108.230.142:9545";
-const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
+const ethStorageRpc = "http://65.108.230.142:9545"; // Sepolia
+// For Super World Computer beta testnet:
+// const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
 const flatDirectory = await FlatDirectory.create({
     rpc: rpc,
     ethStorageRpc: ethStorageRpc,
@@ -153,13 +152,13 @@ In this section, you can create an `EthStorage` instance to interact directly wi
 ```js
 const { EthStorage } = require("ethstorage-sdk");
 
-// For Sepolia:
-// const rpc = "https://rpc.sepolia.org";
-const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
+const rpc = "https://rpc.sepolia.org";
+// For Super World Computer beta testnet:
+// const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
 
-// For Sepolia:
-// const ethStorageRpc = "http://65.108.230.142:9545";
-const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
+const ethStorageRpc = "http://65.108.230.142:9545"; // Sepolia
+// For Super World Computer beta testnet:
+// const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
 
 const privateKey = "0x...";
 

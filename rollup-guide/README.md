@@ -21,7 +21,7 @@ It provides blob data similar to the [getBlobSidecars](https://ethereum.github.i
 For example, the following URL retrieves the 3rd blob sidecar in the block of slot 4756895.
 
 ```sh
-http://65.108.236.27:9645/eth/v1/beacon/blob_sidecars/4756895?indices=3
+http://65.109.50.145:9645/eth/v1/beacon/blob_sidecars/4756895?indices=3
 ```
 
 The difference in returned data between es-node archiver API and beacon API is that for each blob es-node archiver only returns blob content, index, KZG commitment, and KZG proof. Other elements are omitted according to how the OP Stack uses the service.

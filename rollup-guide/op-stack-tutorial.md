@@ -31,7 +31,7 @@ Another configurable option, `--l1.beacon-archiver`, enables op-nodes to fetch t
 The following example specifies a living EthStorage archiver API on the Sepolia testnet.
 
 ```
---l1.beacon-archiver http://65.108.236.27:9645
+--l1.beacon-archiver http://65.109.50.145:9645
 ```
 
 Like the Beacon API, the blobs can be queried via the `/eth/v1/beacon/blob_sidecars/` endpoint, using the `indices` filter to skip irrelevant blobs. The process operates by combining the archiver and the Beacon location into a resource pool for retrieving blobs. If the op-node fails to obtain blobs from the Beacon node, it will use the archiver endpoint as a fallback.
