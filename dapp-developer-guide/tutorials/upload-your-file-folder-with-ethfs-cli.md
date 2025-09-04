@@ -41,7 +41,7 @@ ethfs-cli create -p 0x112233... -c 11155111
 You will get a `FlatDirectory` address after the transaction is confirmed on Sepolia:
 
 ```bash
-FlatDirectory: Address is 0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a
+FlatDirectory: Address is 0x8FE13f6697B1A8c34460D0E1375bbD205834D208
 ```
 
 ### Example: SWC Beta
@@ -79,13 +79,13 @@ If the part `-c <chain-id>` is omitted, **Ethereum Mainnet** will be specified b
 ### Example: Sepolia
 
 ```bash
-ethfs-cli upload -f dist -a 0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a -c 11155111 -p 0x112233... -t blob
+ethfs-cli upload -f dist -a 0x8FE13f6697B1A8c34460D0E1375bbD205834D208 -c 11155111 -p 0x112233... -t blob
 ```
 Example log:
 ```log
 providerUrl = https://rpc.sepolia.org
 chainId = 11155111
-address: 0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a
+address: 0x8FE13f6697B1A8c34460D0E1375bbD205834D208
 
 
 FlatDirectory: The transaction hash for chunk 0 is 0x809411aeb708023a33dadf17791d994dc3b4b2db1a6bbd36792bbedb68646978 img/1.jpeg
@@ -134,7 +134,7 @@ ethfs-cli download -a <address> -c <chain-id> -f <file>
 ### Example: Sepolia
 
 ```bash
-ethfs-cli download -a 0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a -c 11155111 -f img/1.jpeg
+ethfs-cli download -a 0x8FE13f6697B1A8c34460D0E1375bbD205834D208 -c 11155111 -f img/1.jpeg
 ```
 
 ### Example: SWC Beta
@@ -152,10 +152,10 @@ Of course, you can also easily access the file you just uploaded using the web3:
 ### Example: Sepolia
 
 text:
-[web3://0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a:3333/hello.txt](https://0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a.3333.w3link.io/hello.txt)
+[web3://0x8FE13f6697B1A8c34460D0E1375bbD205834D208:3333/hello.txt](https://0x8FE13f6697B1A8c34460D0E1375bbD205834D208.3333.w3link.io/hello.txt)
 
 image:
-[web3://0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a:3333/img/1.jpeg](https://0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a.3333.w3link.io/img/1.jpeg)
+[web3://0x8FE13f6697B1A8c34460D0E1375bbD205834D208:3333/img/1.jpeg](https://0x8FE13f6697B1A8c34460D0E1375bbD205834D208.3333.w3link.io/img/1.jpeg)
 
 ### Example: SWC Beta
 
@@ -182,5 +182,5 @@ ethfs-cli create -p 0x112233... -c 11155111 -r http://...rpc.io
 When uploading files:
 
 ```bash
-ethfs-cli upload -f /Users/.../dist -a 0x1B7D3660fB596A9FdF0e6fd7566A4190A4d00E3a -c 11155111 -p 0x112233... -r https://...rpc.io
+ethfs-cli upload -f /Users/.../dist -a 0x8FE13f6697B1A8c34460D0E1375bbD205834D208 -c 11155111 -p 0x112233... -r https://...rpc.io
 ```
