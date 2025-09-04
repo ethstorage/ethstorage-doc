@@ -10,6 +10,7 @@
   * [Storage Provider Tutorial](storage-provider-guide/tutorials.md)
   * [Configuration](storage-provider-guide/configuration.md)
   * [Storage Provider FAQ](storage-provider-guide/storage-provider-faq.md)
+  * [Email Notification Guide for Proof Submission](storage-provider-guide/email-notification-guide-for-proof-submission.md)
 * [Dapp Developer Guide](dapp-developer-guide/README.md)
   * [Introduction](dapp-developer-guide/introduction.md)
   * [Tutorials](dapp-developer-guide/tutorials/README.md)
