@@ -12,9 +12,9 @@
 
 ### Deployment
 
-* Storage contract address: [<>](https://sepolia.etherscan.io/address/<>)
-* ES-Geth RPC: <>
-* Blob Archiver API: <>
+* Storage contract address: [TBD](https://sepolia.etherscan.io/address/TBD)
+* ES-Geth RPC: TBD
+* Blob Archiver API: TBD
 
 ## EthStorage Public Testnet
 
