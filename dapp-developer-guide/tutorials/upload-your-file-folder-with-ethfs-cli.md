@@ -1,7 +1,7 @@
 # Upload Your File/Folder with ethfs-cli
 
 ## Introduction
-In this tutorial, we will demonstrate how to use the [ethfs-cli](https://github.com/ethstorage/ethfs-cli/) tool to upload files or folders to EVM-compatible chains such as Sepolia or [Super World Computer](https://quarkchain.io) beta testnet.
+In this tutorial, we will demonstrate how to use the [ethfs-cli](https://github.com/ethstorage/ethfs-cli/) tool to upload files or folders to EVM-compatible chains such as Sepolia or [QuarkChain L2](https://quarkchain.io) beta testnet.
 
 You can find the full list of currently supported chains [here](https://github.com/ethstorage/ethfs-cli/?tab=readme-ov-file#supported-networks). 
 
@@ -44,13 +44,13 @@ You will get a `FlatDirectory` address after the transaction is confirmed on Sep
 FlatDirectory: Address is 0x8FE13f6697B1A8c34460D0E1375bbD205834D208
 ```
 
-### Example: SWC Beta
+### Example: QuarkChain L2 Beta
 
 ```bash
 ethfs-cli create -p 0x112233... -c 3335
 ```
 
-You will get a `FlatDirectory` address after the transaction is confirmed on SWC beta testnet:
+You will get a `FlatDirectory` address after the transaction is confirmed on QuarkChain L2 beta testnet:
 
 ```bash
 FlatDirectory: Address is 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E
@@ -99,7 +99,7 @@ Total Upload Data size: 52.6513671875 KB
 Total Storage Cost: 0.001492087764775451 ETH
 ```
 
-### Example: SWC Beta
+### Example: QuarkChain L2 Beta
 
 ```bash
 ethfs-cli upload -f dist -a 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E -c 3335 -p 0x112233...
@@ -137,7 +137,7 @@ ethfs-cli download -a <address> -c <chain-id> -f <file>
 ethfs-cli download -a 0x8FE13f6697B1A8c34460D0E1375bbD205834D208 -c 11155111 -f img/1.jpeg
 ```
 
-### Example: SWC Beta
+### Example: QuarkChain L2 Beta
 
 ```bash
 ethfs-cli download -a 0xab351F35B82B20C1a253ae16523c5E2D60B56D6E -c 3335 -f img/1.jpeg
@@ -157,7 +157,7 @@ text:
 image:
 [web3://0x8FE13f6697B1A8c34460D0E1375bbD205834D208:3333/img/1.jpeg](https://0x8FE13f6697B1A8c34460D0E1375bbD205834D208.3333.w3link.io/img/1.jpeg)
 
-### Example: SWC Beta
+### Example: QuarkChain L2 Beta
 
 text:
 [web3://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E:3337/hello.txt](https://0xab351F35B82B20C1a253ae16523c5E2D60B56D6E.3337.w3link.io/hello.txt)

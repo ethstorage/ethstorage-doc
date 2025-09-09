@@ -183,39 +183,19 @@ cd es-node.v0.2.3
 mv ../es-node.v0.2.2/es-data .
 mv ../es-node.v0.2.2/esnode_* .
 ```
-4. Launch es-node using the same command as the one previously used:
+4. Launch es-node using the same command as the one [previously used](/storage-provider-guide/tutorials.md#start-es-node).
 
-```sh
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
-```
 > ℹ️ **_Note:_** If you encounter an error indicating that the zkey file is not found like this:
 ```log
 Init zk prover failednger/bin/op.error="zkey does not exist" dir=/root/es-node/build/bin/snark_lib/zkey/blob_poseidon2.zkey
 ```
-You may need to run the following command:
+You may need to run [the initialize command](/storage-provider-guide/tutorials.md#initialize-es-node) that will download the necessary zkey file, and it will not damage or modify any existing data files.
 
-```sh
-env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
-```
-The `init` command will download the necessary zkey file, and it will not damage or modify any existing data files.
-
->🅢🅦🅒 Run the following commands to init and start es-node in the SWC testnet:
-```sh
-# init
-env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
-
-# start
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
-```
-Another option is to specify the file path of the zkey file using the `--miner.zkey` flag so that you don't need to run `init` and download zkey upon each upgrade:
+Another option is to specify the file path of the zkey file using the `--miner.zkey` flag so that you don't need to run `init` and download zkey upon each upgrade (take Sepolia as example):
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc> \
   --miner.zkey <absolute path to the zkey>
-```
->🅢🅦🅒 For SWC testnet, run the following command:
-```sh
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh --miner.zkey <absolute path to the zkey>
 ```
 
 #### From a Docker image
@@ -227,35 +207,7 @@ docker stop es
 docker remove es
 ```
 
-2. Then start a new container based on the new version of the es-node Docker image with the following command, just make sure the `<version>` in `ghcr.io/ethstorage/es-node:<version>` is correct:
-
-```sh
-docker run --name es -d \
-          -v ./es-data:/es-node/es-data \
-          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
-          -e ES_NODE_STORAGE_MINER=<miner> \
-          -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
-          -p 9545:9545 \
-          -p 9222:9222 \
-          -p 30305:30305/udp \
-          --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.2.3 \
-          --l1.rpc <el_rpc> \
-          --l1.beacon <cl_rpc>
-```
->🅢🅦🅒 For SWC testnet, run the following command:
-```sh
-docker run --name es -d \
-          -v ./es-data:/es-node/es-data \
-          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
-          -e ES_NODE_STORAGE_MINER=<miner> \
-          -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
-          -p 9545:9545 \
-          -p 9222:9222 \
-          -p 30305:30305/udp \
-          --entrypoint /es-node/run-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.2.3
-```
+2. Then start a new container based on the new version of the es-node Docker image with [the same command in the tutorial](/storage-provider-guide/tutorials.md#start-es-node-1), just make sure the `<version>` in `ghcr.io/ethstorage/es-node:<version>` is correct.
 
 #### From source code
 
@@ -272,15 +224,9 @@ git fetch
 # replace 'v0.2.3' to your target version
 git checkout v0.2.3
 ```
-3. build and launch es-node
+3. build es-node
 
 ```sh
 make
-
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
->🅢🅦🅒 For SWC testnet, run the following command:
-
-```sh
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
-```
+4. launch es-node with [the same command](/storage-provider-guide/tutorials.md#start-es-node-2)

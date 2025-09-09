@@ -17,9 +17,9 @@ layout:
 
 # Storage Provider Tutorial
 
-This guide provides practical steps for the storage providers to start an es-node instance for connecting to one of the existing EthStorage testnets.
+This guide provides practical steps for the storage providers to start an es-node instance for connecting to one of the existing EthStorage networks.
 
-By default, this tutorial assumes the EthStorage contract is deployed on L1 (Sepolia). However, you can also use this tutorial if the storage contract is deployed on an L2 testnet of SWC (or [Super World Computer](https://quarkchain.io) — a fully decentralized L2 blockchain network with unmatched scalability and security), which has some slight differences. In this case, please pay attention to the 🅢🅦🅒 sign for SWC testnet specific guidance. For each shell command, separate commands that match the SWC testnet are also listed.
+This tutorial targets EthStorage deployments on Ethereum L1 (Mainnet and Sepolia) and [QuarkChain](https://quarkchain.io) L2 testnet. Some steps differ among the three networks, and the variant of each shell command is provided.
 
 If you simply need to upgrade your es-node instance to a newer version, please refer [here](storage-provider-faq.md#i-am-already-running-es-node.-how-can-i-update-it-to-a-newer-version).
 
@@ -28,15 +28,15 @@ If you simply need to upgrade your es-node instance to a newer version, please r
 ### Minimum Hardware Requirements
 
 * CPU: A minimum of 4 cores and 8 threads
-* 8GB of RAM
+* 8 GB of RAM
 * Disk:
   * We recommend using an NVMe disk to support the full speed of sampling
   * At least 550 GB of available storage space for the runtime and sync of one data shard
-* Internet: At least 8MB/sec download speed
+* Internet: At least 8 MB/sec download speed
 
 ### System Environment
 
-* MacOS Version 14+, Ubuntu 20.04+, or Windows with WSL (Windows Subsystem for Linux) version 2
+* macOS Version 14+, Ubuntu 20.04+, or Windows with WSL (Windows Subsystem for Linux) version 2
 * (Optional) Docker 24.0.5+ (would simplify the process)
 * (Optional) Go 1.23+ and Node.js 16+ (can be installed following the [steps](tutorials.md#install-dependencies))
 
@@ -44,28 +44,26 @@ If you simply need to upgrade your es-node instance to a newer version, please r
 
 ### Preparing miner and signer account
 
-We recommend preparing two specific Ethereum accounts for this test.
+We recommend preparing two specific Ethereum accounts to run an es-node.
 
-* The miner account will be set to receive rewards once the storage provider successfully submits a storage proof to the EthStorage contract. Each storage provider must use a unique miner account.
-* The signer account will act as a transaction signer and should contain a balance of test ETH. A signer account can be used by multiple storage providers.
+* The miner account will be set to receive rewards once the storage provider successfully submits a storage proof to the EthStorage contract. Each storage provider must use a unique miner account on the same network.
+* The signer account signs transactions and must hold sufficient ETH for gas. If you run multiple es-nodes on the same network, use a separate signer account per node to avoid nonce conflicts.
 
-> ℹ️ _**Note:**_ As Sepolia is used as L1 for the testnet, the test ETH can be requested from [https://sepoliafaucet.com/](https://sepoliafaucet.com/).
-
-> 🅢🅦🅒 Please refer to [this link](https://docs.quarkchain.io/guides/app-developers/receive-tokens) to get custom gas tokens for SWC.
+> ℹ️ _**Note:**_ If Sepolia is used as L1, request test ETH from [sepoliafaucet.com](https://sepoliafaucet.com/); for QuarkChain L2 testnet, get custom gas tokens [here](https://docs.quarkchain.io/guides/app-developers/receive-tokens).
 
 > :warning: _**Warning:**_ For safety reasons, we strongly suggest creating new wallets for the accounts to avoid the loss of any personal assets.
 
-Remember to use the signer's private key (with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
+Remember to use the signer's private key (the one with ETH balance) to replace `<private_key>` in the following steps. And use the other address to replace `<miner>`.
 
-### Preparing Ethereum API endpoints
+### Preparing Ethereum API endpoints (L1 only)
 
-During the operation of the ES-Node, frequent Ethereum API calls are made, including at the execution layer and the consensus layer (the beacon chain). Therefore, we need you to prepare endpoints for two types of calls. We recommend using `BlockPI` for the execution layer endpoint and `QuickNode` for the beacon endpoint.
+During the operation of es-node that deployed on L1, frequent Ethereum API calls are made, including at the execution layer and the consensus layer (the beacon chain). Therefore, we need you to prepare endpoints for two types of calls. We recommend using `BlockPI` for the execution layer endpoint and `QuickNode` for the beacon endpoint.
 
 For details on the application process for endpoints, please refer to [this section](tutorials.md#applying-for-ethereum-api-endpoints).
 
-In the following tutorial, you will need to replace \<el\_rpc> for you execution layer endpoint, and \<cl\_rpc> for the beacon endpoint.
+In the following tutorial, you will need to replace `<el_rpc>` for your execution layer endpoint, and `<cl_rpc>` for the beacon endpoint.
 
-> 🅢🅦🅒 You do not need to apply Ethereum API endpoints to run es-node for the SWC testnet.
+> ℹ️ _**Note:**_ You do not need to apply Ethereum API endpoints to run es-node for the QuarkChain L2 network.
 
 ## Options for running es-node
 
@@ -77,11 +75,13 @@ You can run es-node from a pre-built executable, a pre-built Docker image, or fr
 
 ### From pre-built executables
 
-Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs), unless [`--miner.zk-prover-impl`](tutorials.md#about-the-option-of-zk-prover-implementation) flag is set to `2`.
+Before running es-node from the pre-built executables, ensure that you have installed [Node.js](tutorials.md#install-node.js) and [snarkjs](tutorials.md#install-snarkjs) (unless [`--miner.zk-prover-impl`](tutorials.md#about-the-option-of-zk-prover-implementation) flag is set to `2`).
 
 > ℹ️ _**Note:**_ Ensure that you run the executables on [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) if you are using Windows, and both Node.js and snarkjs are installed on WSL instead of Windows.
 
-Download the pre-built package suitable for your platform:
+#### Download the pre-built package 
+
+Choose the one that is suitable for your platform:
 
 * Linux x86-64 or WSL:
 
@@ -101,31 +101,65 @@ curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.3/es-node.v
 curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.3/es-node.v0.2.3.darwin-arm64.tar.gz | tar -xz
 ```
 
-In folder `es-node.v0.2.3`, init es-node by running:
+#### Initialize es-node
+
+Change directory to `es-node.v0.2.3` and execute one of the following commands according to your network:
+
+* Mainnet
+
+```sh
+env ES_NODE_STORAGE_MINER=<miner> ./init-mainnet.sh --l1.rpc <el_rpc>
+```
+* Sepolia
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
+* QuarkChain L2
 
-Run es-node
+```sh
+env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
+```
+
+#### Start es-node
+
+* Mainnet
+
+```sh
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-mainnet.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+```
+
+* Sepolia
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
-> 🅢🅦🅒 Run the following commands to init and start es-node in the SWC testnet:
+* QuarkChain L2
 
 ```sh
-# init
-env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
-
-# start
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
 ```
 
 ### From a Docker image
 
-First init an es-node environment with the following command (If you are using Windows, execute the command in WSL):
+#### Initialize es-node
+
+> ℹ️ _**Note:**_ If you are using Windows, execute the command in WSL
+
+* Mainnet
+
+```sh
+docker run --rm \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          --entrypoint /es-node/init-mainnet.sh \
+          ghcr.io/ethstorage/es-node:v0.2.3 \
+          --l1.rpc <el_rpc>
+```
+
+* Sepolia
 
 ```sh
 docker run --rm \
@@ -137,7 +171,36 @@ docker run --rm \
           --l1.rpc <el_rpc>
 ```
 
-Then start an es-node container:
+* QuarkChain L2
+
+```sh
+docker run --rm \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          --entrypoint /es-node/init-l2.sh \
+          ghcr.io/ethstorage/es-node:v0.2.3
+
+```
+#### Start es-node
+
+* Mainnet
+
+```sh
+docker run --name es -d \
+          -v ./es-data:/es-node/es-data \
+          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
+          -e ES_NODE_STORAGE_MINER=<miner> \
+          -e ES_NODE_SIGNER_PRIVATE_KEY=<private_key> \
+          -p 9545:9545 \
+          -p 9222:9222 \
+          -p 30305:30305/udp \
+          --entrypoint /es-node/run-mainnet.sh \
+          ghcr.io/ethstorage/es-node:v0.2.3 \
+          --l1.rpc <el_rpc> \
+          --l1.beacon <cl_rpc>
+```
+* Sepolia
 
 ```sh
 docker run --name es -d \
@@ -153,19 +216,9 @@ docker run --name es -d \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
-
-> 🅢🅦🅒 Run the following commands to init and run es-node in the SWC testnet:
+* QuarkChain L2
 
 ```sh
-# init
-docker run --rm \
-          -v ./es-data:/es-node/es-data \
-          -v ./zkey:/es-node/build/bin/snark_lib/zkey \
-          -e ES_NODE_STORAGE_MINER=<miner> \
-          --entrypoint /es-node/init-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.2.3
-
-# start
 docker run --name es -d \
           -v ./es-data:/es-node/es-data \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
@@ -186,7 +239,7 @@ docker logs -f es
 
 #### Mount data location using Docker volume option
 
-Docker volumes (-v) are a mechanism for storing data outside containers. In the above `docker run` command , you have the flexibility to modify the data file location on your host machine, ensuring that the disk space requirements are fulfilled. For example:
+Docker volumes (-v) are a mechanism for storing data outside containers. In the above `docker run` command, you have the flexibility to modify the default data file location (`./es-data`) on your host machine, ensuring that the disk space requirements are fulfilled. For example:
 
 ```sh
 docker run --name es  -d  \
@@ -194,7 +247,7 @@ docker run --name es  -d  \
           ...
 ```
 
-> ℹ️ _**Note:**_ The absolute host path does not function well on Windows, for more details please refer [here](storage-provider-faq.md#when-running-es-node-in-docker-on-windows-i-want-to-store-data-files-on-a-disk-other-than-c-how-can-i-achieve-this)
+> ℹ️ _**Note:**_ The absolute host path does not function well on Windows, for more details please refer [here](storage-provider-faq.md#when-running-es-node-in-docker-on-windows-i-want-to-store-data-files-on-a-disk-other-than-c-how-can-i-achieve-this).
 
 ### From source code
 
@@ -204,7 +257,7 @@ Just like running a pre-built, if you plan to utilize the default zkSNARK implem
 
 If you intend to build es-node on Ubuntu and use `rapidsnark` as zkSNARK implementation, be sure to [verify some dependencies](tutorials.md#install-rapidsnark-dependencies).
 
-Now download source code and switch to the latest release branch:
+#### Download source code and switch to the latest release branch
 
 ```sh
 git clone https://github.com/ethstorage/es-node.git
@@ -212,55 +265,53 @@ cd es-node
 git checkout v0.2.3
 ```
 
-Build es-node:
+#### Build es-node
 
 ```sh
 make
 ```
 
-Init es-node
+#### Initialize es-node
+
+* Mainnet
+
+```sh
+env ES_NODE_STORAGE_MINER=<miner> ./init-mainnet.sh --l1.rpc <el_rpc>
+```
+* Sepolia
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ./init.sh --l1.rpc <el_rpc>
 ```
+* QuarkChain L2
 
-Start es-node
+```sh
+env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
+```
+
+#### Start es-node
+
+* Mainnet
+
+```sh
+env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-mainnet.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
+```
+
+* Sepolia
 
 ```sh
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run.sh --l1.rpc <el_rpc> --l1.beacon <cl_rpc>
 ```
 
-> 🅢🅦🅒 Run the following commands to init and run es-node in the SWC testnet:
+* QuarkChain L2
 
 ```sh
-# init
-env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
-
-# start
 env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-l2.sh
 ```
 
-#### Working with Docker built from source code
+## Applying for Ethereum API 
 
-With source code, you also have the option to build a Docker image by yourself and run an es-node container:
-
-```sh
-# init
-env ES_NODE_STORAGE_MINER=<miner> docker-compose run --rm --entrypoint "/es-node/init.sh" node
-
-# start
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> docker-compose up 
-```
-
-If you want to run Docker container in the background and keep all the logs:
-
-```sh
-env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run-docker.sh
-```
-
-> 🅢🅦🅒 Currently, es-node of SWC does not support running Docker from source code.
-
-## Applying for Ethereum API endpoints
+> ℹ️ _**Note:**_ The steps below describe applying for Sepolia endpoints. For Ethereum Mainnet, the process is similar—choose Mainnet where applicable and follow provider-specific details.
 
 ### Applying for a free Sepolia execution layer endpoint from BlockPI
 
@@ -428,23 +479,26 @@ Once a valid proof has been submitted, you will receive an email notification wi
 
 ## Advanced Features
 
-### About `run.sh` and `init.sh`
+### About `run*.sh` and `init*.sh`
 
-The `run.sh` script serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in `run.sh`, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
+The `run*.sh` scripts serves as the entry point for launching the es-node with predefined parameters. By default, mining is enabled through the `--miner.enabled` flag in `run*.sh`, which implies that you assume the role of a storage provider upon starting an es-node with the default settings.
 
-However, before the es-node can be successfully launched, you must execute `init.sh` first. The primary function of this script is to verify the system environment, download and install dependencies, and initialize the data files in preparation for mining.
+However, before the es-node can be successfully launched, you must execute `init*.sh` first. The primary function of this script is to verify the system environment, download and install dependencies, and initialize the data files in preparation for mining.
 
 For specific usage and examples of the two scripts, refer to the steps outlined in [Options for running es-node](tutorials.md#options-for-running-es-node).
 
-> ℹ️ _**Note:**_ Some of the flags/parameters used in `run.sh` are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
 
-> 🅢🅦🅒 In an SWC environment, you should use `init-l2.sh` and `run-l2.sh` instead of `init.sh` and `run.sh`. This applies to every shell command throughout the rest of this guide.
+> ℹ️ _**Note:**_ By default, `init.sh` and `run.sh` target Sepolia; use `init-mainnet.sh`/`run-mainnet.sh` for Ethereum Mainnet and `init-l2.sh`/`run-l2.sh` for QuarkChain L2.
+
+This applies to every shell command throughout the rest of this guide.
+
+> ℹ️ _**Note:**_ Some of the flags/parameters used in the shell scripts are supposed to change over time. Refer to [_configuration_](configuration.md) for a full list.
 
 ### Mining multiple shards
 
 By default, only the first shard (shard 0) is mined using the default options in the scripts, but you have the choice to initialize and run your es-node in order to mine multiple selected shards by using additional options.
 
-The flag `--shard_index` can be utilized multiple times with `init.sh` to generate data files for multiple shards on the es-node. For example,
+Take Sepolia network as example, the flag `--shard_index` can be utilized multiple times with `init.sh` to generate data files for multiple shards on the es-node. For example,
 
 ```
 env ES_NODE_STORAGE_MINER=0x123...ab ./init.sh --shard_index 1 --shard_index 2
@@ -455,6 +509,7 @@ Please take note of the following:
 * The shard files will be generated in the `./es-data` directory with the naming convention `shard-$(shard_index).dat` by default settings in `init.sh`.
 * A shard will be omitted if its corresponding data file already exists.
 * `shard-0.dat` will be tried to create if no `--shard_index` is specified.
+* For Mainnet, use `init-mainnet.sh` to replace `init.sh`; for QuarkChain L2, use `init-l2.sh`.
 
 After initialization in this way, the `run.sh` script will attempt to operate on data files located in `./es-data/shard-*.dat`. If you have relocated these data files or added additional files in another location, you can specify them using the `--storage.files` options repeatedly following `./run.sh`.
 
