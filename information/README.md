@@ -1,7 +1,22 @@
 # Information
 
 
-## Public Testnet
+## EthStorage Mainnet
+
+### Spec
+
+* Chain ID: 333
+* Layer 1: Ethereum Mainnet
+* storage-contracts-v1: v0.2.0
+* es-node: v0.2.3
+
+### Deployment
+
+* Storage contract address: [<>](https://sepolia.etherscan.io/address/<>)
+* ES-Geth RPC: <>
+* Blob Archiver API: <>
+
+## EthStorage Public Testnet
 
 ### Spec
 
@@ -16,12 +31,12 @@
 * ES-Geth RPC: https://rpc.testnet.ethstorage.io:9546
 * Blob Archiver API: http://65.109.50.145:9645
 
-## EthStorage SWC Beta Testnet
+## EthStorage QuarkChain L2 Beta Testnet
 
 ### Spec
 
 * Chain ID: 3337
-* Layer 1: SWC Beta Testnet
+* Layer 1: QuarkChain L2 Beta Testnet
 * storage-contracts-v1: v0.1.0
 * es-node: v0.2.2
 
