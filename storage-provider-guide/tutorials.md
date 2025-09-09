@@ -63,7 +63,7 @@ For details on the application process for endpoints, please refer to [this sect
 
 In the following tutorial, you will need to replace `<el_rpc>` for your execution layer endpoint, and `<cl_rpc>` for the beacon endpoint.
 
-> ℹ️ _**Note:**_ You do not need to apply Ethereum API endpoints to run es-node for the QuarkChain L2 testnet.
+> ℹ️ _**Note:**_ You do not need to apply Ethereum API endpoints to run es-node for the QuarkChain L2 network.
 
 ## Options for running es-node
 
@@ -103,7 +103,7 @@ curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.3/es-node.v
 
 #### Initialize es-node
 
-Change directory to `es-node.v0.2.3` and execute one of the following commands according to the network:
+Change directory to `es-node.v0.2.3` and execute one of the following commands according to your network:
 
 * Mainnet
 
@@ -509,6 +509,7 @@ Please take note of the following:
 * The shard files will be generated in the `./es-data` directory with the naming convention `shard-$(shard_index).dat` by default settings in `init.sh`.
 * A shard will be omitted if its corresponding data file already exists.
 * `shard-0.dat` will be tried to create if no `--shard_index` is specified.
+* For Mainnet, use `init-mainnet.sh` to replace `init.sh`; for QuarkChain L2, use `init-l2.sh`.
 
 After initialization in this way, the `run.sh` script will attempt to operate on data files located in `./es-data/shard-*.dat`. If you have relocated these data files or added additional files in another location, you can specify them using the `--storage.files` options repeatedly following `./run.sh`.
 
