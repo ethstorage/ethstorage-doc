@@ -18,10 +18,10 @@ As a component of es-node, the archiver API serves as an additional fallback res
 
 It provides blob data similar to the [getBlobSidecars](https://ethereum.github.io/beacon-APIs/#/Beacon/getBlobSidecars) beacon API, offering the same interface (`/eth/v1/beacon/blob_sidecars/{block_id}`) to retrieves blob sidecars for a given block id. If the `indices` parameter is specified, only the blob sidecars with the specified indices will be returned. 
 
-For example, the following URL retrieves the 3rd blob sidecar in the block of slot 4756895.
+For example, the following URL retrieves the 3rd blob sidecar in the block of slot 8485244.
 
 ```sh
-http://65.109.50.145:9645/eth/v1/beacon/blob_sidecars/4756895?indices=3
+https://archive.testnet.ethstorage.io:9635/eth/v1/beacon/blob_sidecars/8485244?indices=4
 ```
 
 The difference in returned data between es-node archiver API and beacon API is that for each blob es-node archiver only returns blob content, index, KZG commitment, and KZG proof. Other elements are omitted according to how the OP Stack uses the service.
@@ -30,10 +30,10 @@ The difference in returned data between es-node archiver API and beacon API is t
 {
   "data": [
     {
-      "index": "3",
-      "kzg_commitment": "0xb93ab7583ad8a57b2edd262889391f37a83ab41107dc02c1a68220841379ae828343e84ac1c70fb7c2640ee3522c4c36",
-      "kzg_proof": "0x86ffb073648261475af77cc902c5189bf3d33d0f63e025f23c69ac1e4cc0a7646e1a59ff8e5600f0fcc35f78fe1a4df2",
-      "blob": "0x0068656c6c6..."
+      "index": "4",
+      "kzg_commitment": "0x851c08e90cce0c09abe1e038f8368279477ac8dd88b5e240989fe6f1c8526a9f786dcf4ea1200dacba4e60bc2fbfc49e",
+      "kzg_proof": "0x85202ce6625c1a31fe8e1a2301ddc0eaf731ab9890fe45fea850c6efe199c1253f905c11432f6f72500b654667d21ccc",
+      "blob": "0x01000043c6ffd8ffe00010..."
     }
   ]
 }
