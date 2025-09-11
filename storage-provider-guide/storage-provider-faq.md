@@ -112,7 +112,7 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.2.3 \
+          ghcr.io/ethstorage/es-node:v0.2.4 \
           --p2p.max.request.size 1048576
 ```
 
@@ -171,17 +171,17 @@ Firstly, you can [review the changes between releases](https://github.com/ethsto
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Download new version (e.g., `es-node.v0.2.3`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
+2. Download new version (e.g., `es-node.v0.2.4`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
 
-3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.2.2`) to the new one:
+3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.2.3`) to the new one:
 
 ```sh
-# replace v0.2.3 to your target version
-cd es-node.v0.2.3
+# replace v0.2.4 to your target version
+cd es-node.v0.2.4
 
-# replace v0.2.2 to the version you have
-mv ../es-node.v0.2.2/es-data .
-mv ../es-node.v0.2.2/esnode_* .
+# replace v0.2.3 to the version you have
+mv ../es-node.v0.2.3/es-data .
+mv ../es-node.v0.2.3/esnode_* .
 ```
 4. Launch es-node using the same command as the one [previously used](/storage-provider-guide/tutorials.md#start-es-node).
 
@@ -213,7 +213,7 @@ docker remove es
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Switch to the correct branch of the source code (e.g., you want to move to `v0.2.3`):
+2. Switch to the correct branch of the source code (e.g., you want to move to `v0.2.4`):
 
 ```sh
 cd es-node
@@ -221,8 +221,8 @@ cd es-node
 # fetch new branches
 git fetch
 
-# replace 'v0.2.3' to your target version
-git checkout v0.2.3
+# replace 'v0.2.4' to your target version
+git checkout v0.2.4
 ```
 3. build es-node
 

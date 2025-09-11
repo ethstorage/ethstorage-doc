@@ -7,14 +7,14 @@
 
 * Chain ID: 333
 * Layer 1: Ethereum Mainnet
-* storage-contracts-v1: v0.2.0
-* es-node: v0.2.3
+* storage-contracts-v1: v0.2.1
+* es-node: v0.2.4
 
 ### Deployment
 
-* Storage contract address: [TBD](https://sepolia.etherscan.io/address/TBD)
-* ES-Geth RPC: TBD
-* Blob Archiver API: TBD
+* Storage contract address: [0xf0193d6E8fc186e77b6E63af4151db07524f6a7A](https://sepolia.etherscan.io/address/0xf0193d6E8fc186e77b6E63af4151db07524f6a7A)
+* ES-Geth RPC: https://rpc.mainnet.ethstorage.io
+* Blob Archiver API: https://archive.mainnet.ethstorage.io
 
 ## EthStorage Public Testnet
 
@@ -22,14 +22,14 @@
 
 * Chain ID: 3333
 * Layer 1: Sepolia testnet
-* storage-contracts-v1: v0.2.0
-* es-node: v0.2.3
+* storage-contracts-v1: v0.2.1
+* es-node: v0.2.4
 
 ### Deployment
 
 * Storage contract address: [0xAb3d380A268d088BA21Eb313c1C23F3BEC5cfe93](https://sepolia.etherscan.io/address/0xAb3d380A268d088BA21Eb313c1C23F3BEC5cfe93)
 * ES-Geth RPC: https://rpc.testnet.ethstorage.io:9546
-* Blob Archiver API: http://65.109.50.145:9645
+* Blob Archiver API: https://archive.testnet.ethstorage.io
 
 ## EthStorage QuarkChain L2 Beta Testnet
 
@@ -38,7 +38,7 @@
 * Chain ID: 3337
 * Layer 1: QuarkChain L2 Beta Testnet
 * storage-contracts-v1: v0.1.0
-* es-node: v0.2.2
+* es-node: v0.2.4
 
 ### Deployment
 
