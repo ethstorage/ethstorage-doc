@@ -29,7 +29,7 @@
 
 * Storage contract address: [0xAb3d380A268d088BA21Eb313c1C23F3BEC5cfe93](https://sepolia.etherscan.io/address/0xAb3d380A268d088BA21Eb313c1C23F3BEC5cfe93)
 * ES-Geth RPC: https://rpc.testnet.ethstorage.io:9546
-* Blob Archiver API: https://archive.testnet.ethstorage.io:9645
+* Blob Archiver API: https://archive.testnet.ethstorage.io:9635
 
 ## EthStorage QuarkChain L2 Beta Testnet
 
