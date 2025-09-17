@@ -182,6 +182,7 @@ cd es-node.v0.2.5
 # replace v0.2.4 to the version you have
 mv ../es-node.v0.2.4/es-data .
 mv ../es-node.v0.2.4/esnode_* .
+mv ../es-node.v0.2.4/build/bin/snark_lib/zkey/blob_poseidon2.zkey ./build/bin/snark_lib/zkey
 ```
 4. Launch es-node using the same command as the one [previously used](/storage-provider-guide/tutorials.md#start-es-node).
 
