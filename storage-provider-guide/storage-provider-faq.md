@@ -204,7 +204,7 @@ env ES_NODE_STORAGE_MINER=<miner> ES_NODE_SIGNER_PRIVATE_KEY=<private_key> ./run
 
 ```sh
 docker stop es
-docker remove es
+docker rm es
 ```
 
 2. Then start a new container based on the new version of the es-node Docker image with [the same command in the tutorial](/storage-provider-guide/tutorials.md#start-es-node-1), just make sure the `<version>` in `ghcr.io/ethstorage/es-node:<version>` is correct.
