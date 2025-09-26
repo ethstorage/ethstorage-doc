@@ -112,7 +112,7 @@ cd es-node
 ```
 #### Initialize es-node
 
-Change directory to `es-node` and execute one of the following commands according to your network:
+In the directory `es-node`, execute one of the following commands according to your network:
 
 * Mainnet
 
