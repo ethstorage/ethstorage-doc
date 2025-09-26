@@ -112,7 +112,7 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.2.5 \
+          ghcr.io/ethstorage/es-node:v0.2.6 \
           --p2p.max.request.size 1048576
 ```
 
@@ -171,18 +171,18 @@ Firstly, you can [review the changes between releases](https://github.com/ethsto
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Download new version (e.g., `es-node.v0.2.5`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
+2. Download new version (e.g., `es-node.v0.2.6`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
 
-3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.2.4`) to the new one:
+3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.2.5`) to the new one:
 
 ```sh
-# replace v0.2.5 to your target version
-cd es-node.v0.2.5
+# replace v0.2.6 to your target version
+cd es-node.v0.2.6
 
-# replace v0.2.4 to the version you have
-mv ../es-node.v0.2.4/es-data .
-mv ../es-node.v0.2.4/esnode_* .
-mv ../es-node.v0.2.4/build/bin/snark_lib/zkey/blob_poseidon2.zkey ./build/bin/snark_lib/zkey
+# replace v0.2.5 to the version you have
+mv ../es-node.v0.2.5/es-data .
+mv ../es-node.v0.2.5/esnode_* .
+mv ../es-node.v0.2.5/build/bin/snark_lib/zkey/blob_poseidon2.zkey ./build/bin/snark_lib/zkey
 ```
 4. Launch es-node using the same command as the one [previously used](/storage-provider-guide/tutorials.md#start-es-node).
 
@@ -214,7 +214,7 @@ docker rm es
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Switch to the correct branch of the source code (e.g., you want to move to `v0.2.5`):
+2. Switch to the correct branch of the source code (e.g., you want to move to `v0.2.6`):
 
 ```sh
 cd es-node
@@ -222,8 +222,8 @@ cd es-node
 # fetch new branches
 git fetch
 
-# replace 'v0.2.5' to your target version
-git checkout v0.2.5
+# replace 'v0.2.6' to your target version
+git checkout v0.2.6
 ```
 3. build es-node
 

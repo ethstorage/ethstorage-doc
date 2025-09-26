@@ -86,24 +86,24 @@ Choose the one that is suitable for your platform:
 * Linux x86-64 or WSL:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.5/es-node.v0.2.5.linux-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.6/es-node.v0.2.6.linux-amd64.tar.gz | tar -xz
 ```
 
 * MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.5/es-node.v0.2.5.darwin-amd64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.6/es-node.v0.2.6.darwin-amd64.tar.gz | tar -xz
 ```
 
 * MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.5/es-node.v0.2.5.darwin-arm64.tar.gz | tar -xz
+curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.6/es-node.v0.2.6.darwin-arm64.tar.gz | tar -xz
 ```
 
 #### Initialize es-node
 
-Change directory to `es-node.v0.2.5` and execute one of the following commands according to your network:
+Change directory to `es-node.v0.2.6` and execute one of the following commands according to your network:
 
 * Mainnet
 
@@ -155,7 +155,7 @@ docker run --rm \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init-mainnet.sh \
-          ghcr.io/ethstorage/es-node:v0.2.5 \
+          ghcr.io/ethstorage/es-node:v0.2.6 \
           --l1.rpc <el_rpc>
 ```
 
@@ -167,7 +167,7 @@ docker run --rm \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init.sh \
-          ghcr.io/ethstorage/es-node:v0.2.5 \
+          ghcr.io/ethstorage/es-node:v0.2.6 \
           --l1.rpc <el_rpc>
 ```
 
@@ -179,7 +179,7 @@ docker run --rm \
           -v ./zkey:/es-node/build/bin/snark_lib/zkey \
           -e ES_NODE_STORAGE_MINER=<miner> \
           --entrypoint /es-node/init-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.2.5
+          ghcr.io/ethstorage/es-node:v0.2.6
 
 ```
 #### Start es-node
@@ -196,7 +196,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run-mainnet.sh \
-          ghcr.io/ethstorage/es-node:v0.2.5 \
+          ghcr.io/ethstorage/es-node:v0.2.6 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -212,7 +212,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.2.5 \
+          ghcr.io/ethstorage/es-node:v0.2.6 \
           --l1.rpc <el_rpc> \
           --l1.beacon <cl_rpc>
 ```
@@ -228,7 +228,7 @@ docker run --name es -d \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run-l2.sh \
-          ghcr.io/ethstorage/es-node:v0.2.5
+          ghcr.io/ethstorage/es-node:v0.2.6
 ```
 
 After launch, you can check docker logs using the following command:
@@ -262,7 +262,7 @@ If you intend to build es-node on Ubuntu and use `rapidsnark` as zkSNARK impleme
 ```sh
 git clone https://github.com/ethstorage/es-node.git
 cd es-node
-git checkout v0.2.5
+git checkout v0.2.6
 ```
 
 #### Build es-node
