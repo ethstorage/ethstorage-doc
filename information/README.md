@@ -8,7 +8,7 @@
 * Chain ID: 333
 * Layer 1: Ethereum Mainnet
 * storage-contracts-v1: v0.2.1
-* es-node: v0.2.5
+* es-node: v0.2.6
 
 ### Deployment
 
@@ -25,7 +25,7 @@
 * Chain ID: 3333
 * Layer 1: Sepolia testnet
 * storage-contracts-v1: v0.2.1
-* es-node: v0.2.5
+* es-node: v0.2.6
 
 ### Deployment
 
@@ -40,7 +40,7 @@
 * Chain ID: 3337
 * Layer 1: QuarkChain L2 Beta Testnet
 * storage-contracts-v1: v0.1.0
-* es-node: v0.2.5
+* es-node: v0.2.6
 
 ### Deployment
 
