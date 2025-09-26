@@ -173,12 +173,12 @@ Firstly, you can [review the changes between releases](https://github.com/ethsto
 
 2. (Optional) Set the architecture variable if you have not already:
 ```sh
-export OS_ARCH=<linux-amd64|darwin-amd64|darwin-arm64>
+OS_ARCH=<linux-amd64|darwin-amd64|darwin-arm64>
 ```
 
 3. Install new version (e.g., `es-node.v0.2.6`) of the pre-built package.
 ```sh
-export VERSION=v0.2.6
+VERSION=v0.2.6
 
 # Download the new pre-built package and overwrite the executables in place
 curl -L "https://github.com/ethstorage/es-node/releases/download/${VERSION}/es-node.${VERSION}.${OS_ARCH}.tar.gz" \

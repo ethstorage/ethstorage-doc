@@ -86,23 +86,23 @@ Choose the one that is suitable for your platform:
 * Linux x86-64 or WSL:
 
 ```sh
-export OS_ARCH=linux-amd64
+OS_ARCH=linux-amd64
 ```
 
 * MacOS x86-64:
 
 ```sh
-export OS_ARCH=darwin-amd64
+OS_ARCH=darwin-amd64
 ```
 
 * MacOS ARM64:
 
 ```sh
-export OS_ARCH=darwin-arm64
+OS_ARCH=darwin-arm64
 ```
 Download and unpack the specified pre-built package:
 ```sh
-export VERSION=v0.2.6
+VERSION=v0.2.6
 curl -L "https://github.com/ethstorage/es-node/releases/download/${VERSION}/es-node.${VERSION}.${OS_ARCH}.tar.gz" \
   | tar -xz && mv "es-node.${VERSION}" es-node
 cd es-node
