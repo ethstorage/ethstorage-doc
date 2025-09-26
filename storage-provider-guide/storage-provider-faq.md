@@ -171,18 +171,21 @@ Firstly, you can [review the changes between releases](https://github.com/ethsto
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Download new version (e.g., `es-node.v0.2.6`) of the pre-built package suitable for your platform using commands [here](/storage-provider-guide/tutorials.md#from-pre-built-executables).
-
-3. Some files including data folder need to be moved from the directory of old build (e.g., `es-node.v0.2.5`) to the new one:
-
+2. (Optional) Set the architecture variable if you have not already:
 ```sh
-# replace v0.2.6 to your target version
-cd es-node.v0.2.6
+OS_ARCH=<linux-amd64|darwin-amd64|darwin-arm64>
+```
 
-# replace v0.2.5 to the version you have
-mv ../es-node.v0.2.5/es-data .
-mv ../es-node.v0.2.5/esnode_* .
-mv ../es-node.v0.2.5/build/bin/snark_lib/zkey/blob_poseidon2.zkey ./build/bin/snark_lib/zkey
+3. Install new version (e.g., `es-node.v0.2.6`) of the pre-built package.
+```sh
+VERSION=v0.2.6
+
+# Download the new pre-built package and overwrite the executables in place
+curl -L "https://github.com/ethstorage/es-node/releases/download/${VERSION}/es-node.${VERSION}.${OS_ARCH}.tar.gz" \
+  | tar -xz --strip-components=1
+
+# Verify the binary version:
+./build/bin/es-node --version
 ```
 4. Launch es-node using the same command as the one [previously used](/storage-provider-guide/tutorials.md#start-es-node).
 

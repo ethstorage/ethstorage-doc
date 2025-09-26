@@ -86,24 +86,33 @@ Choose the one that is suitable for your platform:
 * Linux x86-64 or WSL:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.6/es-node.v0.2.6.linux-amd64.tar.gz | tar -xz
+OS_ARCH=linux-amd64
 ```
 
 * MacOS x86-64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.6/es-node.v0.2.6.darwin-amd64.tar.gz | tar -xz
+OS_ARCH=darwin-amd64
 ```
 
 * MacOS ARM64:
 
 ```sh
-curl -L https://github.com/ethstorage/es-node/releases/download/v0.2.6/es-node.v0.2.6.darwin-arm64.tar.gz | tar -xz
+OS_ARCH=darwin-arm64
 ```
+Download and unpack the specified pre-built package:
+```sh
+VERSION=v0.2.6
+curl -L "https://github.com/ethstorage/es-node/releases/download/${VERSION}/es-node.${VERSION}.${OS_ARCH}.tar.gz" \
+  | tar -xz && mv "es-node.${VERSION}" es-node
+cd es-node
 
+# Verify the binary version:
+./build/bin/es-node --version
+```
 #### Initialize es-node
 
-Change directory to `es-node.v0.2.6` and execute one of the following commands according to your network:
+In the directory `es-node`, execute one of the following commands according to your network:
 
 * Mainnet
 
