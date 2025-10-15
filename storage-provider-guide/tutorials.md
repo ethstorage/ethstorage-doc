@@ -444,8 +444,6 @@ apt install -y libc6
 
 It's important to monitor the node closely until it successfully submits its first storage proof. Typically, the process encompasses three main stages.
 
-> ℹ️ _**Note:**_ Only `Data sync phase` can be observed if `--miner.enabled` is not provided or `--miner.enabled=false` is used.
-
 ### Data sync phase
 
 The es-node will synchronize data from other peers in the network. You can check from the console the number of peers the node is connected to and, more importantly, the estimated syncing time.
@@ -457,6 +455,15 @@ A typical log entry in this phase appears as follows:
 ```
 INFO [01-18|09:13:32.564] Storage sync in progress progress=85.50% peerCount=2 syncTasksRemain=1@0 blobsSynced=1@128.00KiB blobsToSync=0 fillTasksRemain=30 emptyFilled=3,586,176@437.77GiB emptyToFill=608,127   timeUsed=1h48m7.556s  eta=18m20.127s
 
+```
+And the sync phase ends with a log entry that reads `Storage sync done`.
+
+> ℹ️ _**Note:**_ If mining is disabled (`--miner.enabled=false`), the node enters a stable state once sync completes.  The following repeating logs indicate the node is launched successfully:
+```
+INFO [10-15|08:07:53.121] Scanner stats                            localKvs=shard0[0-7583] localKvsCount=7584
+INFO [10-15|08:08:52.983] P2P Summary                              activePeers=8 inbound=0 outbound=8
+INFO [10-15|08:08:52.991] Scanner stats                            localKvs=shard0[0-7583] localKvsCount=7584
+INFO [10-15|08:09:52.983] P2P Summary                              activePeers=8 inbound=0 outbound=8
 ```
 
 ### Sampling phase
