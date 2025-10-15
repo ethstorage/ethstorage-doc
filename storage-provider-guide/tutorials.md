@@ -132,6 +132,8 @@ env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
 
 #### Start es-node
 
+> ℹ️ _**Note:**_ Append `--miner.enabled=false` to the following commands if the miner account is not yet whitelisted.
+
 * Mainnet
 
 ```sh
@@ -192,6 +194,8 @@ docker run --rm \
 
 ```
 #### Start es-node
+
+> ℹ️ _**Note:**_ Append `--miner.enabled=false` to the following commands if the miner account is not yet whitelisted.
 
 * Mainnet
 
@@ -299,6 +303,8 @@ env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
 ```
 
 #### Start es-node
+
+> ℹ️ _**Note:**_ Append `--miner.enabled=false` to the following commands if the miner account is not yet whitelisted.
 
 * Mainnet
 
@@ -449,6 +455,15 @@ A typical log entry in this phase appears as follows:
 ```
 INFO [01-18|09:13:32.564] Storage sync in progress progress=85.50% peerCount=2 syncTasksRemain=1@0 blobsSynced=1@128.00KiB blobsToSync=0 fillTasksRemain=30 emptyFilled=3,586,176@437.77GiB emptyToFill=608,127   timeUsed=1h48m7.556s  eta=18m20.127s
 
+```
+And the sync phase ends with a log entry that reads `Storage sync done`.
+
+> ℹ️ _**Note:**_ If mining is disabled (`--miner.enabled=false`), the node enters a stable state once sync completes.  The following repeating logs indicate the node is launched successfully:
+```
+INFO [10-15|08:07:53.121] Scanner stats                            localKvs=shard0[0-7583] localKvsCount=7584
+INFO [10-15|08:08:52.983] P2P Summary                              activePeers=8 inbound=0 outbound=8
+INFO [10-15|08:08:52.991] Scanner stats                            localKvs=shard0[0-7583] localKvsCount=7584
+INFO [10-15|08:09:52.983] P2P Summary                              activePeers=8 inbound=0 outbound=8
 ```
 
 ### Sampling phase
