@@ -132,6 +132,8 @@ env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
 
 #### Start es-node
 
+> ℹ️ _**Note:**_ Append `--miner.enabled=false` to the following commands if the miner account is not yet whitelisted.
+
 * Mainnet
 
 ```sh
@@ -192,6 +194,8 @@ docker run --rm \
 
 ```
 #### Start es-node
+
+> ℹ️ _**Note:**_ Append `--miner.enabled=false` to the following commands if the miner account is not yet whitelisted.
 
 * Mainnet
 
@@ -299,6 +303,8 @@ env ES_NODE_STORAGE_MINER=<miner> ./init-l2.sh
 ```
 
 #### Start es-node
+
+> ℹ️ _**Note:**_ Append `--miner.enabled=false` to the following commands if the miner account is not yet whitelisted.
 
 * Mainnet
 
@@ -437,6 +443,8 @@ apt install -y libc6
 ## Check the status after launching the es-node
 
 It's important to monitor the node closely until it successfully submits its first storage proof. Typically, the process encompasses three main stages.
+
+> ℹ️ _**Note:**_ Only `Data sync phase` can be observed if `--miner.enabled` is not provided or `--miner.enabled=false` is used.
 
 ### Data sync phase
 
