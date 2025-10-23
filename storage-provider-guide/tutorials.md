@@ -348,16 +348,16 @@ Go to the [QuickNode](https://www.quicknode.com/) website, click `Get started fo
 
 ### Install Go
 
-Download a stable Go release, e.g., go1.23.7.
+Download a stable Go release, e.g., go1.24.9.
 
 ```sh
-curl -OL https://golang.org/dl/go1.23.7.linux-amd64.tar.gz
+curl -OL https://golang.org/dl/go1.24.9.linux-amd64.tar.gz
 ```
 
 Extract and install
 
 ```sh
-tar -C /usr/local -xf go1.23.7.linux-amd64.tar.gz
+tar -C /usr/local -xf go1.24.9.linux-amd64.tar.gz
 ```
 
 Update `$PATH`
