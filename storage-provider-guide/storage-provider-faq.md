@@ -112,7 +112,7 @@ docker run --name es  -d  \
           -p 9222:9222 \
           -p 30305:30305/udp \
           --entrypoint /es-node/run.sh \
-          ghcr.io/ethstorage/es-node:v0.2.6 \
+          ghcr.io/ethstorage/es-node:v0.2.7 \
           --p2p.max.request.size 1048576
 ```
 
@@ -176,9 +176,9 @@ Firstly, you can [review the changes between releases](https://github.com/ethsto
 OS_ARCH=<linux-amd64|darwin-amd64|darwin-arm64>
 ```
 
-3. Install new version (e.g., `es-node.v0.2.6`) of the pre-built package.
+3. Install new version (e.g., `es-node.v0.2.7`) of the pre-built package.
 ```sh
-VERSION=v0.2.6
+VERSION=v0.2.7
 
 # Download the new pre-built package and overwrite the executables in place
 curl -L "https://github.com/ethstorage/es-node/releases/download/${VERSION}/es-node.${VERSION}.${OS_ARCH}.tar.gz" \
@@ -217,7 +217,7 @@ docker rm es
 
 1. "Ctrl C" to stop the es-node process. 
 
-2. Switch to the correct branch of the source code (e.g., you want to move to `v0.2.6`):
+2. Switch to the correct branch of the source code (e.g., you want to move to `v0.2.7`):
 
 ```sh
 cd es-node
@@ -225,8 +225,8 @@ cd es-node
 # fetch new branches
 git fetch
 
-# replace 'v0.2.6' to your target version
-git checkout v0.2.6
+# replace 'v0.2.7' to your target version
+git checkout v0.2.7
 ```
 3. build es-node
 
