@@ -16,25 +16,20 @@ Thanks to its modularized design, an OP Stack chain can use an additional DA mod
 
 As a component of es-node, the archiver API serves as an additional fallback resource alongside the beacon API. 
 
-It provides blob data similar to the [getBlobSidecars](https://ethereum.github.io/beacon-APIs/#/Beacon/getBlobSidecars) beacon API, offering the same interface (`/eth/v1/beacon/blob_sidecars/{block_id}`) to retrieves blob sidecars for a given block id. If the `indices` parameter is specified, only the blob sidecars with the specified indices will be returned. 
+It provides blob data similar to the [getBlobs](https://ethereum.github.io/beacon-APIs/#/Beacon/getBlobs) beacon API, offering the same interface (`/eth/v1/beacon/blobs/{block_id}`) to retrieves blobs for a given block id. If the `versioned_hashes` parameter is specified, only the blobs with the specified versioned hashes will be returned. 
 
-For example, the following URL retrieves the 3rd blob sidecar in the block of slot 8485244.
+For example, the following URL retrieves one of the blobs in the block of slot 13059580 with versioned hash `0x0158420bd7b1f3c04a097694235c52659f31b479018ac56b2545727fab33712d`.
 
 ```sh
-https://archive.testnet.ethstorage.io:9635/eth/v1/beacon/blob_sidecars/8485244?indices=4
+https://archive.testnet.ethstorage.io:9635/eth/v1/beacon/blobs/8921627?versioned_hash=0x0158420bd7b1f3c04a097694235c52659f31b479018ac56b2545727fab33712d
 ```
 
-The difference in returned data between es-node archiver API and beacon API is that for each blob es-node archiver only returns blob content, index, KZG commitment, and KZG proof. Other elements are omitted according to how the OP Stack uses the service.
+The difference in returned data between es-node archiver API and beacon API is that for each blob es-node archiver only returns blob content, while other elements are omitted according to how the OP Stack uses the service.
 
 ```json
 {
-  "data": [
-    {
-      "index": "4",
-      "kzg_commitment": "0x851c08e90cce0c09abe1e038f8368279477ac8dd88b5e240989fe6f1c8526a9f786dcf4ea1200dacba4e60bc2fbfc49e",
-      "kzg_proof": "0x85202ce6625c1a31fe8e1a2301ddc0eaf731ab9890fe45fea850c6efe199c1253f905c11432f6f72500b654667d21ccc",
-      "blob": "0x01000043c6ffd8ffe00010..."
-    }
-  ]
+ "data": [
+    "0x1d0001fbfc0024af0f1de6920a1a3a8a10e56db4558800000001fbe4019b05c708156c6360faba4924b0ebef6a6cf96912d97f9e1f40c57473404fe7d8e237ae2343aca9a32855c4f9cbff9f12b41..."
+ ]
 }
 ```
