@@ -34,6 +34,6 @@ The following example specifies a living EthStorage archiver API on the Sepolia 
 --l1.beacon-archiver https://archive.testnet.ethstorage.io:9635
 ```
 
-Like the Beacon API, the blobs can be queried via the `/eth/v1/beacon/blob_sidecars/` endpoint, using the `indices` filter to skip irrelevant blobs. The process operates by combining the archiver and the Beacon location into a resource pool for retrieving blobs. If the op-node fails to obtain blobs from the Beacon node, it will use the archiver endpoint as a fallback.
+Like the Beacon API, the blobs can be queried via the `/eth/v1/beacon/blobs/` endpoint, using the `versioned_hashes` filter to skip irrelevant blobs. The process operates by combining the archiver and the Beacon location into a resource pool for retrieving blobs. If the op-node fails to obtain blobs from the Beacon node, it will use the archiver endpoint as a fallback.
 
 One detail worth noting is how the Beacon API's response to expired blobs affects the retrieval process. At least some of the Beacon clients (e.g., [Prysm](https://github.com/prysmaticlabs/prysm/blob/feb16ae4aaa41d9bcd066b54b779dcd38fc928d2/beacon-chain/rpc/lookup/blocker.go#L225)) return 200 status code and an empty list while [the OP Stack code](https://github.com/ethereum-optimism/optimism/blob/develop/op-service/sources/l1\_beacon\_client.go#L212) is expecting an error. [Addressing this issue](https://github.com/ethereum-optimism/optimism/pull/10269) is crucial for the proper functioning of the retrieval of historical blobs.
