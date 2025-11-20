@@ -21,7 +21,7 @@ It provides blob data similar to the [getBlobs](https://ethereum.github.io/beaco
 For example, the following URL retrieves one of the blobs in the block of slot 13059580 with versioned hash `0x0158420bd7b1f3c04a097694235c52659f31b479018ac56b2545727fab33712d`.
 
 ```sh
-https://archive.testnet.ethstorage.io:9635/eth/v1/beacon/blobs/13059580?versioned_hash=0x0158420bd7b1f3c04a097694235c52659f31b479018ac56b2545727fab33712d
+https://archive.testnet.ethstorage.io:9635/eth/v1/beacon/blobs/8921627?versioned_hash=0x0158420bd7b1f3c04a097694235c52659f31b479018ac56b2545727fab33712d
 ```
 
 The difference in returned data between es-node archiver API and beacon API is that for each blob es-node archiver only returns blob content, while other elements are omitted according to how the OP Stack uses the service.
