@@ -7,7 +7,7 @@ In this tutorial, we will demonstrate how to upload and download files using the
 The `ethstorage-sdk` provides APIs for file upload, download, and management.
 
 In the following code examples, Sepolia is used by default.
-You can switch to other chains by specifying a different RPC endpoint, such as "https://rpc.beta.testnet.l2.quarkchain.io:8545" for the [QuarkChain L2](https://quarkchain.io) beta testnet.
+You can switch to other chains by specifying a different RPC endpoint, such as "https://rpc.delta.testnet.l2.quarkchain.io:8545" for the [QuarkChain L2](https://quarkchain.io) testnet.
 
 ## Step 1: Install ethstorage-sdk
 
@@ -27,8 +27,8 @@ In this section, you will create a `FlatDirectory` contract for managing files.
 const { FlatDirectory } = require("ethstorage-sdk");
 
 const rpc = "https://rpc.sepolia.org";
-// For QuarkChain L2 beta testnet:
-// const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
+// For QuarkChain L2 testnet:
+// const rpc = "https://rpc.delta.testnet.l2.quarkchain.io:8545";
 const privateKey = "0x...";
 
 const flatDirectory = await FlatDirectory.create({
@@ -122,8 +122,8 @@ For read-only scenarios, you can create a download-only SDK instance without `rp
 
 ```js
 const ethStorageRpc = "https://rpc.testnet.ethstorage.io:9546"; // Sepolia
-// For QuarkChain L2 beta testnet:
-// const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
+// For QuarkChain L2 testnet:
+// const ethStorageRpc = "https://rpc.delta.testnet.l2.quarkchain.io:8545";
 
 const key = "test.txt";
 
@@ -188,12 +188,7 @@ In this section, you can create an `EthStorage` instance to interact directly wi
 const { EthStorage } = require("ethstorage-sdk");
 
 const rpc = "https://rpc.sepolia.org";
-// For QuarkChain L2 beta testnet:
-// const rpc = "https://rpc.beta.testnet.l2.quarkchain.io:8545";
-
 const ethStorageRpc = "https://rpc.testnet.ethstorage.io:9546"; // Sepolia
-// For QuarkChain L2 beta testnet:
-// const ethStorageRpc = "https://rpc.beta.testnet.l2.ethstorage.io:9596";
 
 const privateKey = "0x...";
 
