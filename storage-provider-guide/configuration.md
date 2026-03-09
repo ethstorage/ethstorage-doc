@@ -94,9 +94,11 @@ Flags and defaults may change between releases. Always re-check with `es-node --
 | `--archiver.addr <value>` | Blob archiver listening address | "0.0.0.0" | `ES_NODE_ARCHIVER_ADDRESS` |
 | `--archiver.port <value>` | Blob archiver listening port | 9645 | `ES_NODE_ARCHIVER_PORT` |
 | `--archiver.maxBlobsPerBlock <value>` | Max blobs per block | 0 | `ES_NODE_ARCHIVER_MAX_BLOBS_PER_BLOCK` |
-| `--scanner.mode <value>` | Data scan mode, 0: disabled, 1: check meta, 2: check blob | 1 | `ES_NODE_SCANNER_MODE` |
-| `--scanner.batch-size <value>` | Data scan batch size | 8192 | `ES_NODE_SCANNER_BATCH_SIZE` |
-| `--scanner.interval <value>` | Data scan interval in minutes, minimum 3 (default) | 3 | `ES_NODE_SCANNER_INTERVAL` |
+| `--scanner.mode <value>` | Data scan mode (bitmask) : 0=disabled, 1=meta, 2=blob, 4=block; combinations via sum/OR: 3=meta+blob, 5=meta+block, 6=blob+block, 7=all | 1 | `ES_NODE_SCANNER_MODE` |
+| `--scanner.batch-size <value>` | The number of KVs to scan per batch for check-meta and check-blob modes. No impact on check-block mode. | 8192 | `ES_NODE_SCANNER_BATCH_SIZE` |
+| `--scanner.interval.meta <value>` | Data scan interval of check-meta mode in minutes (default 3) | 3 | `ES_NODE_SCANNER_INTERVAL_META` |
+| `--scanner.interval.blob <value>` | Data scan interval of check-blob mode in minutes (default 60) | 60 | `ES_NODE_SCANNER_INTERVAL_BLOB` |
+| `--scanner.interval.block <value>` | Data scan interval of check-block mode in minutes (default 1440) | 1440 | `ES_NODE_SCANNER_INTERVAL_BLOCK` |
 | `--email.username <value>` | Email username for notifications | N/A | `ES_NODE_EMAIL_USERNAME` |
 | `--email.password <value>` | Email password for notifications | N/A | `ES_NODE_EMAIL_PASSWORD` |
 | `--email.host <value>` | Email host for notifications | "smtp.gmail.com" | `ES_NODE_EMAIL_HOST` |
