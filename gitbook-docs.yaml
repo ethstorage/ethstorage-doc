@@ -1,0 +1,11 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: EthStorage
+  structure:
+    - type: space
+      key: space-1
+      title: EthStorage
+      path: ethstorage
+      default: true
+      content:
+        directory: ./
